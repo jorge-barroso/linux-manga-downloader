@@ -1,8 +1,18 @@
 #
-#English					0.1
+#English					1.0
 #
 
 # /* GUI *\ #
+
+BUT1="Start"
+BUT2="Submanga"
+BUT3="McAnime"
+BUT4="Raws & e-Scans"
+BUT5="Hentai"
+BUT6="Others"
+BUT7="Credits"
+
+## SERVICES. ##
 
 GULA1="Submanga has 2 download ways in this moments:
 1- Normal
@@ -11,10 +21,9 @@ The second one allows you to download a full manga just putting the url:
 http://submanga.com/claymore/completa
 or if we want it from an specific fansub:
 http://submanga.com/The_World_God_Only_Knows/scanlation/Nikasub"
-###
-###
+
 GULA2="<b>1- 4chan</b> - For 4chan you have got to introduce the thread url ej: http://boards.4chan.org/h/res/3025102
-(don't try to acced because the thread won't exist XD)
+
 After introducing the url in the first block you got to introduce a name for the directory in the second block. If you don't do it, a random one will be applied
 
 <b>2- Zerochan</b> - Put the url of the gallery you wish to download. ex: http://www.zerochan.net/Durarara%21%21?q=durarara, the first page for less problems ;)
@@ -167,12 +176,12 @@ ANE1="$BDIR directory already exists, it's not needed to make a new one"
 ANE2="Creating $BDIR manga directory"
 ANE3="$DIRNAME directory already exists, introduce a new one."
 ANE4="Error with,\n check the name and run again the script."
-ANE5"$DIRNAME directory is going to be made"
+ANE5="$DIRNAME directory is going to be made"
 ANE6="Downloading page number $i."
 ANE7="Error, that parameter doesn't exist"
 
 ##
-##OtherS
+##Others
 ##
 
 # Danboru

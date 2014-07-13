@@ -1,8 +1,20 @@
 #
-#Español					0.1
+#Español					1.0
 #
 
 # /* GUI *\ #
+
+## BUTTONS. ##
+
+BUT1="Inicio"
+BUT2="Submanga"
+BUT3="McAnime"
+BUT4="Raws & e-Scans"
+BUT5="Hentai"
+BUT6="Otros"
+BUT7="Créditos"
+
+## SERVICES. ##
 
 GULA1="Submanga cuenta en estos momentos de 2 modalidades:
 1- La normal
@@ -11,10 +23,9 @@ Esta segunda permite descargar un manga completo poniendo solo la url:
 http://submanga.com/claymore/completa
 o si lo queremos de un fansub específico:
 http://submanga.com/The_World_God_Only_Knows/scanlation/Nikasub"
-###
-###
+
 GULA2="<b>1- 4chan</b> - Para 4chan hay que introducir la url del thread ej: http://boards.4chan.org/h/res/3025102
-(no intenten acceder por que el thread no existirá XD)
+
 Después de introducir la url en el primer bloque hay que introducir un nombre para el directorio en el segundo bloque, de no hacerlo se le aplicará uno aleatorio
 
 <b>2- Zerochan</b> - Poner la url de la galería que se desea descargar ej: http://www.zerochan.net/Durarara%21%21?q=durarara, la página 1 para menos problemas ;)

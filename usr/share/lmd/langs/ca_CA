@@ -1,8 +1,18 @@
 #
-#Català					0.1
+#Català					1.0
 #
 
 # /* GUI *\ #
+
+BUT1="Inici"
+BUT2="Submanga"
+BUT3="McAnime"
+BUT4="Raws & e-Scans"
+BUT5="Hentai"
+BUT6="Altres"
+BUT7="Crèdits"
+
+## SERVICES. ##
 
 GULA1="Submanga en aquest moments compta amb dues modalitats:
 1- La normal
@@ -12,11 +22,10 @@ http://submanga.com/claymore/completa
 També permet 
 la opció de descàrrega de un fansub específic:
 http://submanga.com/The_World_God_Only_Knows/scanlation/Nikasub"
-###
-###
+
 GULA2="<b>1- 4chan</b> - Per a 4chan és necessari introduir una url del thread
 ej: http://boards.4chan.org/h/res/3025102
-(no intenteu accedir amb aquesta url, el thread no existirà XD)
+
 Després de introduir la url s'ha de introduir un nom per el directori en el segon bloc, de no posar-ho s'aplicarà un nom aleatori.
 
 <b>2- Zerochan</b> - Posar la url de la galeria a descarregar
