@@ -1,0 +1,44 @@
+#!/bin/bash
+# Mangareader 	(Beta)											0.0.2.0
+wget -O /tmp/.page0 $1 -o /tmp/.logsesion
+FN=`cat /tmp/.page0 | grep "<title>"`
+FNCT=`echo $FN | cut -d "-" -f1`
+FNF=`echo $FNCT | cut -c8-90`
+DIRNAME="$(echo $FNF)"
+
+if ls $HOME/manga/ | grep "$DIRNAME" > /dev/null
+then
+	echo "$MAR1"
+		read -p "" DIRNAME
+		if ls $HOME/manga/ | grep "$DIRNAME" > /dev/null
+		then
+			echo $MAR2
+			exit
+		fi
+else
+	cd $HOME/manga
+	echo "$MAR3"
+	mkdir "$DIRNAME"
+	cd "$DIRNAME"
+fi
+NAFILE=`echo $DIRNAME | tr " " -`
+echo "$MAR4"
+GETUL="$(lynx -image_links -dump "$1" | egrep http://i.*.mangareader.net/.*)"
+wget -O $NAFILE-1.jpg $GETUL -o /tmp/.logsesion
+
+
+for i in `seq 2 100`
+do
+if cat /tmp/.page0 | egrep "<option value=.*/.*-$i/.*" > /dev/null
+then
+	echo $MAR5
+	NXTUL=`cat /tmp/.page0 | egrep "<option value=.*/.*-$i/.*" | cut -d "'" -f 2`
+	GETUL="$(lynx -image_links -dump "http://www.mangareader.net$NXTUL" | egrep http://i.*.mangareader.net/.*)"
+	wget -O $NAFILE-$i.jpg $GETUL -o /tmp/.logsesion
+else
+	echo ""
+	echo $MAR6
+	notify-send --icon="pen" -u normal "$DIRNAME" "$MAR6"
+	break
+fi
+done

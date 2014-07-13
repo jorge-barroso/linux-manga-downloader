@@ -1,0 +1,48 @@
+#!/bin/bash
+
+if echo $1 | grep ?
+then
+	UL=`echo $1 | cut -d "?" -f 1`
+else
+	UL=`echo $1`
+fi
+wget -O /tmp/.page0 "$UL?p=1" -o /tmp/.logsesion
+TITLE=`cat /tmp/.page0 | grep "<title>"` 
+PAG=`cat /tmp/.page0 | grep "page" | cut -d " " -f 4 | cut -d "<" -f 1`
+if echo $PAG | grep "," ;
+then
+	PAGES=`echo $PAG | tr -d ,`
+fi
+echo $PAGES
+NAMEDIR=`echo $TITLE | cut -d "/" -f 2 | cut -d "-" -f 1`
+IMGDIR=`ls $HOME | grep Im`
+if [ -e $HOME/$IMGDIR/"$NAMEDIR" ];
+then
+	cd $HOME/$IMGDIR/"$NAMEDIR"
+else
+	mkdir $HOME/$IMGDIR/"$NAMEDIR"
+	cd $HOME/$IMGDIR/"$NAMEDIR"
+fi
+for pgs in `seq 1 $PAGES`
+do
+	lynx -image_links -dump "$UL?p=$pgs" | egrep http://s.*.zerochan.net/.* > /tmp/imglinks
+	cat /tmp/imglinks | cut -d "." -f 4 | cut -c9-300  > /tmp/imglinksc
+	FILESN=`cat /tmp/imglinksc | wc -l`
+		for pga in `seq 1 $FILESN`
+		do
+			FUL=`head -$pga /tmp/imglinksc | tail -1`
+			EXISS=`echo $FUL | cut -d "/" -f3`
+	#echo $EXISS
+			if [ -f $EXISS.jpg ]; 
+			then
+				echo "$ZEO1"
+			else
+				wget "http://static.zerochan.net/full/$FUL.jpg" -o /tmp/.logsesion
+				echo "$ZEO1"
+			fi		
+			done
+	echo "$ZEO2"
+	echo ""
+done
+############
+

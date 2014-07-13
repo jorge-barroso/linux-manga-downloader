@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=LMD
+Version=1.0
+Comment=Download all your favorite manga
+Exec=lmd
+Icon=/usr/share/icons/pen.png
+Terminal=true
+Type=Application
+StartupNotify=true
+Encoding=UTF-8
+Categories=Graphics;

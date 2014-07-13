@@ -1,0 +1,55 @@
+#!/bin/bash
+# MangaShare (Beta)												0.1.1.0
+
+wget -O /tmp/.page0 $1 -o /tmp/.log
+FN=`cat /tmp/.page0 | grep "<title>"` 
+FNA=`echo $FN | cut -d "|" -f1`
+FNF=`echo $FNA | cut -c8-90`
+DIRNAME=`echo $FNF` 
+echo $DIRNAME
+
+#DIR NAME
+if ls $HOME/manga/ | grep "$DIRNAME" > /dev/null
+then
+	echo "$MAS1"
+		read -p "" DIRNAME
+		if ls $HOME/manga/ | grep "$DIRNAME" > /dev/null
+		then
+			echo "$MAS2"
+			exit
+		fi
+else
+	cd $HOME/manga
+	echo "MAS3"
+	mkdir "$DIRNAME"
+	cd "$DIRNAME"
+fi
+
+UL=`echo $1 | cut -d "/" -f -5`
+
+for i in `seq 1 9`;
+do
+	ms_urli=`lynx -image_links -dump $UL/00$i.html | egrep http://.*.mangashare.com/manga.*/00$i.* `
+	wget $ms_urli -o /tmp/.logsesion
+	echo "Descargando Pagina $i"
+	if  grep -U ERROR\ 404  /tmp/.logsesion > /dev/null
+	then
+		echo "$MAS4"
+		echo "$MAS5"
+		notify-send --icon="pen" -u normal "$DIRNAME" "$MAS5"
+	break
+	fi
+done 
+for i in `seq 10 99`;
+do
+	ms_urli=`lynx -image_links -dump $UL/0$i.html | egrep http://.*.mangashare.com/manga.*/0$i.* `
+	wget $ms_urli -o /tmp/.logsesion
+	echo "Descargando Pagina $i"
+	if  grep -U ERROR\ 404  /tmp/.logsesion > /dev/null
+	then
+		echo "$MAS4"
+		echo "$MAS5"
+		notify-send --icon="pen" -u normal "$DIRNAME" "$MAS5"
+	break
+	fi
+done

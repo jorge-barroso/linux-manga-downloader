@@ -1,0 +1,79 @@
+#!/bin/bash
+#LMD MangaFox beta												0.2.7.1
+
+# /* Import options *\ #
+
+source ~/.LMD/options;
+source ~/.LMD/lang/$LMLANG;
+
+##### /* Functions *\ #####
+
+wget --user-agent="Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Ubuntu/10.10 Chromium/10.0.628.0 Chrome/10.0.628.0 Safari/534.16" -O /tmp/.page0 $1 -o /tmp/.log
+FNF=`cat /tmp/.page0 | grep "<div id=\"series\">" | cut -d ">" -f3 | cut -d "<" -f1 `
+DIRNAME="$(echo $FNF)"
+BDIR=`echo $1 | cut -d "/" -f5 | tr -s '[_]' '[ ]' `
+
+#echo $FNF // $BDIR // $DIRNAME
+#exit
+#function DDRR(){
+if ls $CDIR | grep "$BDIR" > /dev/null
+then
+	echo El directorio $BDIR ya existe no hace falta crear otro.
+	if ls $CDIR"$BDIR" | grep "$DIRNAME" > /dev/null
+	then
+		read -p "" DIRNAME
+		if ls $CDIR"$BDIR" | grep "$DIRNAME" > /dev/null
+		then
+			echo $MCA3
+			exit
+		fi
+	else
+		cd $CDIR"$BDIR"
+		echo $MCA4
+		mkdir "$DIRNAME"
+		cd "$DIRNAME"
+	fi
+else
+	cd "$CDIR"
+	mkdir "$BDIR"
+	cd "$BDIR"
+	echo $MCA5
+	if ls "$CDIR$BDIR" | grep "$DIRNAME" > /dev/null
+	then
+		read -p "" DIRNAME
+		if ls $CDIR"$BDIR" | grep "$DIRNAME" > /dev/null
+		then
+			echo $MCA2
+			exit
+		fi
+	else
+		echo $MCA4
+		mkdir "$DIRNAME"
+		cd "$DIRNAME"
+	fi
+fi
+#}
+# Url clean
+ULCT=`echo $1 | cut -d "/" -f -6`
+PAGES=`lynx -nonumbers -dump $1 | grep "$ULCT/.*" | tail -1 | cut -d "/" -f 7 | cut -d "." -f1`
+#echo $ULCT $PAGES
+if ! [ -e /tmp/mfcdn ];
+then
+	mkdir "/tmp/mfcdn"
+fi
+#exit
+#Download & stop
+
+for i in `seq 1 $PAGES`;
+do
+	DWNLINK=`lynx -image_links -nonumbers -dump "$ULCT/$i.html" | grep "http://.*.p.s.mfcdn.net/store/.*"`
+	DFILE=`echo $DWNLINK | cut -d "/" -f 9`
+	EXTEN=`echo $DFILE | cut -d "." -f 2`
+	#echo $DWNLINK // $DFILE // $EXTEN
+#	exit
+	wget --user-agent="Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Ubuntu/10.10 Chromium/10.0.628.0 Chrome/10.0.628.0 Safari/534.16" $DWNLINK -O /tmp/mfcdn/$DFILE -o /tmp/.logsesion
+	montage -crop "0x0+0-36" -geometry +0+0 "/tmp/mfcdn/$DFILE" "$CDIR$BDIR/$DIRNAME/page $i.$EXTEN"
+		echo Descargando pagina $i.
+done
+rm -r /tmp/mfcdn/.*
+

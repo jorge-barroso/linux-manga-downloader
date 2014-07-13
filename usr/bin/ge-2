@@ -1,0 +1,81 @@
+#!/bin/bash
+#g.e-hentai Script  (Beta)										0.1.7.0
+
+wget -O /tmp/.page0 $1 -o /tmp/.log.txt
+FN=`cat /tmp/.page0 | grep "<title>"`
+FNF=`echo $FN | cut -d "<" -f2 | cut -c7-400`
+DIRNAME="$(echo $FNF)"
+
+if ls $HOME/manga/ | grep "$DIRNAME" > /dev/null
+then
+	echo $GEH1
+		read -p "" DIRNAME
+#		rm .fn.txt .fnf.txt .log.txt .page0
+		if ls $HOME/manga/ | grep "$DIRNAME" > /dev/null
+		then
+			echo $GEH2
+#			rm .fn.txt .fnf.txt .log.txt .page0
+			exit
+		else
+			cd $HOME/manga
+			echo $GEH3
+			mkdir "$DIRNAME"
+			cd "$DIRNAME"
+		fi
+else
+#	rm .fn.txt .fnf.txt .log.txt .page0
+	cd $HOME/manga
+	echo $GEH3
+	mkdir "$DIRNAME"
+	cd "$DIRNAME"
+fi
+
+
+#echo Analizando estructura web.
+
+FS1UL=`lynx -dump "$1" | egrep http://g.e-hentai.org/s/.*-1 | head -1 | cut -d " " -f4`
+UN=1
+#cut -c7-300 /tmp/.lynkx > /tmp/.lynkx2
+#LIN=`wc -l /tmp/.lynkx2 | cut -c1-2`
+#echo $LIN
+#rm /tmp/.page0
+
+function TASEG(){ #comment lines are debug options.
+LYURL=`lynx -image_links -dump $FS1UL | egrep "http://.*..*..*..*/h/.*/keystamp=.*" | cut -d " " -f4`
+		#echo ---------------------------------------------------
+		#echo $LYURL
+		#echo ---------------------------------------------------
+if [ -z $LYURL ]
+	then
+		TASEG
+	fi
+}
+for xi in `seq 1 100000`
+do
+#USELINK=`head -$i /tmp/.lynkx2 | tail -1`
+#wget -O /tmp/.page$xi $FS1UL -o /tmp/.logsesion
+	LYURL=`lynx -image_links -dump $FS1UL | egrep "http://.*..*..*..*:.*/h/.*/keystamp=.*" | cut -d " " -f4`
+#	LYURL=`cat /tmp/.page$xi | egrep "<div class=\"tod\"" | cut -d \" -f30`
+	if [ -z $LYURL ]
+	then
+		TASEG
+	fi
+	gi=`expr $xi + 1`
+		#echo $gi #debugg
+	FS1UL=`lynx -image_links -dump $FS1UL | egrep "http://g.e-hentai.org/s/.*-$gi" | head -1  | cut -d " " -f5`
+#	FS1UL=`cat /tmp/.page$xi | egrep "<div class=\"tod\""| cut -d \" -f20`
+	if ! [ -z $FS1UL ]
+	then
+			#echo $LYURL #debugg
+		wget $LYURL -o /tmp/.logsesion
+		echo "$GEH4"
+#		rm /tmp/.page0
+	else
+	#TASEGU
+	wget $LYURL -o /tmp/.logsesion
+	echo "$GEH4"
+	break
+	fi
+done
+
+exit

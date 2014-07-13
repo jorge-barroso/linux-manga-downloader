@@ -1,0 +1,89 @@
+#!/bin/bash
+#LMD manga.animea beta 									0.1.6.21
+
+# /* Import options *\ #
+
+source ~/.LMD/options
+source /usr/share/lmd/langs/$LMLANG;
+
+function MANGAEA_DN(){
+if ! echo $ODOWN | egrep "http://manga.animea.net/.*page-1.html" ;
+then
+	LAN=`lynx -image_links -dump "$ODOWN" | egrep "http://manga.animea.net/.*page-1.html" | cut -d " " -f4`
+	SLINK=`echo "$LAN" | cut -d "/" -f4 |cut -c1-30 `
+else
+	LAN=`echo $ODOWN`
+fi
+
+wget -O /tmp/.page0 "$LAN" -o /tmp/.log.txt
+CX=`cat /tmp/.page0 | egrep "<title>" | cut -d ">" -f2 | cut -d "<" -f1 `
+CA=`echo $CX | wc -c`
+CL=`expr $CA - 3`
+PAGES=`echo $CX | cut -c$CL-300`
+#echo $PAGES
+#echo $LAN
+#exit
+SLINK=`cat /tmp/.page0 | egrep "<a href=.*>.*</a>.*</h1>"`
+BDIR=`echo $SLINK | cut -d ">" -f2 | cut -d "<" -f1`
+CHAP=`echo $SLINK | cut -d ">" -f3 | cut -d "<" -f1 | tr -d " "`
+DIRNAME=`echo $BDIR $CHAP`
+#echo $DIRNAME \| $LAN \| SLINK $SLINK
+#exit
+###
+if ls $CDIR | grep "$BDIR" > /dev/null
+then
+	echo "$ANE1"
+else
+	echo "$ANE2"
+	mkdir $CDIR"$BDIR"
+fi
+
+
+if ls $CDIR"$BDIR" | grep "$DIRNAME" > /dev/null
+then
+	echo $ANE3
+		read -p "" DIRNAME
+		if ls $CDIR"$BDIR" | grep "$DIRNAME" > /dev/null
+		then
+			echo $ANE4
+			exit
+		else
+			cd $CDIR"$BDIR"
+			echo $ANE5
+			mkdir "$DIRNAME"
+			cd "$DIRNAME"
+		fi
+else
+	cd $CDIR"$BDIR"
+	echo $ANE5
+	mkdir "$DIRNAME"
+	cd "$DIRNAME"
+fi
+
+
+for i in `seq 1 $PAGES`;
+do
+		a=`expr $i + 1`
+		DWNLINK=`lynx -image_links -dump "$LAN" | egrep -o -e "http://.*/.*.jpg" -e "http://.*/.*.png"`
+		LAN=`lynx -image_links -dump "$LAN" | egrep -o "http://manga.animea.net/.*page-$a.*" | head -1`
+echo
+#echo '\n' $DWNLINK \| $LAN \| $a
+#exit
+		echo $ANE6
+		wget $DWNLINK -o /tmp/.logsesion
+done
+}
+ODOWN=`echo "$2"`
+case $1 in
+	-n)
+		MANGAEA_DN
+		;;
+	-b)
+		SMBULK
+		;;
+	*)
+		#Error
+		echo $ANE7
+		exit
+		;;
+esac

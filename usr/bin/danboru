@@ -1,0 +1,53 @@
+#!/bin/bash		  
+# Boru Gallery Downloader							0.1.4.7
+#  By Sonozaki Doume  mail: kurobyte@gmail.com  blog: http://kuroscript.wordpress.com
+########################################################################################
+
+TTH=`date +%H%M%S` 
+IMGDIR=`ls $HOME | grep Im`
+if echo "$1" | grep "page=" > /dev/null
+then
+	DUPAG=`echo "$1" | cut -d "?" -f 1`
+	DUPAG2=`echo "$1" | cut -d "&" -f 2`
+	NAMEDIR=`echo "$1" | cut -d "=" -f 3`
+else
+	DUPAG=`echo "$1" | cut -d "?" -f 1`
+	DUPAG2=`echo "$1" | cut -d "?" -f 2`
+	NAMEDIR=`echo "$1" | cut -d "=" -f 2`
+fi
+
+if [ -e $HOME/$IMGDIR/"$NAMEDIR" ];
+then
+	cd $HOME/$IMGDIR/"$NAMEDIR"
+else
+	mkdir $HOME/$IMGDIR/"$NAMEDIR"
+	cd $HOME/$IMGDIR/"$NAMEDIR"
+fi
+for pga in `seq 1 10000`;
+do
+	lynx -dump -image_links "$DUPAG?page=$pga&$DUPAG2" | egrep "http://.*/image/.*" | cut -d " " -f 3 > /tmp/$TTH\_imglinks
+	lynx -dump -image_links "$DUPAG?page=$pga&$DUPAG2" | egrep "http://.*/jpeg/.*" | cut -d " " -f 3 >> /tmp/$TTH\_imglinks
+	EFI=`cat /tmp/$TTH\_imglinks | wc -l `
+	if [ $EFI == 0 ];
+	then
+		echo "$DAN1" 
+		notify-send --icon="pen" -u normal "$NAMEDIR" "$DAN1" 
+		break
+	else
+		cat /tmp/$TTH\_imglinks | sort | uniq > /tmp/$TTH\_imglinksca
+		#cat /tmp/$TTH\_imglinksca | wc -l > /tmp/$TTH\_ima
+		#set $TTH\_FILESN=""
+		FILESN=`cat /tmp/$TTH\_imglinksca | wc -l`
+		echo ""
+		echo "$DAN2"
+		echo "$DAN3"
+		for i in `seq 1 $FILESN`;
+		do
+			FUL=`head -$i /tmp/$TTH\_imglinksca | tail -1`
+			wget "$FUL" -o /tmp/.logsesion
+			echo Image $i of $FILESN download	
+		done
+		echo "$DAN4"
+		notify-send --icon="pen" -u normal "$NAMEDIR" "$DAN4"
+	fi
+done

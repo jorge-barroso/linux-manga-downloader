@@ -1,0 +1,402 @@
+#!/bin/bash
+#LMD Submanga beta 											0.3.70.12
+
+# /* Import options *\ #
+
+source ~/.LMD/options;
+source /usr/share/lmd/langs/$LMLANG;
+
+##### /* Functions *\ #####
+
+# /* Normal Download *\ #
+function SUBMANGA_DN(){
+wget -O /tmp/.page0 $ODOWN -o /tmp/.log.txt
+FN=`cat /tmp/.page0 | grep "<title>"`
+FNCA=`echo $FN | cut -d "<" -f6`
+FNCX=`echo $FNCA | cut -d ">" -f2`
+FNF=`echo $FNCX | cut -d "&" -f1`
+#FNF=`echo $FNCT | cut -c8-90`
+DIRNAME="$(echo $FNF)"
+
+NAUL=`echo $ODOWN | cut -d "/" -f 4`
+BDIR=`echo $NAUL | tr "_" " "`
+#echo $CDIR/"$BDIR"/"$DIRNAME"
+#exit
+
+if ls $CDIR | grep "$BDIR" > /dev/null
+then
+	echo "$SMA1"
+else
+	echo "$SMA2 $BDIR"
+	mkdir $CDIR/$BDIR
+fi
+
+
+if ls $CDIR/"$BDIR" | grep "$DIRNAME" > /dev/null
+then
+	echo $SMA3
+		read -p "" DIRNAME
+		if ls $CDIR/"$BDIR" | grep "$DIRNAME" > /dev/null
+		then
+			echo $SMA4
+			exit
+		else
+			cd $CDIR/"$BDIR"
+			echo $SMA5 "$DIRNAME"
+			mkdir "$DIRNAME"
+			cd "$DIRNAME"
+		fi
+else
+	cd $CDIR/$BDIR
+	echo $SMA5 "$DIRNAME"
+	mkdir "$DIRNAME"
+	cd "$DIRNAME"
+fi
+
+LINK=`echo "$ODOWN" | cut -d "/" -f6`
+TTH=`date +%H%M%S` 
+echo Detectando imagenes... 
+if  lynx -image_links -dump "http://submanga.com/c/$LINK/1" | egrep -o "http://submanga.com/./hd" > /dev/null
+then
+	notify-send --icon="pen" -u normal "$DIRNAME" "Se procedera a su descarga en HD"
+	cd "/tmp"
+	wget --referer="http://submanga.com/c/$LINK" http://submanga.com/hd -o /tmp/.hdlog -O /tmp/smhd
+	cd "$CDIR"/"$BDIR"/"$DIRNAME"
+	SCDNB=`cat /tmp/smhd | grep "http://img.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 6 `
+	FSTNB=`cat /tmp/smhd | grep "http://img.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 5 `
+	for i in `seq 1 100`;
+	do
+	
+		DWNLINK=`lynx -image_links -dump "http://submanga.com/c/$LINK/$i" | egrep -o "http://img.*.submanga.com/.*"`
+		#HDPATH=`echo $DWNLINK | cut -d " " -f4 | cut -c26-200`
+		IMGSERV=`echo $DWNLINK | cut -d " " -f4 | cut -d "/" -f -3`
+		#echo "$IMGSERV/hdpages/$FSTNB/$SCDNB/$i.jpg"
+		if  lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://submanga.com/r.*/$LINK" > /dev/null #Cambio de .com/r/$LINK a -> .com/r[Numero Aleatorio]/$LINK
+		then
+			wget "$IMGSERV/hdpages/$FSTNB/$SCDNB/$i.jpg" -o /tmp/.logsesion
+			echo $SMA7 $i
+			echo $SMA8.
+			notify-send --icon="pen" -u normal "$DIRNAME" "$SMA8"
+			break
+		else
+			wget "$IMGSERV/hdpages/$FSTNB/$SCDNB/$i.jpg" -o /tmp/.logsesion
+			echo $SMA6 $i
+		fi
+	done
+else
+	for i in `seq 1 100`;
+	do
+		DWNLINK="$(lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://img.*.submanga.com/.*")"
+		if  lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://submanga.com/r.*/$LINK" > /dev/null #Cambio de .com/r/$LINK a -> .com/r[Numero Aleatorio]/$LINK
+		then
+			wget $DWNLINK -o /tmp/.logsesion
+			echo $SMA7 $i
+			echo $SMA8.
+			notify-send --icon="pen" -u normal "$DIRNAME" "$SMA8"
+			break
+		else
+			wget $DWNLINK -o /tmp/.logsesion
+			echo $SMA6 $i
+		fi
+	done
+fi
+
+
+}
+
+# /* Bulk Download *\ #
+
+function SMBULK(){
+NAUL=`echo $ODOWN | cut -d "/" -f 4`
+
+lynx -dump $ODOWN | egrep "http://submanga.com/$NAUL/.*" > /tmp/.smbulklynks
+BDIR=`echo $NAUL | tr "_" " "`
+if ls $CDIR | grep "$BDIR" > /dev/null
+then
+	echo "$SMA1"
+else
+	echo "$SMA2 $BDIR"
+	mkdir "$CDIR/$BDIR"
+fi
+
+WCLFILE=`wc -l /tmp/.smbulklynks | cut -d " " -f 1`
+if [ -e /tmp/.bulkedlynk ]
+then
+	rm /tmp/.bulkedlynk
+fi
+
+for i in `seq 1 $WCLFILE`
+do
+	cat /tmp/.smbulklynks | egrep "http://submanga.com/$NAUL/$i/.*" | cut -c7-400 >> /tmp/.bulkedlynk
+done
+BUL=`wc -l /tmp/.bulkedlynk | cut -d " " -f 1`
+echo "$SMA9 $BDIR"
+echo "$SMA10"
+echo "$SMA11"
+read -p "$CONFIRM " YESNO
+if [ $YESNO = y ];
+then
+	read -p "$SMA12" FCH
+	for dwn in `seq $FCH $BUL`
+	do
+		DWNL=`head -$dwn /tmp/.bulkedlynk | tail -1`
+################################################################# Select Chapter		
+		wget -O /tmp/.page0 $DWNL -o /tmp/.log.txt
+		FN=`cat /tmp/.page0 | grep "<title>"`
+		FNCA=`echo $FN | cut -d "<" -f6`
+		FNCX=`echo $FNCA | cut -d ">" -f2`
+		FNF=`echo $FNCX | cut -d "&" -f1`
+		DIRNAME="$(echo $FNF)"
+		
+		if ls $CDIR/"$BDIR" | grep "$DIRNAME" > /dev/null
+		then
+			echo $SMA3
+			read -p "" DIRNAME
+			if ls $CDIR/"$BDIR" | grep "$DIRNAME" > /dev/null
+			then
+				echo $SMA4
+			exit
+			fi
+		else
+			cd $CDIR/"$BDIR"
+			echo $SMA5 "$DIRNAME"
+			mkdir "$DIRNAME"
+			cd "$DIRNAME"
+		fi
+
+		LINK=`echo "$DWNL" | cut -d "/" -f6`
+
+		if  lynx -image_links -dump "http://submanga.com/c/$LINK/1" | egrep -o "http://submanga.com/./hd" > /dev/null
+		then
+			notify-send --icon="pen" -u normal "$DIRNAME" "Se procedera a su descarga en HD"
+			cd "/tmp"
+			wget --referer="http://submanga.com/c/$LINK" http://submanga.com/hd -o /tmp/.hdlog -O /tmp/smhd
+			cd "$CDIR"/"$BDIR"/"$DIRNAME"
+			SCDNB=`cat /tmp/smhd | grep "http://img.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 6 `
+			FSTNB=`cat /tmp/smhd | grep "http://img.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 5 `
+			for i in `seq 1 100`;
+			do
+	
+				DWNLINK=`lynx -image_links -dump "http://submanga.com/c/$LINK/$i" | egrep -o "http://img.*.submanga.com/.*"`
+				#HDPATH=`echo $DWNLINK | cut -d " " -f4 | cut -c26-200`
+				IMGSERV=`echo $DWNLINK | cut -d " " -f4 | cut -d "/" -f -3`
+				#echo "$IMGSERV/hdpages/$FSTNB/$SCDNB/$i.jpg"
+				if  lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://submanga.com/r.*/$LINK" > /dev/null #Cambio de .com/r/$LINK a -> .com/r[Numero Aleatorio]/$LINK
+				then
+					wget "$IMGSERV/hdpages/$FSTNB/$SCDNB/$i.jpg" -o /tmp/.logsesion
+					echo $SMA7 $i
+					echo $SMA8.
+					notify-send --icon="pen" -u normal "$DIRNAME" "$SMA8"
+					break
+				else
+					wget "$IMGSERV/hdpages/$FSTNB/$SCDNB/$i.jpg" -o /tmp/.logsesion
+					echo $SMA6 $i
+				fi
+			done
+		else
+			for i in `seq 1 100`;
+			do
+				DWNLINK="$(lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://img.*.submanga.com/.*")"
+				if  lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://submanga.com/r.*/$LINK" > /dev/null #Cambio de .com/r/$LINK a -> .com/r[Numero Aleatorio]/$LINK
+				then
+					wget $DWNLINK -o /tmp/.logsesion
+					echo $SMA7 $i
+					echo $SMA8.
+					notify-send --icon="pen" -u normal "$DIRNAME" "$SMA8"
+					break
+				else
+					wget $DWNLINK -o /tmp/.logsesion
+					echo $SMA6 $i
+				fi
+			done
+		fi
+
+	done
+else ########################################################################### All chapters
+	for dwn in `seq 1 $BUL`
+	do	
+		DWNL=`head -$dwn /tmp/.bulkedlynk | tail -1`
+		
+		wget -O /tmp/.page0 $DWNL -o /tmp/.log.txt
+		FN=`cat /tmp/.page0 | grep "<title>"`
+		FNCA=`echo $FN | cut -d "<" -f6`
+		FNCX=`echo $FNCA | cut -d ">" -f2`
+		FNF=`echo $FNCX | cut -d "&" -f1`
+		DIRNAME="$(echo $FNF)"
+
+		if ls $CDIR/"$BDIR" | grep "$DIRNAME" > /dev/null
+		then
+			echo $SMA3
+			read -p "" DIRNAME
+			if ls $CDIR/"$BDIR" | grep "$DIRNAME" > /dev/null
+			then
+				echo $SMA4
+			exit
+			fi
+		else
+			cd $CDIR/"$BDIR"
+			echo $SMA5 "$DIRNAME"
+			mkdir "$DIRNAME"
+			cd "$DIRNAME"
+		fi
+
+		LINK=`echo "$DWNL" | cut -d "/" -f6`
+		
+		if  lynx -image_links -dump "http://submanga.com/c/$LINK/1" | egrep -o "http://submanga.com/./hd" > /dev/null
+		then
+			notify-send --icon="pen" -u normal "$DIRNAME" "Se procedera a su descarga en HD"
+			cd "/tmp"
+			wget --referer="http://submanga.com/c/$LINK" http://submanga.com/hd -o /tmp/.hdlog -O /tmp/smhd
+			cd "$CDIR"/"$BDIR"/"$DIRNAME"
+			SCDNB=`cat /tmp/smhd | grep "http://img.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 6 `
+			FSTNB=`cat /tmp/smhd | grep "http://img.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 5 `
+			for i in `seq 1 100`;
+			do
+	
+				DWNLINK=`lynx -image_links -dump "http://submanga.com/c/$LINK/$i" | egrep -o "http://img.*.submanga.com/.*"`
+				#HDPATH=`echo $DWNLINK | cut -d " " -f4 | cut -c26-200`
+				IMGSERV=`echo $DWNLINK | cut -d " " -f4 | cut -d "/" -f -3`
+				#echo "$IMGSERV/hdpages/$FSTNB/$SCDNB/$i.jpg"
+				if  lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://submanga.com/r.*/$LINK" > /dev/null #Cambio de .com/r/$LINK a -> .com/r[Numero Aleatorio]/$LINK
+				then
+					wget "$IMGSERV/hdpages/$FSTNB/$SCDNB/$i.jpg" -o /tmp/.logsesion
+					echo $SMA7 $i
+					echo $SMA8.
+					notify-send --icon="pen" -u normal "$DIRNAME" "$SMA8"
+					break
+				else
+					wget "$IMGSERV/hdpages/$FSTNB/$SCDNB/$i.jpg" -o /tmp/.logsesion
+					echo $SMA6 $i
+				fi
+			done
+		else
+			for i in `seq 1 100`;
+			do
+				DWNLINK="$(lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://img.*.submanga.com/.*")"
+				if  lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://submanga.com/r.*/$LINK" > /dev/null #Cambio de .com/r/$LINK a -> .com/r[Numero Aleatorio]/$LINK
+				then
+					wget $DWNLINK -o /tmp/.logsesion
+					echo $SMA7 $i
+					echo $SMA8.
+					notify-send --icon="pen" -u normal "$DIRNAME" "$SMA8"
+					break
+				else
+					wget $DWNLINK -o /tmp/.logsesion
+					echo $SMA6 $i
+				fi
+			done
+		fi
+	done
+fi
+}
+
+function SMLIS(){
+# Submanga List V2
+source ~/.LMD/options;
+wget -O /tmp/.plist http://submanga.com -o /tmp/.logsesion
+BUC=51
+RUC=1
+if [ -e /tmp/.listf ];
+then
+	rm /tmp/.listf
+	rm /tmp/.listul
+fi
+for lis in `seq 2 $BUC`
+do
+	cat /tmp/.plist | grep -r "<td class=\"s\">" | awk -F"<td class=\"s\">" "{ print $`echo $lis` }" > /tmp/.lista
+	GA=`cat /tmp/.lista | cut -d "\"" -f4`
+	NA=`cat /tmp/.lista | cut -d ">" -f2 | cut -d "<" -f1`
+	CHA=`cat /tmp/.lista | cut -d ">" -f3 | cut -d "<" -f1`
+	let TUC=$lis-$RUC
+		echo "$GA" >> /tmp/.listul
+		echo "TS_$TUC=\`echo \"$TUC\"\`" >> /tmp/.listf
+		echo "TSA_$TUC=\` echo \"$NA$CHA\"\`" >> /tmp/.listf
+		echo "TSB_$TUC=\`echo \"$GA\"\`" >> /tmp/.listf
+done
+source /tmp/.listf;
+
+HDL=`zenity --list --width=800 --height=600\
+          --title="$SMA15" \
+          --radiolist --column="$SMA16" --column="$SMA17" --column="$SMA18" --column="$SMA19" \
+		"" "$TS_1" "$TSA_1" "$TSB_1" \
+		"" "$TS_2" "$TSA_2" "$TSB_2" \
+		"" "$TS_3" "$TSA_3" "$TSB_3" \
+		"" "$TS_4" "$TSA_4" "$TSB_4" \
+		"" "$TS_5" "$TSA_5" "$TSB_5" \
+		"" "$TS_6" "$TSA_6" "$TSB_6" \
+		"" "$TS_7" "$TSA_7" "$TSB_7" \
+		"" "$TS_8" "$TSA_8" "$TSB_8" \
+		"" "$TS_9" "$TSA_9" "$TSB_9" \
+		"" "$TS_10" "$TSA_10" "$TSB_10" \
+		"" "$TS_11" "$TSA_11" "$TSB_11" \
+		"" "$TS_12" "$TSA_12" "$TSB_12" \
+		"" "$TS_13" "$TSA_13" "$TSB_13" \
+		"" "$TS_14" "$TSA_14" "$TSB_14" \
+		"" "$TS_15" "$TSA_15" "$TSB_15" \
+		"" "$TS_16" "$TSA_16" "$TSB_16" \
+		"" "$TS_17" "$TSA_17" "$TSB_17" \
+		"" "$TS_18" "$TSA_18" "$TSB_18" \
+		"" "$TS_19" "$TSA_19" "$TSB_19" \
+		"" "$TS_20" "$TSA_20" "$TSB_20" \
+		"" "$TS_21" "$TSA_21" "$TSB_21" \
+		"" "$TS_22" "$TSA_22" "$TSB_22" \
+		"" "$TS_23" "$TSA_23" "$TSB_23" \
+		"" "$TS_24" "$TSA_24" "$TSB_24" \
+		"" "$TS_25" "$TSA_25" "$TSB_25" \
+		"" "$TS_26" "$TSA_26" "$TSB_26" \
+		"" "$TS_27" "$TSA_27" "$TSB_27" \
+		"" "$TS_28" "$TSA_28" "$TSB_28" \
+		"" "$TS_29" "$TSA_29" "$TSB_29" \
+		"" "$TS_30" "$TSA_30" "$TSB_30" \
+		"" "$TS_31" "$TSA_31" "$TSB_31" \
+		"" "$TS_32" "$TSA_32" "$TSB_32" \
+		"" "$TS_33" "$TSA_33" "$TSB_33" \
+		"" "$TS_34" "$TSA_34" "$TSB_34" \
+		"" "$TS_35" "$TSA_35" "$TSB_35" \
+		"" "$TS_36" "$TSA_36" "$TSB_36" \
+		"" "$TS_37" "$TSA_37" "$TSB_37" \
+		"" "$TS_38" "$TSA_38" "$TSB_38" \
+		"" "$TS_39" "$TSA_39" "$TSB_39" \
+		"" "$TS_40" "$TSA_40" "$TSB_40" \
+		"" "$TS_41" "$TSA_41" "$TSB_41" \
+		"" "$TS_42" "$TSA_42" "$TSB_42" \
+		"" "$TS_43" "$TSA_43" "$TSB_43" \
+		"" "$TS_44" "$TSA_44" "$TSB_44" \
+		"" "$TS_45" "$TSA_45" "$TSB_45" \
+		"" "$TS_46" "$TSA_46" "$TSB_46" \
+		"" "$TS_47" "$TSA_47" "$TSB_47" \
+		"" "$TS_48" "$TSA_48" "$TSB_48" \
+		"" "$TS_49" "$TSA_49" "$TSB_49" \
+		"" "$TS_50" "$TSA_50" "$TSB_50" `
+HDU=""
+if [ -z $HDL ]
+then
+	exit
+else
+	HDUL=`head -$HDL /tmp/.listul | tail -1 `
+
+	./submanga -n `echo $HDUL`
+fi
+
+}
+
+
+
+# /* Case *\ #
+ODOWN=`echo "$2"`
+case $1 in
+	-n)
+		SUBMANGA_DN
+		;;
+	-b)
+		SMBULK
+		;;
+	-l)
+		SMLIS
+		;;
+	*)
+		#Error
+		echo "$SMA14"
+		exit
+		;;
+esac

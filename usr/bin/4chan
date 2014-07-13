@@ -1,0 +1,51 @@
+#!/bin/bash		  
+# 4chan Thread Downloader Spanish Version				0.2.19.7
+# By Sonozaki Doume   mail: kurobyte@gmail.com  blog: http://kuroscript.wordpress.com
+########################################################################################
+
+# /* Import options *\ #
+
+source ~/.LMD/options;
+source /usr/share/lmd/langs/$LMLANG;
+
+##### /* Functions *\ #####
+
+TTH=`date +%H%M%S` 
+IDIR=`echo $1 | cut -d "/" -f 6`
+IMGDIR=`ls $HOME | grep Im`
+if ls $HOME/$IMGDIR | grep $IDIR
+then
+	echo "$FCH1"
+	echo "$FCH2"
+	GODIR=`ls $HOME/$IMGDIR | grep $IDIR`
+	cd $HOME/$IMGDIR/"$GODIR"
+else
+#read -p "Introduzca un nombre para el directorio: " NAMEDIR
+#	gtkdialog --program FORCHAN_SETDIR_DIALOG
+	mkdir $HOME/$IMGDIR/"$IDIR-$NAMEDIR"
+	cd $HOME/$IMGDIR/"$IDIR-$NAMEDIR"	
+fi
+lynx -image_links -dump $1 | egrep http://images.4chan.org/.* > /tmp/$TTH\_imglinks
+cut -c7-200  /tmp/$TTH\_imglinks > /tmp/$TTH\_imglinksc
+cat /tmp/$TTH\_imglinksc | sort | uniq > /tmp/$TTH\_imglinksca
+FILESN=`cat /tmp/$TTH\_imglinksca | wc -l`
+ADIR=`pwd`
+
+echo "$FCH3"
+echo "$FCH4"
+for i in `seq 1 $FILESN`;
+do
+	
+	FUL=`head -$i /tmp/$TTH\_imglinksca | tail -1`
+	EXISS=`echo $FUL | cut -d "/" -f6`
+	if [ -f $EXISS ]; 
+	then
+		echo $FCH5
+	else
+		wget $FUL -o /tmp/.logsesion		
+		echo $FCH5
+	fi
+done
+echo "$FCH6"
+
+

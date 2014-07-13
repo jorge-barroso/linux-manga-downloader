@@ -1,0 +1,164 @@
+#!/bin/bash
+#LMD Mcanime beta												0.2.36.2
+
+# /* Import options *\ #
+
+source ~/.LMD/options;
+source /usr/share/lmd/langs/$LMLANG;
+
+##### /* Functions *\ #####
+
+function MCANIME_NORMAL(){
+wget -O /tmp/.page0 $ODOWN -o /tmp/.log.txt
+FNF=`cat /tmp/.page0 | grep "<title>" | cut -d ">" -f 2 | cut -d "(" -f1 `
+#FNCT=`echo $FN | cut -d "(" -f1`
+#FNF=`echo $FNCT | cut -c8-90`
+DIRNAME="$(echo $FNF)"
+#echo $DIRNAME
+BDIR=`echo "$DIRNAME" | tr -d [1-9]`
+
+if ls $CDIR | grep "$BDIR" > /dev/null
+then
+	echo $MCA1
+	if ls $CDIR"$BDIR" | grep "$DIRNAME" > /dev/null
+	then
+		read -p "" DIRNAME
+		if ls $CDIR"$BDIR" | grep "$DIRNAME" > /dev/null
+		then
+			echo $MCA3
+			exit
+		fi
+	else
+		cd $CDIR"$BDIR"
+		echo $MCA4
+		mkdir "$DIRNAME"
+		cd "$DIRNAME"
+	fi
+else
+	cd "$CDIR"
+	mkdir "$BDIR"
+	cd "$BDIR"
+	echo $MCA5
+	if ls "$CDIR$BDIR" | grep "$DIRNAME" > /dev/null
+	then
+		read -p "" DIRNAME
+		if ls $CDIR"$BDIR" | grep "$DIRNAME" > /dev/null
+		then
+			echo $MCA2
+			exit
+		fi
+	else
+		echo $MCA4
+		mkdir "$DIRNAME"
+		cd "$DIRNAME"
+	fi
+fi
+notify-send --icon="pen" -u normal "$DIRNAME" "$MCA8"
+CTLINK=`echo $ODOWN | cut -d "/" -f -7`
+#echo $CTLINK AQUIIIIIIIIII
+#exit 
+
+for i in `seq 1 100`;
+do
+	DWNLINK=`lynx -image_links -dump $CTLINK/$i#ver | egrep -o "http://manga.mcanime.net/manga/.*"`
+	#echo $DWNLINK
+	wget $DWNLINK -o /tmp/.logsesion
+		echo $MCA6
+	if ls | grep 0.*.1 > /dev/null
+		then
+		echo $MCA7
+		#echo $MCA5
+		notify-send --icon="pen" -u normal "$DIRNAME" "$MCA7"
+		break
+		fi
+done
+
+}
+
+function MCANIME_LIST(){
+
+wget -O /tmp/.plist http://www.mcanime.net/manga_enlinea -o /tmp/.logsesion
+BUC=21
+RUC=1
+if [ -e /tmp/.listf ];
+then
+	rm /tmp/.listf
+	rm /tmp/.listul
+	rm /tmp/.li-chap
+	rm /tmp/.li-name
+fi
+
+cat /tmp/.plist | grep -r "<h4>" | awk -F"<h4>" "{ print $2 }" | cut -d ">" -f3 | cut -d "<" -f1 > /tmp/.li-name
+echo "#comment" > /tmp/.li-chap
+cat /tmp/.plist | grep -r "/manga_enlinea/.*/1#ver" | cut -d "\"" -f2 >> /tmp/.li-chap
+
+
+
+for lis in `seq 2 $BUC`
+do
+	GA=`head -$lis /tmp/.li-chap | tail -1 `
+	NA=`head -$lis /tmp/.li-name | tail -1 `
+#	echo $NA
+	let TUC=$lis-$RUC
+	echo "$GA" >> /tmp/.listul
+	echo "TS_$TUC=\`echo \"$TUC\"\`" >> /tmp/.listf
+	echo "TSA_$TUC=\` echo \"$NA\"\`" >> /tmp/.listf
+	echo "TSB_$TUC=\`echo \"http://www.mcanime.net$GA\"\`" >> /tmp/.listf
+done
+source /tmp/.listf;
+for x in `seq 1 1`
+do
+	TI=`head -1 /tmp/.listf | tr "\t" ";" | cut -d ";"  -f3`
+	UL=`head -1 /tmp/.listf | tr "\t" ";" | cut -d ";"  -f4`
+done
+HDL=`zenity --list --width=800 --height=600\
+          --title="Mcanime - Nuevos Mangas (POC)" \
+          --radiolist --column="Seleccionar" --column="Numº" --column="Manga" --column="Direccion" \
+		"" "$TS_1" "$TSA_1" "$TSB_1" \
+		"" "$TS_2" "$TSA_2" "$TSB_2" \
+		"" "$TS_3" "$TSA_3" "$TSB_3" \
+		"" "$TS_4" "$TSA_4" "$TSB_4" \
+		"" "$TS_5" "$TSA_5" "$TSB_5" \
+		"" "$TS_6" "$TSA_6" "$TSB_6" \
+		"" "$TS_7" "$TSA_7" "$TSB_7" \
+		"" "$TS_8" "$TSA_8" "$TSB_8" \
+		"" "$TS_9" "$TSA_9" "$TSB_9" \
+		"" "$TS_10" "$TSA_10" "$TSB_10" \
+		"" "$TS_11" "$TSA_11" "$TSB_11" \
+		"" "$TS_12" "$TSA_12" "$TSB_12" \
+		"" "$TS_13" "$TSA_13" "$TSB_13" \
+		"" "$TS_14" "$TSA_14" "$TSB_14" \
+		"" "$TS_15" "$TSA_15" "$TSB_15" \
+		"" "$TS_16" "$TSA_16" "$TSB_16" \
+		"" "$TS_17" "$TSA_17" "$TSB_17" \
+		"" "$TS_18" "$TSA_18" "$TSB_18" \
+		"" "$TS_19" "$TSA_19" "$TSB_19" \
+		"" "$TS_20" "$TSA_20" "$TSB_20" `
+###
+### fixear que aun que al no escojer manga salga envez de esperar valor HDL=`
+###
+
+if [ -z HDL ];
+then
+	HDUL=`head -$HDL /tmp/.listul | tail -1 `
+	mcanime -n `echo $HDUL`
+else
+	exit
+fi
+
+}
+
+ODOWN=`echo "$2"`
+case $1 in
+	-n)
+		MCANIME_NORMAL
+		;;
+	-l)
+		MCANIME_LIST
+		;;
+	*)
+		#Error
+		echo "error ese parametro no existe"
+		exit
+		;;
+esac

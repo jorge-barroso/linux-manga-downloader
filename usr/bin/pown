@@ -1,0 +1,19 @@
+#!/bin/bash
+#pown.it									0.0.5.0
+#http://www.pown.it/5224
+NUMBER=`echo $1 | tr -d [A-Z][a-z][:/.]`
+if [ $NUMBER == 0 ];
+then
+	echo "$PNI1"
+else
+	if [ -e $HOME/pown ];
+	then
+		cd $HOME/pown
+		wget http://www.pown.it/flash/$NUMBER.swf -o /tmp/logsesion
+	else
+		mkdir $HOME/pown
+		cd $HOME/pown
+		wget http://www.pown.it/flash/$NUMBER.swf -o /tmp/logsesion
+	fi
+	notify-send --icon="pen" -u normal "$1" "Descarga Completa"
+fi

@@ -1,0 +1,109 @@
+#!/bin/bash
+# Futanarihentai script (POC)									0.2.15.6
+
+wget -O /tmp/.page0 $1 -o /tmp/.log
+FN=`cat /tmp/.page0 | egrep  "var manga_name" | cut -d "'" -f 2`
+#FNF=`echo $FN | cut -c8-70`
+DIRNAME="$(echo $FN)"
+PAGES=`cat /tmp/.page0 | grep "Pages:" | cut -d ">" -f2 | cut -d "<" -f1`
+echo $PAGES
+if ls $HOME/manga/ | grep "$DIRNAME" > /dev/null
+then
+	echo $FTH1
+		read -p "" DIRNAME
+		if ls $HOME/manga/ | grep "$DIRNAME" > /dev/null
+		then
+			echo $FTH2
+			exit
+		fi
+else
+	cd $HOME/manga
+	echo se va a crear el directorio "$DIRNAME"
+	mkdir "$DIRNAME"
+	cd "$DIRNAME"
+fi
+
+###
+
+###
+if cat /tmp/.page0 | egrep \'001.jpg > /dev/null
+then
+#	echo valor 1
+	let FG=1
+	let C=2
+	let CX=1
+else
+#	echo valor 2 
+	let FG=0
+	let C=3
+	let CX=2
+fi
+FILX=`cat /tmp/.page0 | egrep \'001`
+FILE=`echo $FILX | tr -s \' % `
+NAMAE=`cat /tmp/.page0 | egrep  "var Pic_url" | cut -d "'" -f 2 `
+for i in `seq 1 9`;
+do
+	if [ $FG == 1 ]
+	then
+#		echo FG 1
+		CXU=`echo $FILE | cut -d "%" -f $C`
+#		echo $CXU
+		if [ $CXU != 001.jpg ]
+		then
+			CTX=`echo $CXU | cut -c3-20`
+		else
+			CTX=$CXU
+		fi
+#		echo $CTX
+		#echo http://www.futahentai.com/`echo $NAMAE``echo $CXT`
+		wget http://www.futahentai.com/`echo $NAMAE``echo $CTX`  -o /tmp/.logsesion
+		let C=$C+$CX
+		echo $FTH4
+	else
+#		echo FG 0
+		CXT=`echo $FILE | cut -d "%" -f $C `
+		wget http://www.futahentai.com/`echo $NAMAE`00$i%`echo $CXT`  -o /tmp/.logsesion
+		let C=$C+$CX
+		echo $FTH4
+	fi
+#	wget http://www.futahentai.com/`echo $NAMAE`00$i%`echo $CXT`  -o /tmp/.logsesion
+#	let C=$C+$CX
+#	echo Pagina $i descargada
+done
+for i in `seq 10 $PAGES`;
+do
+	if [ $FG == 1 ]
+	then
+#		echo FG 1
+		CXU=`echo $FILE | cut -d "%" -f $C`
+#		echo $CXU
+		if [ $CXU != 001.jpg ]
+		then
+			CTX=`echo $CXU | cut -c3-20`
+		else
+			CTX=$CXU
+		fi
+#		echo $CTX
+		#echo http://www.futahentai.com/`echo $NAMAE``echo $CXT`
+
+		wget http://www.futahentai.com/`echo $NAMAE``echo $CTX`  -o /tmp/.logsesion
+		let C=$C+$CX
+		echo $FTH4
+	else
+#		echo FG 0
+		CXT=`echo $FILE | cut -d "%" -f $C `
+		wget http://www.futahentai.com/`echo $NAMAE`0$i%`echo $CXT`  -o /tmp/.logsesion
+		let C=$C+$CX
+		echo $FTH4
+	fi
+
+#	CXT=`echo $FILE | cut -d "%" -f $C `
+#	wget http://www.futahentai.com/`echo $NAMAE`0$i%`echo $CXT` -o /tmp/.logsesion
+#	let C=$C+$CX
+#	echo Pagina $i descargada
+#	if  grep -U "http://www.futahentai.com/mangas/.*/"  /tmp/.logsesion > /dev/null
+#		then
+#			echo Manga Descargado
+#			break
+#	fi
+done	
