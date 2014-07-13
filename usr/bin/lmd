@@ -82,17 +82,17 @@ export CONFIG_DIALOG="
 "
 
 export MAIN_DIALOG="
-<window title=\"Linux Manga Downloader v2 (Beta)\" default_height=\"250\" default_width=\"450\">
+<window title=\"Linux Manga Downloader (Beta)\" default_height=\"250\" default_width=\"450\">
 <vbox>
 
-	<notebook labels=\"Inicio|Submanga|Mcanime|Raws & E-Scans|Hentai|Others|Créditos\">
+	<notebook labels=\"$BUT1|$BUT2|$BUT3|$BUT4|$BUT5|$BUT6|$BUT7\">
 	<vbox>
 		<frame>
 			<pixmap>
 				<input file>/usr/share/icons/pen.png</input>
 			</pixmap>
 		<text xalign=\"1\">
-		<label>Linux Manga Downloader 0.2.0.1 (Beta)</label>
+		<label>Linux Manga Downloader 0.5 (Beta)</label>
 		</text>
 		</frame>
 	</vbox>
