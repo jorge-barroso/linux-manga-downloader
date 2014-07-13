@@ -1,11 +1,17 @@
 [Desktop Entry]
-Name=LMD
-Version=1.0
+Name=Mangatux
+GenericName=Manga Downloader
+GenericName[es]=Descargador de Manga
+GenericName[ca]=Descarregador de Manga
+GenericName[de]=Manga Downloader
 Comment=Download all your favorite manga
-Exec=lmd
+Comment[es]=Descarga todos tus mangas favoritos
+Comment[ca]=Descarrega els teus mangas favorits
+Comment[de]=Herunterladen ihre Lieblings-Manga
+Exec=/usr/bin/lmd
 Icon=/usr/share/icons/pen.png
 Terminal=true
 Type=Application
 StartupNotify=true
 Encoding=UTF-8
-Categories=Multimedia;
+Categories=Network;
