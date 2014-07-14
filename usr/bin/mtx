@@ -1,0 +1,343 @@
+#!/bin/bash
+#
+
+[ ! -d ~/.Mangatux ] && mtx-fu -reconf
+[ $? -ne 0 ] exit 1
+source ~/.Mangatux/options;
+source /usr/share/Mangatux/langs/$LMLANG;
+#function ESCAS(){
+
+export SUBMANGA_HELP_DIALOG="
+<window title=\"$TIT1\" default_height=\"200\" default_width=\"450\">
+<vbox>
+	<text xalign=\"0\"><label>\"$GULA1\"</label></text>
+<hbox>
+	<button>
+		<label>$GULA_CLOSE</label>
+		<action type=\"closewindow\">$TIT1</action>
+	</button>
+</hbox>
+</vbox>
+</window>
+"
+
+export OTHERS_HELP_DIALOG="
+<window title=\"$TIT2\" >
+<vbox>
+<frame OtherScripts Help>
+	<text xalign=\"0\" width-chars=\"100\" use-markup=\"true\">
+<label>\"$GULA2\"</label></text>
+</frame>
+<hbox>
+	<button>
+		<label>$GULA_CLOSE</label>
+		<action type=\"closewindow\">$TIT2</action>
+	</button>
+</hbox>
+</vbox>
+</window>
+"
+
+export CONFIG_DIALOG="
+<window title=\"$GULA_CONF\" default_height=\"300\" default_width=\"300\">
+<vbox>
+<frame $GULA_CONF1>
+	<frame $GULA_CONF2>
+	<hbox>
+	<entry accept=\"directory\">
+		<label>$GULA_CONF3</label>
+		<variable>FILE_DIRECTORY</variable>
+		<default>$CDIR</default>
+	</entry>
+	<button>
+		<input file stock=\"gtk-open\"></input>
+		<variable>FILE_BROWSE_DIRECTORY</variable>
+		<action type=\"fileselect\">FILE_DIRECTORY</action>
+	</button>
+	</hbox>
+	</frame>
+	<hbox>
+	<frame $GULA_CONF4>
+	<list>
+		<variable>MTXLANG</variable>
+		<item>es_ES</item>
+		<item>ca_CA</item>
+		<item>en_EN</item>
+		<item>fr_FR</item>
+	</list>
+	</frame>
+	</hbox>
+<hbox>
+	<checkbox>
+		<label>$GULA_CONF5</label>
+		<variable>CHECKSAVE</variable>
+	</checkbox>
+	<button ok>
+	<label>$GULA_APLY</label>
+	</button>
+</hbox>
+</frame>
+</vbox>
+</window>
+"
+
+export MAIN_DIALOG="
+<window title=\"Mangatux (Beta)\" default_height=\"250\" default_width=\"450\">
+<vbox>
+
+	<notebook labels=\"$BUT1|$BUT2|$BUT3|$BUT4|$BUT5|$BUT6|$BUT7\">
+	<vbox>
+		<frame>
+			<pixmap>
+				<input file>/usr/share/icons/pen.png</input>
+			</pixmap>
+		<text xalign=\"1\">
+		<label>Mangatux $PKGVER (Beta)</label>
+		</text>
+		</frame>
+	</vbox>
+	<vbox>
+		<entry>
+			<variable>SMENTRY</variable>
+		</entry>
+
+			<hbox>
+			<button>
+			<label>$GULA_DOWNLOAD</label>
+			<action>mtx-fu -submanga</action>
+
+			</button>
+			<button>
+			<label>$GULA_HELPB</label>
+			<action type=\"launch\">SUBMANGA_HELP_DIALOG</action>
+
+			</button>
+			</hbox>
+		<frame $GULA_OPC>
+
+			<radiobutton>
+			<label>$GULA_SMA</label>
+			<variable>SUBMANGA_DNVAR</variable>
+			</radiobutton>
+			
+			<radiobutton>
+			<label>$GULA_SMA1</label>
+			<variable>SUBMANGA_BULKVAR</variable>
+			</radiobutton>
+
+			<radiobutton>
+			<label>$GULA_SMA2</label>
+			<variable>SUBMANGA_LISTVAR</variable>
+			</radiobutton>
+		</frame>
+	</vbox>
+	<vbox>
+		<entry>
+			<variable>MCENTRY</variable>
+		</entry>
+
+			<hbox>
+			<button>
+			<label>$GULA_DOWNLOAD</label>
+			<action>mtx-fu -mcanime</action>
+
+			</button>
+			</hbox>
+		<frame $GULA_OPC>
+
+			<radiobutton>
+			<label>$GULA_MCA</label>
+			<variable>MCANIME_DNVAR</variable>
+			</radiobutton>
+			
+			<radiobutton>
+			<label>$GULA_MCA1</label>
+			<variable>MCANIME_LISTVAR</variable>
+			</radiobutton>
+		</frame>
+	</vbox>
+	<vbox>
+		<entry>
+			<variable>RASCAENTRY</variable>
+		</entry>
+			<hbox>
+			<button>
+				<label>$GULA_DOWNLOAD</label>
+				<action>mtx-fu -rawescan</action>
+			</button>
+			</hbox>			
+	
+		<frame $GULA_SERV>
+
+
+			<radiobutton>
+			<label>$GULA_RAWS</label>
+			<variable>MANGAHEAD_DNVAR</variable>
+			<action>if false enable:RASCAENTRY</action> 
+			<action>if true disable:RASCAENTRY</action>
+			</radiobutton>
+			
+			<radiobutton>
+			<label>$GULA_RAWS1</label>
+			<variable>MANGAFOX_DNVAR</variable>
+			</radiobutton>
+
+			<radiobutton>
+			<label>$GULA_RAWS2</label>
+			<variable>MANGASHARE_DNVAR</variable>
+			<action>if false enable:RASCAENTRY</action> 
+			<action>if true disable:RASCAENTRY</action>
+			</radiobutton>
+
+			<radiobutton>
+			<label>$GULA_RAWS3</label>
+			<variable>MANGAREADER_DNVAR</variable>
+			<action>if false enable:RASCAENTRY</action> 
+			<action>if true disable:RASCAENTRY</action>
+			</radiobutton>
+
+			<radiobutton>
+			<label>$GULA_RAWS4</label>
+			<variable>ANIMEA_DNVAR</variable>
+			</radiobutton>
+
+		</frame>
+
+	</vbox>
+	<vbox>
+		<entry>
+			<variable>HENTRY</variable>
+		</entry>
+
+			<hbox>
+			<button>
+			<label>$GULA_DOWNLOAD</label>
+			<action>mtx-fu -hentai</action>
+
+			</button>
+			</hbox>
+		<frame $GULA_SERV>
+
+			<radiobutton>
+			<label>$GULA_HEN</label>
+			<variable>FUTAHENTAI_DNVAR</variable>
+			</radiobutton>
+			
+			<radiobutton>
+			<label>$GULA_HEN1</label>
+			<variable>EHENTAI_DNVAR</variable>
+			</radiobutton>
+		</frame>
+	</vbox>
+	<vbox>
+		<entry>
+			<variable>OTSENTRY</variable>
+		</entry>
+
+			<hbox>
+			<entry>
+				<variable>NAMEDIR</variable>
+			</entry>
+			<button>
+			<label>$GULA_DOWNLOAD</label>
+			<action>mtx-fu -others</action>
+
+			</button>
+			<button>
+			<label>$GULA_HELPB</label>
+			<action type=\"launch\">OTHERS_HELP_DIALOG</action>
+
+			</button>
+			</hbox>
+		<frame $GULA_OTS>
+
+			<radiobutton>
+			<label>$GULA_OTS1</label>
+			<variable>FORCHAN</variable>
+			<action>if true enable:NAMEDIR</action> 
+			<action>if false disable:NAMEDIR</action>
+			</radiobutton>
+			
+			<radiobutton>
+			<label>$GULA_OTS2</label>
+			<variable>ZEROCHAN</variable>
+			</radiobutton>
+
+			<radiobutton>
+			<label>$GULA_OTS3</label>
+			<variable>BORU</variable>
+			</radiobutton>
+
+			<radiobutton>
+			<label>$GULA_OTS4</label>
+			<variable>POWNIT</variable>
+			</radiobutton>
+		</frame>
+	</vbox>
+
+
+	<vbox>
+		<frame>
+		<text use-markup=\"true\">
+		<label>\"<b>Mangatux (Beta)</b>\"</label>
+		</text>
+	
+		<text xalign=\"0\">
+			<label>$CRED1: Ivan Morales | @Kurobyte</label>
+		</text>
+        <text xalign=\"0\">
+            <label>$CRED2: Jorge Barroso</label>
+		<text xalign=\"0\">
+			<label>e-mail: jorge_barroso_11@hotmail.com</label>
+		</text>
+		<text width-chars=\"70\" xalign=\"0\">
+			<label>\"$CRED3\"</label>
+		</text>
+		<text width-chars=\"70\" xalign=\"0\">
+			<label>\"$CRED4\"</label>
+		</text>
+		<text selectable=\"true\" xalign=\"0\">
+		<label>Blog: http://demosnofansub.nixiweb.com</label>
+		</text>
+		</frame>
+
+	</vbox>
+	</notebook>
+<hbox>
+<button>
+	<label>$GULA_CFGB</label>
+		<action>Mangatux -config &</action>
+		<visible>enable</visible>
+</button>
+</hbox>
+</vbox>
+</window>
+"
+#}
+
+if [ $USER == "root" ];
+then
+	echo "$ROOTERR"
+else
+
+if [ -z $1 ];
+then
+	gtkdialog --program=MAIN_DIALOG
+fi
+echo $1
+
+case $1 in
+	-gui)
+		gtkdialog --program=MAIN_DIALOG
+		;;
+	-reconf)
+		mtx-fu -reconf
+		;;
+	-config)
+		gtkdialog --program=CONFIG_DIALOG > /tmp/configtmp
+		mtx-fu -saveconfig
+		;;
+	*)
+		;;
+esac
+fi

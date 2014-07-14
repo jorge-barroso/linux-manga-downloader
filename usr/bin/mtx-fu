@@ -1,0 +1,153 @@
+#!/bin/bash
+
+function SMAFU(){
+if $SUBMANGA_DNVAR == true ;
+then
+	submanga -n $SMENTRY
+fi
+
+if $SUBMANGA_BULKVAR == true ;
+then
+	submanga -b $SMENTRY
+fi
+
+if $SUBMANGA_LISTVAR == true ;
+then
+	submanga -l
+fi
+}
+
+function MCAFU(){
+if $MCANIME_DNVAR == true ;
+then
+	mcanime -n $MCENTRY
+fi
+
+if $MCANIME_LISTVAR == true ;
+then
+	mcanime -l
+fi
+}
+
+function RASCAFU(){
+if $MANGAFOX_DNVAR == true ;
+then
+	mangafox -n $RASCAENTRY
+fi
+
+if $MANGAHEAD_DNVAR == true ;
+then
+	mangahead -n $RASCAENTRY
+fi
+
+if $MANGASHARE_DNVAR == true ;
+then
+	mangashare -n $RASCAENTRY
+fi
+
+if $MANGAREADER_DNVAR == true ;
+then
+	mangareader $RASCAENTRY
+fi
+
+if $ANIMEA_DNVAR == true ;
+then
+	animea -n $RASCAENTRY
+fi
+}
+
+
+function HENFU(){
+if $FUTAHENTAI_DNVAR == true ;
+then
+	futahentai $HENTRY
+fi
+
+if $EHENTAI_DNVAR == true ;
+then
+	ehentai $HENTRY
+fi
+}
+
+function OTHERFU(){
+if $FORCHAN == true ;
+then
+	4chan $OTSENTRY
+fi
+if $ZEROCHAN == true ;
+then
+	zerochan $OTSENTRY
+fi
+if $BORU == true ;
+then
+	danboru $OTSENTRY
+fi
+if $POWNIT == true ;
+then
+	pown $OTSENTRY
+fi
+
+}
+
+function SAVECONFFU(){
+source /tmp/configtmp;
+if [ $CHECKSAVE == true ]
+then
+echo "#
+#Options File 						0.0.2.3
+#
+
+CDIR=\"$FILE_DIRECTORY\"
+LMLANG=\"$MTXLANG\"" > $HOME/.Mangatux/options
+notify-send --icon=pen "Mangatux" "$CFSAVE"
+rm /tmp/configtmp;
+fi
+}
+##########################################################################
+function RECONF(){
+mkdir $HOME/.Mangatux
+mkdir $HOME/manga
+echo "#
+#Options File 						0.0.2.3
+#
+
+CDIR=\"$HOME/manga\"
+LMLANG=\"en_EN\"" > $HOME/.Mangatux/options
+echo "completed"
+notify-send --icon=pen "Mangatux" "$CFDEF"
+}
+
+if [ $USER == "root" ];
+then
+	echo "$ROOTERR" 
+else
+
+case $1 in
+	-submanga)
+		SMAFU
+		;;
+	-mcanime)
+		MCAFU
+		;;
+	-rawescan)
+		RASCAFU
+		;;
+	-hentai)
+		HENFU
+		;;
+	-others)
+		OTHERFU
+		;;
+	-saveconfig)
+		SAVECONFFU
+		;;
+	-reconf)
+		RECONF
+		;;
+	*)
+		#Error
+		echo "$SMA14"
+		exit
+		;;
+esac
+fi
