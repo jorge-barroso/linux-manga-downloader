@@ -20,8 +20,6 @@ DIRNAME="$(echo $FNF)"
 
 NAUL=`echo $ODOWN | cut -d "/" -f 4`
 BDIR=`echo $NAUL | tr "_" " "`
-#echo $CDIR/"$BDIR"/"$DIRNAME"
-#exit
 
 if ls $CDIR | grep "$BDIR" > /dev/null
 then
