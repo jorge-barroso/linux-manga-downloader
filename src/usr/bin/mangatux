@@ -1,10 +1,10 @@
 #!/bin/bash
 #
 
-[ ! -d ~/.Mangatux ] && mtx-fu -reconf
+[ ! -d ~/.Mangatux ] && mangatux-fu -reconf
 [ $? -ne 0 ] exit 1
 source ~/.Mangatux/options;
-source /usr/share/mtx/langs/$LMLANG;
+source /usr/share/Mangatux/langs/$LMLANG;
 
 export SUBMANGA_HELP_DIALOG="
 <window title=\"$TIT1\" default_height=\"200\" default_width=\"450\">
@@ -103,7 +103,7 @@ export MAIN_DIALOG="
 			<hbox>
 			<button>
 			<label>$GULA_DOWNLOAD</label>
-			<action>mtx-fu -submanga</action>
+			<action>mangatux-fu -submanga</action>
 
 			</button>
 			<button>
@@ -138,7 +138,7 @@ export MAIN_DIALOG="
 			<hbox>
 			<button>
 			<label>$GULA_DOWNLOAD</label>
-			<action>mtx-fu -mcanime</action>
+			<action>mangatux-fu -mcanime</action>
 
 			</button>
 			</hbox>
@@ -162,7 +162,7 @@ export MAIN_DIALOG="
 			<hbox>
 			<button>
 				<label>$GULA_DOWNLOAD</label>
-				<action>mtx-fu -rawescan</action>
+				<action>mangatux-fu -rawescan</action>
 			</button>
 			</hbox>			
 	
@@ -211,7 +211,7 @@ export MAIN_DIALOG="
 			<hbox>
 			<button>
 			<label>$GULA_DOWNLOAD</label>
-			<action>mtx-fu -hentai</action>
+			<action>mangatux-fu -hentai</action>
 
 			</button>
 			</hbox>
@@ -239,7 +239,7 @@ export MAIN_DIALOG="
 			</entry>
 			<button>
 			<label>$GULA_DOWNLOAD</label>
-			<action>mtx-fu -others</action>
+			<action>mangatux-fu -others</action>
 
 			</button>
 			<button>
@@ -307,7 +307,7 @@ export MAIN_DIALOG="
 <hbox>
 <button>
 	<label>$GULA_CFGB</label>
-		<action>mtx -config &</action>
+		<action>mangatux -config &</action>
 		<visible>enable</visible>
 </button>
 <button>
@@ -336,11 +336,11 @@ case $1 in
 		gtkdialog --program=MAIN_DIALOG
 		;;
 	-reconf)
-		mtx-fu -reconf
+		mangatux-fu -reconf
 		;;
 	-config)
 		gtkdialog --program=CONFIG_DIALOG > /tmp/configtmp
-		mtx-fu -saveconfig
+		mangatux-fu -saveconfig
 		;;
 	*)
 		;;
