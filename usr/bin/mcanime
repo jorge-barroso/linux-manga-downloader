@@ -1,10 +1,10 @@
 #!/bin/bash
-#LMD Mcanime beta												0.2.36.2
+#Mangatux Mcanime beta												0.2.36.2
 
 # /* Import options *\ #
 
-source ~/.LMD/options;
-source /usr/share/lmd/langs/$LMLANG;
+source ~/.Mangatux/options;
+source /usr/share/Mangatux/langs/$LMLANG;
 
 ##### /* Functions *\ #####
 

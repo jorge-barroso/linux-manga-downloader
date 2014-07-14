@@ -1,10 +1,10 @@
 #!/bin/bash
-#LMD Submanga beta 											0.3.70.12
+#Mangatux Submanga beta 											0.3.70.12
 
 # /* Import options *\ #
 
-source ~/.LMD/options;
-source /usr/share/lmd/langs/$LMLANG;
+source ~/.Mangatux/options;
+source /usr/share/Mangatux/langs/$LMLANG;
 
 ##### /* Functions *\ #####
 
@@ -292,7 +292,7 @@ fi
 
 function SMLIS(){
 # Submanga List V2
-source ~/.LMD/options;
+source ~/.Mangatux/options;
 wget -O /tmp/.plist http://submanga.com -o /tmp/.logsesion
 BUC=51
 RUC=1

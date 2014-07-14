@@ -1,10 +1,10 @@
 #!/bin/bash
-#LMD MangaFox beta												0.2.7.1
+#Mangatux MangaFox beta												0.2.7.1
 
 # /* Import options *\ #
 
-source ~/.LMD/options;
-source ~/.LMD/lang/$LMLANG;
+source ~/.Mangatux/options;
+source ~/.Mangatux/lang/$LMLANG;
 
 ##### /* Functions *\ #####
 
