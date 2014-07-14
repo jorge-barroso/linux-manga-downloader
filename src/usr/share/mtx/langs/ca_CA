@@ -190,7 +190,7 @@ ANE1="El directori $BDIR ja existeix, no és necessari crear-ne un de nou"
 ANE2="Es crearà el directori per al manga $BDIR"
 ANE3="El directori $DIRNAME ja existeix, introdueix un altre nom."
 ANE4="Error amb el nom de directori,\n comprova el nom i ejecuta de nou el script."
-ANE5"Es va a crear el directori "$DIRNAME""
+ANE5="Es va a crear el directori "$DIRNAME""
 ANE6="Descarregant pàgina $i."
 ANE7="Error eixe parametre no existeix"
 
