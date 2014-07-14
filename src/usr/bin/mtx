@@ -5,7 +5,6 @@
 [ $? -ne 0 ] exit 1
 source ~/.Mangatux/options;
 source /usr/share/mtx/langs/$LMLANG;
-#function ESCAS(){
 
 export SUBMANGA_HELP_DIALOG="
 <window title=\"$TIT1\" default_height=\"200\" default_width=\"450\">
@@ -285,8 +284,10 @@ export MAIN_DIALOG="
 		<text xalign=\"0\">
 			<label>$CRED1: Ivan Morales | @Kurobyte</label>
 		</text>
+		
         <text xalign=\"0\">
             <label>$CRED2: Jorge Barroso</label>
+	    </text>
 		<text xalign=\"0\">
 			<label>e-mail: jorge_barroso_11@hotmail.com</label>
 		</text>
@@ -306,9 +307,13 @@ export MAIN_DIALOG="
 <hbox>
 <button>
 	<label>$GULA_CFGB</label>
-		<action>Mangatux -config &</action>
+		<action>mtx -config &</action>
 		<visible>enable</visible>
 </button>
+<button>
+	<label>$GULA_CLOSE</label>
+		<action type=\"closewindow\">MAIN_DIALOG</action>
+	</button>
 </hbox>
 </vbox>
 </window>
