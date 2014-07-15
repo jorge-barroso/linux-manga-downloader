@@ -71,7 +71,7 @@ GULA_CONF5="Save Configuration?"
 ## GUI SUBMENU SMA
 
 GULA_SMA="Normal Download - Download a chapter from submanga"
-GULA_SMA1="Bulk Downloader - Descarga un manga completo **Help**"
+GULA_SMA1="Bulk Downloader - Download a whole manga **Help**"
 GULA_SMA2="Submanga List - List the most recently published chapters"
 
 ## GUI SUBMENU MCA
@@ -102,11 +102,16 @@ GULA_OTS4="Pown.it - Super repetitive and addictive flashes"
 
 ##GENERAL
 
-conf="s"
-CONF="S"
+conf="y"
+CONF="Y"
 neg="n"
 NEG="N"
-
+LANG1="Spanish"
+LANG2="Catalan"
+LANG3="English"
+LANG4="French (Not implemented)"
+LANG5="German (Not implemented)"
+LANG6="Italian (Not implemented)"
 
 # Submanga
 

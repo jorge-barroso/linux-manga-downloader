@@ -109,7 +109,12 @@ conf="s"
 CONF="S"
 neg="n"
 NEG="N"
-
+LANG1="Espanyol"
+LANG2="Català"
+LANG3="Anglés"
+LANG4="Francés (No implementat)"
+LANG5="Alemany (No implementat)"
+LANG6="Italià (No implementat)"
 
 # Submanga
 
