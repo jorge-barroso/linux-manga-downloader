@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source "~/.Mangatux/options";
-source "/usr/share/Mangatux/langs/$LMLANG";
+source ~/.Mangatux/options;
+source /usr/share/Mangatux/langs/$LMLANG;
 
 function SMAFU(){
 if $SUBMANGA_DNVAR == true ;
@@ -97,11 +97,11 @@ source /tmp/configtmp;
 if [ $CHECKSAVE == true ]
 then
     echo "#
-    #Options File                       0.0.2.3
-    #
-    #
-    #CDIR=\"$FILE_DIRECTORY\"
-    LMLANG=\"$LMDLANG\"" > ~/.Mangatux/options
+#Options File
+#
+    
+CDIR=\"$FILE_DIRECTORY\"
+LMLANG=\"$MTXLANG\"" > ~/.Mangatux/options
 
 notify-send --icon=pen "Mangatux" "$CFSAVE"
 rm /tmp/configtmp;
@@ -110,16 +110,18 @@ fi
 
 ##########################################################################
 
-
 function RECONF(){
+if [ -d ~/.Mangatux ]; then
+	rm -r ~/.Mangatux
+fi
 mkdir $HOME/.Mangatux
-mkdir $HOME/manga
 echo "#
-##Options File                      0.0.2.3
+##Options File
 #
-#
-#CDIR=\"$HOME/manga\"
+
+CDIR=\"$HOME/manga\"
 LMLANG=\"en_EN\"" > $HOME/.Mangatux/options
+
 notify-send --icon=pen "Mangatux" "Config set to default values"
 }
 

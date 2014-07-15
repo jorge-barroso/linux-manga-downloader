@@ -2,7 +2,7 @@
 #
 
 [ ! -d ~/.Mangatux ] && mangatux-fu -reconf
-[ $? -ne 0 ] exit 1
+#[ $? -ne 0 ] exit 1
 
 source ~/.Mangatux/options;
 source /usr/share/Mangatux/langs/$LMLANG;
@@ -319,7 +319,6 @@ export MAIN_DIALOG="
 </vbox>
 </window>
 "
-#}
 
 if [ $USER == "root" ];
 then
