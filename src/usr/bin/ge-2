@@ -1,5 +1,10 @@
 #!/bin/bash
-#g.e-hentai Script  (Beta)										0.1.7.0
+#g.e-hentai Script  (Beta)
+
+# /* Import options *\ #
+
+source ~/.Mangatux/options
+source /usr/share/Mangatux/langs/$LMLANG;
 
 wget -O /tmp/.page0 $1 -o /tmp/.log.txt
 FN=`cat /tmp/.page0 | grep "<title>"`

@@ -1,5 +1,5 @@
 #!/bin/bash
-#Mangatux MangaFox beta												0.2.7.1
+#Mangatux MangaFox beta
 
 # /* Import options *\ #
 
@@ -76,4 +76,3 @@ do
 		echo Descargando pagina $i.
 done
 rm -r /tmp/mfcdn/.*
-
