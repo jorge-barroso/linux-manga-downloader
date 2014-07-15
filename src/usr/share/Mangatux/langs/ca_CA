@@ -60,7 +60,7 @@ GULA_CLOSE="Tancar"
 GULA_OK="OK"
 GULA_OPC="Opcions"
 GULA_SERV="Servidors"
-GULA_CFGB="Configuració de Mangatux"
+GULA_CFGB="Configuració del Mangatux"
 
 ## GUI CONF DIALOG
 
@@ -74,13 +74,13 @@ GULA_CONF5="Guardar Configuració?"
 ## GUI SUBMENU SMA
 
 GULA_SMA="Descàrrega Normal - Descarrega un capítol de submanga"
-GULA_SMA1="Bulk Downloader - Descarrega un manga complet **help**"
+GULA_SMA1="Bulk Downloader - Descarrega un manga complet **Ajuda**"
 GULA_SMA2="Submanga List – Llista els últims mangas publicats"
 
 ## GUI SUBMENU MCA
 
 GULA_MCA="Descàrrega Normal - Descarrega un capítol de mcanime"
-GULA_MCA1="Mcanime List – Llista els últims mangas publicats"
+GULA_MCA1="Llista de Mcanime – Llista els últims mangas publicats"
 
 ## GUI SUBMENU RAWS
 
@@ -92,8 +92,8 @@ GULA_RAWS4="Animea"
 
 ## GUI SUBMENU HEN
 
-GULA_HEN="FutaHentai - El millor site de manga futa gratis +18"
-GULA_HEN1="E-Hentai - Gran galeria de Hentai i noies maques +18"
+GULA_HEN="FutaHentai - La millor web de manga futa gratis +18"
+GULA_HEN1="E-Hentai - Gran galeria d'Hentai i noies maques +18"
 
 ## GUI SUBMENU OTS
 
@@ -123,7 +123,7 @@ SMA7="Error al descarregar la pàgina"
 SMA8="Descàrrega Completa"
 SMA9="Es descarregarà el manga"
 SMA10="A continuació es descarregaran $BUL capítols."
-SMA11="¿Desitja continuar la descàrrega des de un capítol determinat?"
+SMA11="¿Desitja continuar la descàrrega des d'un capítol determinat?"
 SMA12="Introdueix el número del capítol \"Ej: 37\" "
 SMA13="Descarregat Correctament. "
 SMA14="Error, aquest paràmetre no existeix"
@@ -220,5 +220,4 @@ ZEO2="Pàgina $pgs descarregada"
 
 ROOTERR="No es permet l'usuari root"
 CFSAVE="La configuració s'ha guardat exitosament, reinicia perquè tinguin efecte"
-CFDEF="S'ha tornat a la configuració per defecte, reininicia perquè tingui efecte"
 PKGVER="0.7"

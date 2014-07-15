@@ -73,7 +73,7 @@ GULA_CONF5="¿Guardar Configuración?"
 ## GUI SUBMENU SMA
 
 GULA_SMA="Descarga Normal - Descarga un capítulo de submanga"
-GULA_SMA1="Bulk Downloader - Descarga un manga completo **help**"
+GULA_SMA1="Bulk Downloader - Descarga un manga completo **Ayuda**"
 GULA_SMA2="Submanga List - Lista los últimos mangas publicados"
 
 ## GUI SUBMENU MCA
@@ -219,5 +219,4 @@ ZEO2="Página $pgs descargada"
 
 ROOTERR="El usuario root no está permitido"
 CFSAVE="La configuración se ha guardado exitosamente"
-CFDEF="Se ha vuelto a la configuración por defecto"
 PKGVER="0.7"
