@@ -1,5 +1,11 @@
 #!/bin/bash
-# Mangareader 	(Beta)											0.0.2.0
+# Mangareader 	(Beta)
+
+# /* Import options *\ #
+
+source ~/.Mangatux/options
+source /usr/share/Mangatux/langs/$LMLANG;
+
 wget -O /tmp/.page0 $1 -o /tmp/.logsesion
 FN=`cat /tmp/.page0 | grep "<title>"`
 FNCT=`echo $FN | cut -d "-" -f1`

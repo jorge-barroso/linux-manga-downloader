@@ -1,7 +1,11 @@
 #!/bin/bash		  
-# Boru Gallery Downloader							0.1.4.7
-#  By Sonozaki Doume  mail: kurobyte@gmail.com  blog: http://kuroscript.wordpress.com
+# Boru Gallery Downloader
 ########################################################################################
+
+# /* Import options *\ #
+
+source ~/.Mangatux/options
+ source /usr/share/Mangatux/langs/$LMLANG;
 
 TTH=`date +%H%M%S` 
 IMGDIR=`ls $HOME | grep Im`

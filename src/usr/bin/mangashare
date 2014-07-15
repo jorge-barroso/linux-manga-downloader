@@ -1,5 +1,10 @@
 #!/bin/bash
-# MangaShare (Beta)												0.1.1.0
+# MangaShare (Beta)
+
+# /* Import options *\ #
+
+source ~/.Mangatux/options
+source /usr/share/Mangatux/langs/$LMLANG;
 
 wget -O /tmp/.page0 $1 -o /tmp/.log
 FN=`cat /tmp/.page0 | grep "<title>"` 

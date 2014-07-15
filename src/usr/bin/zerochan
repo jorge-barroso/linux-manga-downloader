@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# /* Import options *\ #
+
+source ~/.Mangatux/options
+source /usr/share/Mangatux/langs/$LMLANG;
+
 if echo $1 | grep ?
 then
 	UL=`echo $1 | cut -d "?" -f 1`
@@ -45,4 +50,3 @@ do
 	echo ""
 done
 ############
-

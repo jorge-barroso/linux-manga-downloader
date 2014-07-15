@@ -1,6 +1,11 @@
 #!/bin/bash
-#pown.it									0.0.5.0
-#http://www.pown.it/5224
+#pown.it
+
+# /* Import options *\ #
+
+source ~/.Mangatux/options
+source /usr/share/Mangatux/langs/$LMLANG;
+
 NUMBER=`echo $1 | tr -d [A-Z][a-z][:/.]`
 if [ $NUMBER == 0 ];
 then
