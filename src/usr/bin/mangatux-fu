@@ -101,8 +101,12 @@ then
 #
     
 CDIR=\"$FILE_DIRECTORY\"
-LMLANG=\"$MTXLANG\"" > ~/.Mangatux/options
+" > ~/.Mangatux/options
 
+[ $MTXLANG == $LANG1 ] && echo "LMLANG=\"es_ES\"" >> ~/.Mangatux/options;
+[ $MTXLANG == $LANG2 ] && echo "LMLANG=\"ca_CA\"" >> ~/.Mangatux/options;
+[ $MTXLANG == $LANG3 ] && echo "LMLANG=\"en_EN\"" >> ~/.Mangatux/options;
+[ $MTXLANG == $LANG4 ] && echo "LMLANG=\"fr_FR\"" >> ~/.Mangatux/options;
 notify-send --icon=pen "Mangatux" "$CFSAVE"
 rm /tmp/configtmp;
 fi

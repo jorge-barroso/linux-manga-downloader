@@ -60,10 +60,10 @@ export CONFIG_DIALOG="
 	<frame $GULA_CONF4>
 	<list>
 		<variable>MTXLANG</variable>
-		<item>es_ES</item>
-		<item>ca_CA</item>
-		<item>en_EN</item>
-		<item>fr_FR</item>
+        <item>$LANG1</item>
+        <item>$LANG2</item>
+        <item>$LANG3</item>
+        <item>$LANG4</item>
 	</list>
 	</frame>
 	</hbox>
