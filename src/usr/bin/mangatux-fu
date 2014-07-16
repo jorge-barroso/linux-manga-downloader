@@ -96,18 +96,38 @@ function SAVECONFFU(){
 source /tmp/configtmp;
 if [ $CHECKSAVE == true ]
 then
+OLDLANG=$LMLANG
     echo "#
 #Options File
 #
     
 CDIR=\"$FILE_DIRECTORY\"
 " > ~/.Mangatux/options
-
-[ $MTXLANG == $LANG1 ] && echo "LMLANG=\"es_ES\"" >> ~/.Mangatux/options;
-[ $MTXLANG == $LANG2 ] && echo "LMLANG=\"ca_CA\"" >> ~/.Mangatux/options;
-[ $MTXLANG == $LANG3 ] && echo "LMLANG=\"en_EN\"" >> ~/.Mangatux/options;
-[ $MTXLANG == $LANG4 ] && echo "LMLANG=\"fr_FR\"" >> ~/.Mangatux/options;
-notify-send --icon=pen "Mangatux" "$CFSAVE"
+if [ $MTXLANG == ""]; then
+    echo "LMLANG=\"$OLDLANG\"" >> ~/.Mangatux/options;
+    notify-send --icon=pen "Mangatux" "$CFSAVE"
+else
+    if [ $MTXLANG == "$LANG1" ]; then
+        echo "LMLANG=\"es_ES\"" >> ~/.Mangatux/options;
+        notify-send --icon=pen "Mangatux" "$CFSAVE"
+    else
+        if [ $MTXLANG == "$LANG2" ]; then
+            echo "LMLANG=\"ca_CA\"" >> ~/.Mangatux/options;
+            notify-send --icon=pen "Mangatux" "$CFSAVE"
+        else
+            if [ $MTXLANG == $LANG3 ]; then
+                echo "LMLANG=\"en_EN\"" >> ~/.Mangatux/options;
+                notify-send --icon=pen "Mangatux" "$CFSAVE"
+            else
+                echo "LMLANG=\"en_EN\"" >> ~/.Mangatux/options;
+                zenity --error --title="Not supported" --text="Not supported, setting English"
+#            else
+#                if [ $MTXLANG == $LANG4 ] && echo "LMLANG=\"fr_FR\"" >> ~/.Mangatux/options;
+		    fi
+        fi
+    fi
+fi
+[ ! -d $FILE_DIRECTORY ] && mkdir -p $FILE_DIRECTORY
 rm /tmp/configtmp;
 fi
 }
