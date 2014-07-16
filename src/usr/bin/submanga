@@ -15,7 +15,6 @@ FN=`cat /tmp/.page0 | grep "<title>"`
 FNCA=`echo $FN | cut -d "<" -f6`
 FNCX=`echo $FNCA | cut -d ">" -f2`
 FNF=`echo $FNCX | cut -d "&" -f1`
-#FNF=`echo $FNCT | cut -c8-90`
 DIRNAME="$(echo $FNF)"
 
 NAUL=`echo $ODOWN | cut -d "/" -f 4`
@@ -290,7 +289,6 @@ fi
 
 function SMLIS(){
 # Submanga List V2
-source ~/.Mangatux/options;
 wget -O /tmp/.plist http://submanga.com -o /tmp/.logsesion
 BUC=51
 RUC=1

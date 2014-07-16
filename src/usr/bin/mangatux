@@ -45,7 +45,6 @@ export CONFIG_DIALOG="
 	<frame $GULA_CONF2>
 	<hbox>
 	<entry accept=\"directory\">
-		<label>$GULA_CONF3</label>
 		<variable>FILE_DIRECTORY</variable>
 		<default>$CDIR</default>
 	</entry>
@@ -57,19 +56,21 @@ export CONFIG_DIALOG="
 	</hbox>
 	</frame>
 	<hbox>
-	<frame $GULA_CONF4>
+	<frame $GULA_CONF3>
 	<list>
 		<variable>MTXLANG</variable>
         <item>$LANG1</item>
         <item>$LANG2</item>
         <item>$LANG3</item>
         <item>$LANG4</item>
+        <item>$LANG5</item>
+        <item>$LANG6</item>
 	</list>
 	</frame>
 	</hbox>
 <hbox>
 	<checkbox>
-		<label>$GULA_CONF5</label>
+		<label>$GULA_CONF4</label>
 		<variable>CHECKSAVE</variable>
 	</checkbox>
 	<button ok>

@@ -67,9 +67,8 @@ GULA_CFGB="Configuració del Mangatux"
 GULA_CONF="Configuració de Mangatux"
 GULA_CONF1="Configuració"
 GULA_CONF2="Directori Personalitzat"
-GULA_CONF3="Selecciona un Directori"
-GULA_CONF4="Selecciona Idioma"
-GULA_CONF5="Guardar Configuració?"
+GULA_CONF3="Selecciona Idioma"
+GULA_CONF4="Guardar Configuració?"
 
 ## GUI SUBMENU SMA
 

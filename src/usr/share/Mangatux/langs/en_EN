@@ -64,9 +64,8 @@ GULA_CFGB="Mangatux Configuration"
 GULA_CONF="Mangatux Configuration"
 GULA_CONF1="Configuration"
 GULA_CONF2="Personalized Directory"
-GULA_CONF3="Choose a Directory"
-GULA_CONF4="Choose Languages"
-GULA_CONF5="Save Configuration?"
+GULA_CONF3="Choose Languages"
+GULA_CONF4="Save Configuration"
 
 ## GUI SUBMENU SMA
 

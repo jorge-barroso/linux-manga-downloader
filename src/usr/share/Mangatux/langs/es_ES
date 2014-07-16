@@ -66,9 +66,8 @@ GULA_CFGB="Configuración de LMD"
 GULA_CONF="Configuración de LMD"
 GULA_CONF1="Configuración"
 GULA_CONF2="Directorio Personalizado"
-GULA_CONF3="Selecciona un Directorio"
-GULA_CONF4="Seleccionar Idioma"
-GULA_CONF5="¿Guardar Configuración?"
+GULA_CONF3="Seleccionar Idioma"
+GULA_CONF4="Guardar Configuración"
 
 ## GUI SUBMENU SMA
 
