@@ -40,8 +40,7 @@ ej: http://boards.4chan.org/h/res/3025102
 
 Després de introduir la url s'ha de introduir un nom per el directori en el segon bloc, de no posar-ho s'aplicarà un nom aleatori.
 
-<b>2- Zerochan</b> - Posar la url de la galeria a descarregar
-ej: http://www.zerochan.net/Durarara%21%21?q=durarara, la pàgina 1 per a menys problemes ;)
+<b>2- Zerochan</b> - Posar la url de la galeria a descarregar. Ej: http://www.zerochan.net/Durarara%21%21?q=durarara, la pàgina 1 per a menys problemes ;)
 
 <b>3- Boru</b> - Aquest és per a les pagines fetes amb Danboru un CMS per a debian éspecific de galeries de imatges, aquest plug és funcional en varies pagines fetes amb Danboru, si en alguna falla aviseu i es intentara fer compatible.
 url ej: http://konachan.com/post/index?tags=angel_beats%21
@@ -138,11 +137,13 @@ SMA18="Manga"
 SMA19="Direcció"
 
 #4chan
+
 FCH1="Aquest manga ha estat descarregat anteriorment"
 FCH2="Es procedeix a descarregar les noves imatges del thread"
 FCH3="Es descarregaran $FILESN imatges. No tanquis el programa."
 FCH4="Descarregant........."
-FCH5="Descàrrega completa, s'han descarregat $FILESN imatges."
+FCH5="Imatge $i de $FILESN descarregada"
+FCH6="Descàrrega completa, s'han descarregat $FILESN imatges."
 
 # Mcanime
 
@@ -224,4 +225,4 @@ ZEO2="Pàgina $pgs descarregada"
 
 ROOTERR="No es permet l'usuari root"
 CFSAVE="La configuració s'ha guardat exitosament, reinicia perquè tinguin efecte"
-PKGVER="0.7"
+PKGVER="0.8.7"

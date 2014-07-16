@@ -38,7 +38,7 @@ GULA2="<b>1- 4chan</b> - For 4chan you have got to introduce the thread url ej: 
 
 After introducing the url in the first block you got to introduce a name for the directory in the second block. If you don't do it, a random one will be applied
 
-<b>2- Zerochan</b> - Put the url of the gallery you wish to download. ex: http://www.zerochan.net/Durarara%21%21?q=durarara, the first page for less problems ;)
+<b>2- Zerochan</b> - Put the url of the gallery you wish to download. E. g. http://www.zerochan.net/Durarara%21%21?q=durarara, the first page for less problems ;)
 
 <b>3- Boru</b> - This is for the pages made with Danboru, a debian CMS specific to image galleries, this plug is functional on many Danboru-made pages. If doen'st work on someone, say it and I'll try their compatibility
 ex url: http://konachan.com/post/index?tags=angel_beats%21
@@ -140,7 +140,8 @@ FCH1="This manga is been already downloaded"
 FCH2="Starting to download the new thread images"
 FCH3="$FILESN images will be downloaded. Don't close."
 FCH4="Downloading........."
-FCH5="Download complete, $FILESN images downloaded."
+FCH5="$i out of $FILESN images downloaded"
+FCH6="Download complete, $FILESN images downloaded."
 
 # Mcanime
 
@@ -222,4 +223,4 @@ ZEO2="Page $pgs downloaded"
 
 ROOTERR="Root user is not supported"
 CFSAVE="Configuration was successfully saved"
-PKGVER="0.7"
+PKGVER="0.8.7"

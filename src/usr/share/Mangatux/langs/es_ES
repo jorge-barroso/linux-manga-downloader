@@ -137,6 +137,7 @@ SMA18="Manga"
 SMA19="Dirección"
 
 #4chan
+
 FCH1="Este manga ha sido descargado anteriormente"
 FCH2="Se procederá a descargar las imágenes nuevas del thread"
 FCH3="Se descargarán $FILESN imágenes. No cierres el programa."
@@ -224,4 +225,4 @@ ZEO2="Página $pgs descargada"
 
 ROOTERR="El usuario root no está permitido"
 CFSAVE="La configuración se ha guardado exitosamente"
-PKGVER="0.7"
+PKGVER="0.8.7"
