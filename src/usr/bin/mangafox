@@ -4,7 +4,7 @@
 # /* Import options *\ #
 
 source ~/.mangatux/options;
-source ~/.Mangatux/lang/$LMLANG;
+source /usr/share/mangatux/lang/$LMLANG;
 
 ##### /* Functions *\ #####
 
