@@ -17,15 +17,19 @@ These dependencies are needed to download the manga and to show you the windows 
 # Installation:
 
 ## Ubuntu-Debian:
-If you are using Debian, Ubuntu, or another Debian-based distro, soon you will have deb packages here to download, but by now, the only thing you have to do is to download the folder "usr" in the git repo and copy it directly in your system, with these commands on the terminal:
+If you are using Debian, Ubuntu, or another Debian-based distro, now you can download the debian package with the latest version in: http://www.mediafire.com/download/3m87wldxdsc18l5/mangatux-0.8.7.deb
+
+If you want to get the latest updates clone the repo and run the "install" file:
       
       cd ~
       
-      git clone https://github.com/jorge-barroso/Mangatux.git
+      git clone https://github.com/jorge-barroso/mangatux.git
       
-      cd Mangatux
+      cd mangatux
       
-      sudo cp -r ./usr/ /usr/
+      sh install
+
+The script will automatically use sudo to ask you for your password.
       
 ## Fedora (RPM's):
 You'll also have RPM packages as soon as possible tracking the daily development, by now you can also do the following steps:
@@ -34,9 +38,9 @@ You'll also have RPM packages as soon as possible tracking the daily development
       
       git clone https://github.com/jorge-barroso/Mangatux.git
       
-      cd Mangatux
+      cd mangatux
       
-      sudo cp -r ./usr/ /usr/
+      sudo cp -r ./usr/* /usr/
 
 ## Arch Linux:
 The package is in the aur, you can install it by typing:
