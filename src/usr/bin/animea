@@ -3,8 +3,8 @@
 
 # /* Import options *\ #
 
-source ~/.Mangatux/options
-source /usr/share/Mangatux/langs/$LMLANG;
+source ~/.mangatux/options
+source /usr/share/mangatux/langs/$LMLANG;
 
 function MANGAEA_DN(){
 if ! echo $ODOWN | egrep "http://manga.animea.net/.*page-1.html" ;

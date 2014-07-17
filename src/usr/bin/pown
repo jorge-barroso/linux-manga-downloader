@@ -3,8 +3,8 @@
 
 # /* Import options *\ #
 
-source ~/.Mangatux/options
-source /usr/share/Mangatux/langs/$LMLANG;
+source ~/.mangatux/options
+source /usr/share/mangatux/langs/$LMLANG;
 
 NUMBER=`echo $1 | tr -d [A-Z][a-z][:/.]`
 if [ $NUMBER == 0 ];

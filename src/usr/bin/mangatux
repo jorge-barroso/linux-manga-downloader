@@ -4,8 +4,8 @@
 [ ! -d ~/.Mangatux ] && mangatux-fu -reconf
 #[ $? -ne 0 ] exit 1
 
-source ~/.Mangatux/options;
-source /usr/share/Mangatux/langs/$LMLANG;
+source ~/.mangatux/options;
+source /usr/share/mangatux/langs/$LMLANG;
 
 export SUBMANGA_HELP_DIALOG="
 <window title=\"$TIT1\" default_height=\"200\" default_width=\"450\">

@@ -3,8 +3,8 @@
 
 # /* Import options *\ #
 
-source ~/.Mangatux/options
-source /usr/share/Mangatux/langs/$LMLANG;
+source ~/.mangatux/options
+source /usr/share/mangatux/langs/$LMLANG;
 
 wget -O /tmp/.page0 $1 -o /tmp/.log
 FN=`cat /tmp/.page0 | grep "<title>"` 

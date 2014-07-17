@@ -1,7 +1,10 @@
 #!/bin/bash
 
-source ~/.Mangatux/options;
-source /usr/share/Mangatux/langs/$LMLANG;
+if [ -f ~/.mangatux/options ]
+then
+	source ~/.mangatux/options;
+	source /usr/share/mangatux/langs/$LMLANG;
+fi
 
 function SMAFU(){
 if $SUBMANGA_DNVAR == true ;
@@ -93,6 +96,8 @@ fi
 }
 
 function SAVECONFFU(){
+source ~/.mangatux/options;
+source /usr/share/mangatux/langs/$LMLANG;
 source /tmp/configtmp;
 if [ $CHECKSAVE == true ]
 then
@@ -102,27 +107,27 @@ OLDLANG=$LMLANG
 #
     
 CDIR=\"$FILE_DIRECTORY\"
-" > ~/.Mangatux/options
+" > ~/.mangatux/options
 if [ $MTXLANG == ""]; then
-    echo "LMLANG=\"$OLDLANG\"" >> ~/.Mangatux/options;
+    echo "LMLANG=\"$OLDLANG\"" >> ~/.mangatux/options;
     notify-send --icon=pen "Mangatux" "$CFSAVE"
 else
     if [ $MTXLANG == "$LANG1" ]; then
-        echo "LMLANG=\"es_ES\"" >> ~/.Mangatux/options;
+        echo "LMLANG=\"es_ES\"" >> ~/.mangatux/options;
         notify-send --icon=pen "Mangatux" "$CFSAVE"
     else
         if [ $MTXLANG == "$LANG2" ]; then
-            echo "LMLANG=\"ca_CA\"" >> ~/.Mangatux/options;
+            echo "LMLANG=\"ca_CA\"" >> ~/.mangatux/options;
             notify-send --icon=pen "Mangatux" "$CFSAVE"
         else
             if [ $MTXLANG == $LANG3 ]; then
-                echo "LMLANG=\"en_EN\"" >> ~/.Mangatux/options;
+                echo "LMLANG=\"en_EN\"" >> ~/.mangatux/options;
                 notify-send --icon=pen "Mangatux" "$CFSAVE"
             else
-                echo "LMLANG=\"en_EN\"" >> ~/.Mangatux/options;
+                echo "LMLANG=\"en_EN\"" >> ~/.mangatux/options;
                 zenity --error --title="Not supported" --text="Not supported, setting English"
 #            else
-#                if [ $MTXLANG == $LANG4 ] && echo "LMLANG=\"fr_FR\"" >> ~/.Mangatux/options;
+#                if [ $MTXLANG == $LANG4 ] && echo "LMLANG=\"fr_FR\"" >> ~/.mangatux/options;
 		    fi
         fi
     fi
@@ -135,19 +140,23 @@ fi
 ##########################################################################
 
 function RECONF(){
-if [ -d ~/.Mangatux ]; then
-	rm -r ~/.Mangatux
+if [ -d ~/.mangatux ]; then
+	rm -r ~/.mangatux
 fi
-mkdir $HOME/.Mangatux
+mkdir $HOME/.mangatux
 echo "#
 ##Options File
 #
 
 CDIR=\"$HOME/manga\"
-LMLANG=\"en_EN\"" > $HOME/.Mangatux/options
+LMLANG=\"en_EN\"" > $HOME/.mangatux/options
+
+source ~/.mangatux/options;
+source /usr/share/mangatux/langs/$LMLANG;
 
 notify-send --icon=pen "Mangatux" "Config set to default values"
 }
+
 
 if [ $USER == "root" ];
 then
