@@ -1,0 +1,64 @@
+if [ ! -f /usr/lib/libnotify.so ]
+then
+    echo "Error: libnotify is not installed";
+else
+    if [ ! -f /usr/bin/gtkdialog ]
+    then
+        echo "Error: gtkdialog is not installed";
+    else
+        if [ ! -f /usr/bin/wget ]
+        then
+            echo "Error: wget is not installed"
+        else
+            if
+                [ ! -f /usr/bin/lynx ]
+            then
+                echo "Error: lynx is not installed"
+            else
+                if [ ! -f /usr/bin/zenity ]
+                then 
+                    echo "Error: zenity is not installed"
+                else
+                    if [ ! -f /usr/bin/sudo ]
+                    then
+                        if [ $HOME != /root ]
+                        then
+                            echo "Run this script as root user"
+                        else
+                            mkdir -p /usr/share/{licenses/mangatux,mangatux/langs}
+                            cp $(dirname $0)/src/usr/bin/* /usr/bin/
+                            cp $(dirname $0)/src/usr/share/applications/* /usr/share/applications
+                            cp $(dirname $0)/src/usr/share/icons/* /usr/share/icons
+                            cp $(dirname $0)/src/usr/share/licenses/mangatux/* /usr/share/licenses/mangatux/
+                            cp $(dirname $0)/src/usr/share/mangatux/langs/* /usr/share/mangatux/langs/
+                        fi
+                    else
+                        if [ $HOME != /root ]
+                        then
+                            sudo mkdir -p /usr/share/{licenses/mangatux,mangatux/langs}
+                            sudo cp $(dirname $0)/src/usr/bin/* /usr/bin/
+                            sudo cp $(dirname $0)/src/usr/share/applications/* /usr/share/applications
+                            sudo cp $(dirname $0)/src/usr/share/icons/* /usr/share/icons
+                            sudo cp $(dirname $0)/src/usr/share/licenses/mangatux/* /usr/share/licenses/mangatux/
+                            sudo cp $(dirname $0)/src/usr/share/mangatux/langs/* /usr/share/mangatux/langs/
+                        else
+                            mkdir -p /usr/share/{licenses/mangatux,mangatux/langs}
+                            cp $(dirname $0)/src/usr/bin/* /usr/bin/
+                            cp $(dirname $0)/src/usr/share/applications/* /usr/share/applications
+                            cp $(dirname $0)/src/usr/share/icons/* /usr/share/icons
+                            cp $(dirname $0)/src/usr/share/licenses/mangatux/* /usr/share/licenses/mangatux/
+                            cp $(dirname $0)/src/usr/share/mangatux/langs/* /usr/share/mangatux/langs/
+                        fi
+                    fi
+                fi
+            fi
+        fi
+    fi
+fi
+
+[ $? -ne 0 ] exit 1
+
+/usr/bin/mangatux-fu -reconf
+
+notify-send --icon=pen "Mangatux" "Mangatux  has been succesfully installed"
+
