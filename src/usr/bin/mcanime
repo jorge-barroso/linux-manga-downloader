@@ -20,16 +20,16 @@ BDIR=`echo "$DIRNAME" | tr -d [1-9]`
 if ls $CDIR | grep "$BDIR" > /dev/null
 then
 	echo $MCA1
-	if ls $CDIR"$BDIR" | grep "$DIRNAME" > /dev/null
+	if ls  | grep "$DIRNAME" > /dev/null
 	then
 		read -p "" DIRNAME
-		if ls $CDIR"$BDIR" | grep "$DIRNAME" > /dev/null
+		if ls  | grep "$DIRNAME" > /dev/null
 		then
 			echo $MCA3
 			exit
 		fi
 	else
-		cd $CDIR"$BDIR"
+		cd 
 		echo $MCA4
 		mkdir "$DIRNAME"
 		cd "$DIRNAME"
@@ -39,10 +39,10 @@ else
 	mkdir "$BDIR"
 	cd "$BDIR"
 	echo $MCA5
-	if ls "$CDIR$BDIR" | grep "$DIRNAME" > /dev/null
+	if ls "" | grep "$DIRNAME" > /dev/null
 	then
 		read -p "" DIRNAME
-		if ls $CDIR"$BDIR" | grep "$DIRNAME" > /dev/null
+		if ls  | grep "$DIRNAME" > /dev/null
 		then
 			echo $MCA2
 			exit

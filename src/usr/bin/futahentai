@@ -9,17 +9,17 @@ FN=`cat /tmp/.page0 | egrep  "var manga_name" | cut -d "'" -f 2`
 DIRNAME="$(echo $FN)"
 PAGES=`cat /tmp/.page0 | grep "Pages:" | cut -d ">" -f2 | cut -d "<" -f1`
 echo $PAGES
-if ls $HOME/manga/ | grep "$DIRNAME" > /dev/null
+if ls $CDIR | grep "$DIRNAME" > /dev/null
 then
 	echo $FTH1
 		read -p "" DIRNAME
-		if ls $HOME/manga/ | grep "$DIRNAME" > /dev/null
+		if ls $CDIR | grep "$DIRNAME" > /dev/null
 		then
 			echo $FTH2
 			exit
 		fi
 else
-	cd $HOME/manga
+	cd $CDIR
 	echo se va a crear el directorio "$DIRNAME"
 	mkdir "$DIRNAME"
 	cd "$DIRNAME"

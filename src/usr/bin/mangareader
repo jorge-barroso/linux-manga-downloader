@@ -12,17 +12,17 @@ FNCT=`echo $FN | cut -d "-" -f1`
 FNF=`echo $FNCT | cut -c8-90`
 DIRNAME="$(echo $FNF)"
 
-if ls $HOME/manga/ | grep "$DIRNAME" > /dev/null
+if ls $CDIR | grep "$DIRNAME" > /dev/null
 then
 	echo "$MAR1"
 		read -p "" DIRNAME
-		if ls $HOME/manga/ | grep "$DIRNAME" > /dev/null
+		if ls $CDIR | grep "$DIRNAME" > /dev/null
 		then
 			echo $MAR2
 			exit
 		fi
 else
-	cd $HOME/manga
+	cd $CDIR
 	echo "$MAR3"
 	mkdir "$DIRNAME"
 	cd "$DIRNAME"
@@ -37,14 +37,14 @@ for i in `seq 2 100`
 do
 if cat /tmp/.page0 | egrep "<option value=.*/.*-$i/.*" > /dev/null
 then
-	echo $MAR5
+	echo $MAR4
 	NXTUL=`cat /tmp/.page0 | egrep "<option value=.*/.*-$i/.*" | cut -d "'" -f 2`
 	GETUL="$(lynx -image_links -dump "http://www.mangareader.net$NXTUL" | egrep http://i.*.mangareader.net/.*)"
 	wget -O $NAFILE-$i.jpg $GETUL -o /tmp/.logsesion
 else
 	echo ""
-	echo $MAR6
-	notify-send --icon="pen" -u normal "$DIRNAME" "$MAR6"
+	echo $MAR5
+	notify-send --icon="pen" -u normal "$DIRNAME" "$MAR5"
 	break
 fi
 done

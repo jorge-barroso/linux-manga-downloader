@@ -14,17 +14,17 @@ DIRNAME=`echo $FNF`
 echo $DIRNAME
 
 #DIR NAME
-if ls $HOME/manga/ | grep "$DIRNAME" > /dev/null
+if ls $CDIR | grep "$DIRNAME" > /dev/null
 then
 	echo "$MAS1"
 		read -p "" DIRNAME
-		if ls $HOME/manga/ | grep "$DIRNAME" > /dev/null
+		if ls $CDIR | grep "$DIRNAME" > /dev/null
 		then
 			echo "$MAS2"
 			exit
 		fi
 else
-	cd $HOME/manga
+	cd $CDIR
 	echo "MAS3"
 	mkdir "$DIRNAME"
 	cd "$DIRNAME"

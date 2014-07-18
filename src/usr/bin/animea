@@ -35,26 +35,26 @@ then
 	echo "$ANE1"
 else
 	echo "$ANE2"
-	mkdir $CDIR"$BDIR"
+	mkdir $CDIR/$BDIR
 fi
 
 
-if ls $CDIR"$BDIR" | grep "$DIRNAME" > /dev/null
+if ls $CDIR/$BDIR | grep "$DIRNAME" > /dev/null
 then
 	echo $ANE3
 		read -p "" DIRNAME
-		if ls $CDIR"$BDIR" | grep "$DIRNAME" > /dev/null
+		if ls $CDIR/$BDIR | grep "$DIRNAME" > /dev/null
 		then
 			echo $ANE4
 			exit
 		else
-			cd $CDIR"$BDIR"
+			cd $CDIR/$BDIR
 			echo $ANE5
 			mkdir "$DIRNAME"
 			cd "$DIRNAME"
 		fi
 else
-	cd $CDIR"$BDIR"
+	cd $CDIR/$BDIR
 	echo $ANE5
 	mkdir "$DIRNAME"
 	cd "$DIRNAME"

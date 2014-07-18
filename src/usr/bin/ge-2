@@ -11,25 +11,25 @@ FN=`cat /tmp/.page0 | grep "<title>"`
 FNF=`echo $FN | cut -d "<" -f2 | cut -c7-400`
 DIRNAME="$(echo $FNF)"
 
-if ls $HOME/manga/ | grep "$DIRNAME" > /dev/null
+if ls $CDIR | grep "$DIRNAME" > /dev/null
 then
 	echo $GEH1
 		read -p "" DIRNAME
 #		rm .fn.txt .fnf.txt .log.txt .page0
-		if ls $HOME/manga/ | grep "$DIRNAME" > /dev/null
+		if ls $CDIR | grep "$DIRNAME" > /dev/null
 		then
 			echo $GEH2
 #			rm .fn.txt .fnf.txt .log.txt .page0
 			exit
 		else
-			cd $HOME/manga
+			cd $CDIR
 			echo $GEH3
 			mkdir "$DIRNAME"
 			cd "$DIRNAME"
 		fi
 else
 #	rm .fn.txt .fnf.txt .log.txt .page0
-	cd $HOME/manga
+	cd $CDIR
 	echo $GEH3
 	mkdir "$DIRNAME"
 	cd "$DIRNAME"

@@ -18,12 +18,12 @@ then
 	echo "$FCH1"
 	echo "$FCH2"
 	GODIR=`ls $HOME/$IMGDIR | grep $IDIR`
-	cd $HOME/$IMGDIR/"$GODIR"
+	cd $CDIR/$IMGDIR/"$GODIR"
 else
 #read -p "Introduzca un nombre para el directorio: " NAMEDIR
 #	gtkdialog --program FORCHAN_SETDIR_DIALOG
 	mkdir $HOME/$IMGDIR/"$IDIR-$NAMEDIR"
-	cd $HOME/$IMGDIR/"$IDIR-$NAMEDIR"	
+	cd $CDIR/$IMGDIR/"$IDIR-$NAMEDIR"	
 fi
 lynx -image_links -dump $1 | egrep http://images.4chan.org/.* > /tmp/$TTH\_imglinks
 cut -c7-200  /tmp/$TTH\_imglinks > /tmp/$TTH\_imglinksc

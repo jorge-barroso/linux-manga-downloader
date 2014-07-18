@@ -20,13 +20,13 @@ then
 fi
 echo $PAGES
 NAMEDIR=`echo $TITLE | cut -d "/" -f 2 | cut -d "-" -f 1`
-IMGDIR=`ls $HOME | grep Im`
-if [ -e $HOME/$IMGDIR/"$NAMEDIR" ];
+IMGDIR=`ls $CDIR | grep Im`
+if [ -e $CDIR/$IMGDIR/"$NAMEDIR" ];
 then
-	cd $HOME/$IMGDIR/"$NAMEDIR"
+	cd $CDIR/$IMGDIR/"$NAMEDIR"
 else
-	mkdir $HOME/$IMGDIR/"$NAMEDIR"
-	cd $HOME/$IMGDIR/"$NAMEDIR"
+	mkdir $CDIR/$IMGDIR/"$NAMEDIR"
+	cd $HCDIR/$IMGDIR/"$NAMEDIR"
 fi
 for pgs in `seq 1 $PAGES`
 do

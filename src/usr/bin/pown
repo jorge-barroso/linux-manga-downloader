@@ -11,13 +11,13 @@ if [ $NUMBER == 0 ];
 then
 	echo "$PNI1"
 else
-	if [ -e $HOME/pown ];
+	if [ -e $CDIR/pown ];
 	then
-		cd $HOME/pown
+		cd $CDIR/pown
 		wget http://www.pown.it/flash/$NUMBER.swf -o /tmp/logsesion
 	else
-		mkdir $HOME/pown
-		cd $HOME/pown
+		mkdir $CDIR/pown
+		cd $CDIR/pown
 		wget http://www.pown.it/flash/$NUMBER.swf -o /tmp/logsesion
 	fi
 	notify-send --icon="pen" -u normal "$1" "Descarga Completa"
