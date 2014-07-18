@@ -25,29 +25,32 @@ else
                         then
                             echo "Run this script as root user"
                         else
-                            mkdir -p /usr/share/{licenses/mangatux,mangatux/langs}
+                            mkdir -p /usr/share/{licenses/mangatux,mangatux/langs,doc/mangatux}
                             cp $(dirname $0)/src/usr/bin/* /usr/bin/
                             cp $(dirname $0)/src/usr/share/applications/* /usr/share/applications
                             cp $(dirname $0)/src/usr/share/icons/* /usr/share/icons
                             cp $(dirname $0)/src/usr/share/licenses/mangatux/* /usr/share/licenses/mangatux/
                             cp $(dirname $0)/src/usr/share/mangatux/langs/* /usr/share/mangatux/langs/
+                            cp $(dirname $0)/src/usr/share/doc/mangatux/* /usr/share/doc/mangatux/
                         fi
                     else
                         if [ $HOME != /root ]
                         then
-                            sudo mkdir -p /usr/share/{licenses/mangatux,mangatux/langs}
+                            mkdir -p /usr/share/{licenses/mangatux,mangatux/langs,doc/mangatux}
                             sudo cp $(dirname $0)/src/usr/bin/* /usr/bin/
                             sudo cp $(dirname $0)/src/usr/share/applications/* /usr/share/applications
                             sudo cp $(dirname $0)/src/usr/share/icons/* /usr/share/icons
                             sudo cp $(dirname $0)/src/usr/share/licenses/mangatux/* /usr/share/licenses/mangatux/
                             sudo cp $(dirname $0)/src/usr/share/mangatux/langs/* /usr/share/mangatux/langs/
+                            sudo cp $(dirname $0)/src/usr/share/doc/mangatux/* /usr/share/doc/mangatux/
                         else
-                            mkdir -p /usr/share/{licenses/mangatux,mangatux/langs}
+                            mkdir -p /usr/share/{licenses/mangatux,mangatux/langs,doc/mangatux}
                             cp $(dirname $0)/src/usr/bin/* /usr/bin/
                             cp $(dirname $0)/src/usr/share/applications/* /usr/share/applications
                             cp $(dirname $0)/src/usr/share/icons/* /usr/share/icons
                             cp $(dirname $0)/src/usr/share/licenses/mangatux/* /usr/share/licenses/mangatux/
                             cp $(dirname $0)/src/usr/share/mangatux/langs/* /usr/share/mangatux/langs/
+                            cp $(dirname $0)/src/usr/share/doc/mangatux/* /usr/share/doc/mangatux/
                         fi
                     fi
                 fi
@@ -55,8 +58,6 @@ else
         fi
     fi
 fi
-
-[ $? -ne 0 ] exit 1
 
 /usr/bin/mangatux-fu -reconf
 
