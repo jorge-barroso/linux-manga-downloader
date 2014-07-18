@@ -117,9 +117,9 @@ LANG6="Italià (No implementat)"
 # Submanga
 
 SMA1="El directori $BDIR ja existeix no és necessari crear-ne un altre."
-SMA2="Es crearà el directori per al manga"
-SMA3="El directori $DIRNAME ja existeix introdueix un altre nom."
-SMA4="Error amb el nombre de directori, comprova el nom i executa de nou el script."
+SMA2="Es crearà el directori per al manga:"
+SMA3="El directori $DIRNAME ja existeix introdueix un altre nom:" 
+SMA4="Error amb el nombre de directori, comprova el nom i executa de nou la descàrrega."
 SMA5="Es creara el directori"
 SMA6="Descarregant la pàgina"
 SMA7="Error al descarregar la pàgina"

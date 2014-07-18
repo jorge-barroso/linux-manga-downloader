@@ -115,9 +115,9 @@ LANG6="Italian (Not implemented)"
 # Submanga
 
 SMA1="$BDIR directory already exists, it's not needed to make a new one"
-SMA2="The manga directory will be created"
+SMA2="The manga directory will be created: "
 SMA3="$DIRNAME directory already exists, introduce a new name: "
-SMA4="Error with directory name, check the name and run again the script."
+SMA4="Error with directory name, check the name and restart the download"
 SMA5="The directory will be created"
 SMA6="Downloading page"
 SMA7="Error while downloading page"
