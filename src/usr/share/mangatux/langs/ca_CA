@@ -173,9 +173,11 @@ MAS5="Descàrrega completa"
 MAR1="El directori $DIRNAME ja existeix introdueix un altre nom."
 MAR2="Error amb el nombre de directori, comprova el nom i executa de nou el script."
 MAR3="Es creara el directori \"$DIRNAME\""
-MAR4="Descarregant pàgina 1"
-MAR5="Descarregant la pàgina $i"
-MAR6="Descàrrega completa"
+MAR4="Descarregant la pàgina $i"
+MAR5="Descàrrega completa"
+
+# Mangafox
+MNF1="El directori $BDIR ya existeix no fa falta crear un altre."
 
 # G.E-Hentai
 

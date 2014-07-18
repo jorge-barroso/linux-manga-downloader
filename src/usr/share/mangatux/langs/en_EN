@@ -171,9 +171,11 @@ MAS5="Download Complete"
 MAR1="$DIRNAME directory already exists, introduce a new name."
 MAR2="Error with directory name, check the name and run again the script."
 MAR3="se va a crear the directory \"$DIRNAME\""
-MAR4="Downloading pagina 1"
-MAR5="Downloading pagina $i"
-MAR6="Download Complete"
+MAR4="Downloading page $i"
+MAR5="Download Complete"
+
+# Mangafox
+MNF1="$BDIR directory already exists, it's not needed to make another"
 
 # G.E-Hentai
 
