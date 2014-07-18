@@ -229,4 +229,4 @@ ZEO2="Pàgina $pgs descarregada"
 
 ROOTERR="No es permet l'usuari root"
 CFSAVE="La configuració s'ha guardat exitosament, reinicia perquè tinguin efecte"
-PKGVER="0.8.7"
+#PKGVER="0.8.7"

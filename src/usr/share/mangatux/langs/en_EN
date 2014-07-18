@@ -227,4 +227,4 @@ ZEO2="Page $pgs downloaded"
 
 ROOTERR="Root user is not supported"
 CFSAVE="Configuration was successfully saved"
-PKGVER="0.8.7"
+#PKGVER="0.8.7"
