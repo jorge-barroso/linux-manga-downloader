@@ -229,5 +229,5 @@ ZEO2="Página $pgs descargada"
 
 ROOTERR="El usuario root no está permitido"
 CFSAVE="La configuración se ha guardado exitosamente"
-PKGVER="0.8.7"
-#PKGNAME="Mangatux"
+# PKGVER="0.8.7"
+# PKGNAME="Mangatux"
