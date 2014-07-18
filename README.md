@@ -17,7 +17,7 @@ These dependencies are needed to download the manga and to show you the windows 
 # Installation:
 
 ## Ubuntu-Debian:
-If you are using Debian, Ubuntu, or another Debian-based distro, now you can download the debian package with the latest version in: http://www.mediafire.com/download/3m87wldxdsc18l5/mangatux-0.8.7.deb
+If you are using Debian, Ubuntu, or another Debian-based distro, now you can download the debian package with the latest version in: http://launchpad.net/mangatux
 
 If you want to get the latest updates clone the repo and run the "install" file:
       
