@@ -53,18 +53,18 @@ fi
 LINK=`echo "$ODOWN" | cut -d "/" -f6`
 TTH=`date +%H%M%S` 
 echo Detectando imagenes... 
-if  lynx -image_links -dump "http://submanga.com/c/$LINK/1" | egrep -o "http://submanga.com/./hd" > /dev/null
+if  lynx -image_links -dump "http://submanga.com/c/$LINK/1" | egrep -o "http://omg.*.submanga.com/hd." > /dev/null
 then
-	notify-send --icon="pen" -u normal "$DIRNAME" "Se procedera a su descarga en HD"
+	notify-send --icon="pen" -u normal "$DIRNAME" "$SMA20"
 	cd "/tmp"
 	wget --referer="http://submanga.com/c/$LINK" http://submanga.com/hd -o /tmp/.hdlog -O /tmp/smhd
 	cd "$CDIR"/"$BDIR"/"$DIRNAME"
-	SCDNB=`cat /tmp/smhd | grep "http://img.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 6 `
-	FSTNB=`cat /tmp/smhd | grep "http://img.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 5 `
+	SCDNB=`cat /tmp/smhd | grep "http://omg.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 6 `
+	FSTNB=`cat /tmp/smhd | grep "http://omg.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 5 `
 	for i in `seq 1 100`;
 	do
 	
-		DWNLINK=`lynx -image_links -dump "http://submanga.com/c/$LINK/$i" | egrep -o "http://img.*.submanga.com/.*"`
+		DWNLINK=`lynx -image_links -dump "http://submanga.com/c/$LINK/$i" | egrep -o "http://omg.*.submanga.com/.*"`
 		#HDPATH=`echo $DWNLINK | cut -d " " -f4 | cut -c26-200`
 		IMGSERV=`echo $DWNLINK | cut -d " " -f4 | cut -d "/" -f -3`
 		#echo "$IMGSERV/hdpages/$FSTNB/$SCDNB/$i.jpg"
@@ -72,8 +72,7 @@ then
 		then
 			wget "$IMGSERV/hdpages/$FSTNB/$SCDNB/$i.jpg" -o /tmp/.logsesion
 			echo $SMA7 $i
-			echo $SMA8.
-			notify-send --icon="pen" -u normal "$DIRNAME" "$SMA8"
+			notify-send --icon="pen" -u normal "$DIRNAME" "$SMA8E"
 			break
 		else
 			wget "$IMGSERV/hdpages/$FSTNB/$SCDNB/$i.jpg" -o /tmp/.logsesion
@@ -83,13 +82,12 @@ then
 else
 	for i in `seq 1 100`;
 	do
-		DWNLINK="$(lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://img.*.submanga.com/.*")"
+		DWNLINK="$(lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://omg.*.submanga.com/.*")"
 		if  lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://submanga.com/r.*/$LINK" > /dev/null #Cambio de .com/r/$LINK a -> .com/r[Numero Aleatorio]/$LINK
 		then
 			wget $DWNLINK -o /tmp/.logsesion
 			echo $SMA7 $i
-			echo $SMA8.
-			notify-send --icon="pen" -u normal "$DIRNAME" "$SMA8"
+			notify-send --icon="pen" -u normal "$DIRNAME" "$SMA8E"
 			break
 		else
 			wget $DWNLINK -o /tmp/.logsesion
@@ -129,8 +127,13 @@ done
 BUL=`wc -l /tmp/.bulkedlynk | cut -d " " -f 1`
 echo "$SMA9 $BDIR"
 echo "$SMA10"
-echo "$SMA11"
-read -p "$CONFIRM " YESNO
+echo "$SMA11"; read -p "$CONFIRM " YESNO
+if [ $YESNO != $conf ] then
+	if [ $YESNO != $CONF ] then
+		YESNO = $conf;
+	fi
+fi
+
 if [ $YESNO = y ];
 then
 	read -p "$SMA12" FCH
@@ -163,27 +166,26 @@ then
 
 		LINK=`echo "$DWNL" | cut -d "/" -f6`
 
-		if  lynx -image_links -dump "http://submanga.com/c/$LINK/1" | egrep -o "http://submanga.com/./hd" > /dev/null
+		if  lynx -image_links -dump "http://submanga.com/c/$LINK/1" | egrep -o "http://omg.*.submanga.com/hd." > /dev/null
 		then
-			notify-send --icon="pen" -u normal "$DIRNAME" "Se procedera a su descarga en HD"
+			notify-send --icon="pen" -u normal "$DIRNAME" "$SMA20"
 			cd "/tmp"
 			wget --referer="http://submanga.com/c/$LINK" http://submanga.com/hd -o /tmp/.hdlog -O /tmp/smhd
 			cd "$CDIR"/"$BDIR"/"$DIRNAME"
-			SCDNB=`cat /tmp/smhd | grep "http://img.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 6 `
-			FSTNB=`cat /tmp/smhd | grep "http://img.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 5 `
+			SCDNB=`cat /tmp/smhd | grep "http://omg.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 6 `
+			FSTNB=`cat /tmp/smhd | grep "http://omg.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 5 `
 			for i in `seq 1 100`;
 			do
 	
-				DWNLINK=`lynx -image_links -dump "http://submanga.com/c/$LINK/$i" | egrep -o "http://img.*.submanga.com/.*"`
+				DWNLINK=`lynx -image_links -dump "http://submanga.com/c/$LINK/$i" | egrep -o "http://omg.*.submanga.com/.*"`
 				#HDPATH=`echo $DWNLINK | cut -d " " -f4 | cut -c26-200`
 				IMGSERV=`echo $DWNLINK | cut -d " " -f4 | cut -d "/" -f -3`
 				#echo "$IMGSERV/hdpages/$FSTNB/$SCDNB/$i.jpg"
-				if  lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://submanga.com/r.*/$LINK" > /dev/null #Cambio de .com/r/$LINK a -> .com/r[Numero Aleatorio]/$LINK
+				if  lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://submanga.com/r.*/$LINK" > /dev/null #Change from .com/r/$LINK to -> .com/r[Random number]/$LINK
 				then
 					wget "$IMGSERV/hdpages/$FSTNB/$SCDNB/$i.jpg" -o /tmp/.logsesion
 					echo $SMA7 $i
-					echo $SMA8.
-					notify-send --icon="pen" -u normal "$DIRNAME" "$SMA8"
+					notify-send --icon="pen" -u normal "$DIRNAME" "$SMA8E"
 					break
 				else
 					wget "$IMGSERV/hdpages/$FSTNB/$SCDNB/$i.jpg" -o /tmp/.logsesion
@@ -193,13 +195,12 @@ then
 		else
 			for i in `seq 1 100`;
 			do
-				DWNLINK="$(lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://img.*.submanga.com/.*")"
+				DWNLINK="$(lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://omg.*.submanga.com/.*")"
 				if  lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://submanga.com/r.*/$LINK" > /dev/null #Cambio de .com/r/$LINK a -> .com/r[Numero Aleatorio]/$LINK
 				then
 					wget $DWNLINK -o /tmp/.logsesion
 					echo $SMA7 $i
-					echo $SMA8.
-					notify-send --icon="pen" -u normal "$DIRNAME" "$SMA8"
+					notify-send --icon="pen" -u normal "$DIRNAME" "$SMA8E"
 					break
 				else
 					wget $DWNLINK -o /tmp/.logsesion
@@ -239,27 +240,27 @@ else ###########################################################################
 
 		LINK=`echo "$DWNL" | cut -d "/" -f6`
 		
-		if  lynx -image_links -dump "http://submanga.com/c/$LINK/1" | egrep -o "http://submanga.com/./hd" > /dev/null
+		if  lynx -image_links -dump "http://submanga.com/c/$LINK/1" | egrep -o "http://omg.*.submanga.com/hd." > /dev/null
 		then
-			notify-send --icon="pen" -u normal "$DIRNAME" "Se procedera a su descarga en HD"
+			notify-send --icon="pen" -u normal "$DIRNAME" "$SMA20"
 			cd "/tmp"
 			wget --referer="http://submanga.com/c/$LINK" http://submanga.com/hd -o /tmp/.hdlog -O /tmp/smhd
 			cd "$CDIR"/"$BDIR"/"$DIRNAME"
-			SCDNB=`cat /tmp/smhd | grep "http://img.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 6 `
-			FSTNB=`cat /tmp/smhd | grep "http://img.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 5 `
+			SCDNB=`cat /tmp/smhd | grep "http://omg.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 6 `
+			FSTNB=`cat /tmp/smhd | grep "http://omg.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 5 `
 			for i in `seq 1 100`;
 			do
-	
-				DWNLINK=`lynx -image_links -dump "http://submanga.com/c/$LINK/$i" | egrep -o "http://img.*.submanga.com/.*"`
+				echo "$LINK $i"
+				DWNLINK=`lynx -image_links -dump "http://submanga.com/c/$LINK/$i" | egrep -o "http://omg.*.submanga.com/.*"`
 				#HDPATH=`echo $DWNLINK | cut -d " " -f4 | cut -c26-200`
+				echo "DWNLINK = $DWNLINK"
 				IMGSERV=`echo $DWNLINK | cut -d " " -f4 | cut -d "/" -f -3`
 				#echo "$IMGSERV/hdpages/$FSTNB/$SCDNB/$i.jpg"
 				if  lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://submanga.com/r.*/$LINK" > /dev/null #Cambio de .com/r/$LINK a -> .com/r[Numero Aleatorio]/$LINK
 				then
 					wget "$IMGSERV/hdpages/$FSTNB/$SCDNB/$i.jpg" -o /tmp/.logsesion
 					echo $SMA7 $i
-					echo $SMA8.
-					notify-send --icon="pen" -u normal "$DIRNAME" "$SMA8"
+					notify-send --icon="pen" -u normal "$DIRNAME" "$SMA8E"
 					break
 				else
 					wget "$IMGSERV/hdpages/$FSTNB/$SCDNB/$i.jpg" -o /tmp/.logsesion
@@ -269,13 +270,12 @@ else ###########################################################################
 		else
 			for i in `seq 1 100`;
 			do
-				DWNLINK="$(lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://img.*.submanga.com/.*")"
+				DWNLINK="$(lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://omg.*.submanga.com/.*")"
 				if  lynx -image_links -dump http://submanga.com/c/$LINK/$i | egrep -o "http://submanga.com/r.*/$LINK" > /dev/null #Cambio de .com/r/$LINK a -> .com/r[Numero Aleatorio]/$LINK
 				then
 					wget $DWNLINK -o /tmp/.logsesion
 					echo $SMA7 $i
-					echo $SMA8.
-					notify-send --icon="pen" -u normal "$DIRNAME" "$SMA8"
+					notify-send --icon="pen" -u normal "$DIRNAME" "$SMA8E"
 					break
 				else
 					wget $DWNLINK -o /tmp/.logsesion
