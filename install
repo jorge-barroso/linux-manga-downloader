@@ -1,62 +1,101 @@
-if [ ! -f /usr/lib/libnotify.so ]
-then
-    echo "Error: libnotify is not installed";
-else
-    if [ ! -f /usr/bin/gtkdialog ]
+red='\033[1;31m'
+blue='\033[1,34m'
+stp='\033[0m'
+err=0
+
+if [ ! -f /usr/lib/libnotify.so ] || [ ! -f /usr/bin/gtkdialog ] || [ ! -f /usr/bin/wget ] || [ ! -f /usr/bin/lynx ] || [ ! -f /usr/bin/zenity ]; then
+$err=1
+fi
+#if [ ! -f /usr/lib/libnotify.so ]
+#then
+#    $err=1;
+#else
+#    if [ ! -f /usr/bin/gtkdialog ]
+#    then
+#        $err=1;
+#    else
+#        if [ ! -f /usr/bin/wget ]
+#        then
+#            $err=1;
+#        else
+#            if [ ! -f /usr/bin/lynx ]
+#            then
+#                $err=1;
+#            else
+#                if [ ! -f /usr/bin/zenity ]
+#                then 
+#                    $err=1;
+#                fi
+#            fi
+#        fi
+#    fi
+#fi
+
+if [ $err == 1 ]
+    echo "{$red}Missing dependencies:{$stp}"
+    if [ ! -f /usr/lib/libnotify.so ]
     then
-        echo "Error: gtkdialog is not installed";
+        echo "{$red}libnotify{$stp}";
     else
-        if [ ! -f /usr/bin/wget ]
+        if [ ! -f /usr/bin/gtkdialog ]
         then
-            echo "Error: wget is not installed"
+            echo "{$red}gtkdialog{$stp}";
         else
-            if
-                [ ! -f /usr/bin/lynx ]
+            if [ ! -f /usr/bin/wget ]
             then
-                echo "Error: lynx is not installed"
+                echo "{$red}wget{$stp}"
             else
-                if [ ! -f /usr/bin/zenity ]
-                then 
-                    echo "Error: zenity is not installed"
+                if
+                    [ ! -f /usr/bin/lynx ]
+                then
+                    echo "{$red}lynx{$stp}"
                 else
-                    if [ ! -f /usr/bin/sudo ]
-                    then
-                        if [ $HOME != /root ]
-                        then
-                            echo "Run this script as root user"
-                        else
-                            mkdir -p /usr/share/{licenses/mangatux,mangatux/langs,doc/mangatux}
-                            cp $(dirname $0)/src/usr/bin/* /usr/bin/
-                            cp $(dirname $0)/src/usr/share/applications/* /usr/share/applications
-                            cp $(dirname $0)/src/usr/share/icons/* /usr/share/icons
-                            cp $(dirname $0)/src/usr/share/licenses/mangatux/* /usr/share/licenses/mangatux/
-                            cp $(dirname $0)/src/usr/share/mangatux/langs/* /usr/share/mangatux/langs/
-                            cp $(dirname $0)/src/usr/share/doc/mangatux/* /usr/share/doc/mangatux/
-                        fi
-                    else
-                        if [ $HOME != /root ]
-                        then
-                            mkdir -p /usr/share/{licenses/mangatux,mangatux/langs,doc/mangatux}
-                            sudo cp $(dirname $0)/src/usr/bin/* /usr/bin/
-                            sudo cp $(dirname $0)/src/usr/share/applications/* /usr/share/applications
-                            sudo cp $(dirname $0)/src/usr/share/icons/* /usr/share/icons
-                            sudo cp $(dirname $0)/src/usr/share/licenses/mangatux/* /usr/share/licenses/mangatux/
-                            sudo cp $(dirname $0)/src/usr/share/mangatux/langs/* /usr/share/mangatux/langs/
-                            sudo cp $(dirname $0)/src/usr/share/doc/mangatux/* /usr/share/doc/mangatux/
-                        else
-                            mkdir -p /usr/share/{licenses/mangatux,mangatux/langs,doc/mangatux}
-                            cp $(dirname $0)/src/usr/bin/* /usr/bin/
-                            cp $(dirname $0)/src/usr/share/applications/* /usr/share/applications
-                            cp $(dirname $0)/src/usr/share/icons/* /usr/share/icons
-                            cp $(dirname $0)/src/usr/share/licenses/mangatux/* /usr/share/licenses/mangatux/
-                            cp $(dirname $0)/src/usr/share/mangatux/langs/* /usr/share/mangatux/langs/
-                            cp $(dirname $0)/src/usr/share/doc/mangatux/* /usr/share/doc/mangatux/
-                        fi
+                    if [ ! -f /usr/bin/zenity ]
+                    then 
+                        echo "{$red}zenity{$stp}"
                     fi
                 fi
             fi
         fi
     fi
+else
+    if [ ! -f /usr/bin/sudo ]
+    then
+        if [ $HOME != /root ]
+        then
+            echo "{$red}Run this script as root user{$stp}"
+        else
+            mkdir -p /usr/share/{licenses/mangatux,mangatux/langs,doc/mangatux}
+            cp $(dirname $0)/src/usr/bin/* /usr/bin/
+            cp $(dirname $0)/src/usr/share/applications/* /usr/share/applications
+            cp $(dirname $0)/src/usr/share/icons/* /usr/share/icons
+            cp $(dirname $0)/src/usr/share/licenses/mangatux/* /usr/share/licenses/mangatux/
+            cp $(dirname $0)/src/usr/share/mangatux/langs/* /usr/share/mangatux/langs/
+            cp $(dirname $0)/src/usr/share/doc/mangatux/* /usr/share/doc/mangatux/
+        fi
+    else
+        if [ $HOME != /root ]
+        then
+            mkdir -p /usr/share/{licenses/mangatux,mangatux/langs,doc/mangatux}
+            sudo cp $(dirname $0)/src/usr/bin/* /usr/bin/
+            sudo cp $(dirname $0)/src/usr/share/applications/* /usr/share/applications
+            sudo cp $(dirname $0)/src/usr/share/icons/* /usr/share/icons
+            sudo cp $(dirname $0)/src/usr/share/licenses/mangatux/* /usr/share/licenses/mangatux/
+            sudo cp $(dirname $0)/src/usr/share/mangatux/langs/* /usr/share/mangatux/langs/
+            sudo cp $(dirname $0)/src/usr/share/doc/mangatux/* /usr/share/doc/mangatux/
+        else
+            mkdir -p /usr/share/{licenses/mangatux,mangatux/langs,doc/mangatux}
+            cp $(dirname $0)/src/usr/bin/* /usr/bin/
+            cp $(dirname $0)/src/usr/share/applications/* /usr/share/applications
+            cp $(dirname $0)/src/usr/share/icons/* /usr/share/icons
+            cp $(dirname $0)/src/usr/share/licenses/mangatux/* /usr/share/licenses/mangatux/
+            cp $(dirname $0)/src/usr/share/mangatux/langs/* /usr/share/mangatux/langs/
+            cp $(dirname $0)/src/usr/share/doc/mangatux/* /usr/share/doc/mangatux/
+        fi
+    fi
+    
+if [ ! -f /usr/bin/convert ]
+echo "{$blue}It's recommended to install imagemagick to get the pdf download additional feature.{$stp}"
 fi
 
 /usr/bin/mangatux-fu -reconf
