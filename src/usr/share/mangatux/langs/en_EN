@@ -21,7 +21,7 @@ TIT2="Others Help"
 
 CRED1="Original Idea"
 CRED2="Developer"
-CRED3="Thanks to: Ivan Morales, OnLinux community, Murgadella and Shini-Kire for their collaborationwith him on this project's origins"
+CRED3="Thanks to: Ivan Morales, OnLinux community, Murgadella and Shini-Kire for their collaboration with him on this project's origins"
 CRED4="Logo: Original Idea by Hideaki Anno - GAINAX."
 
 ## SERVICES. ##
@@ -64,8 +64,9 @@ GULA_CFGB="Mangatux Configuration"
 GULA_CONF="Mangatux Configuration"
 GULA_CONF1="Configuration"
 GULA_CONF2="Personalized Directory"
-GULA_CONF3="Choose Languages"
-GULA_CONF4="Save Configuration"
+GULA_CONF3="How to download"
+GULA_CONF4="Choose Languages"
+GULA_CONF5="Save Configuration"
 
 ## GUI SUBMENU SMA
 
@@ -88,8 +89,8 @@ GULA_RAWS4="Animea"
 
 ## GUI SUBMENU HEN
 
-GULA_HEN="FutaHentai - The best futa manga free site (+18)"
-GULA_HEN1="E-Hentai - Big galleries of pure hentai & cute babies (+18)"
+GULA_HEN='FutaHentai - The best futa manga free site (+18)'
+GULA_HEN1='E-Hentai - Big galleries of pure hentai & cute babies (+18)'
 
 ## GUI SUBMENU OTS
 
@@ -99,24 +100,31 @@ GULA_OTS2="Zerochan - Lots of galleries of HQ images"
 GULA_OTS3="Danboru - Galleries"
 GULA_OTS4="Pown.it - Super repetitive and addictive flashes"
 
-##GENERAL
+## GENERAL
 
 conf="y"
 CONF="Y"
 neg="n"
 NEG="N"
+CDIRMK="Manga downloads' directory has been made. You can change it's route in Mangatux' configuration."
+
+## CONFIG
+
+TMP1="Pictures"
+TMP2="Pdf"
+TMP3="\"\""
 LANG1="Spanish"
 LANG2="Catalan"
 LANG3="English"
-LANG4="French (Not implemented)"
-LANG5="German (Not implemented)"
-LANG6="Italian (Not implemented)"
+LANG4='French (Not implemented)'
+LANG5='German (Not implemented)'
+LANG6='Italian (Not implemented)'
 
 # Submanga
 
 SMA1="$BDIR directory already exists, it's not needed to make a new one"
 SMA2="The manga directory will be created: "
-SMA3="$DIRNAME directory already exists, introduce a new name: "
+SMA3="$DIRNAME chapter already exists, introduce a new name: "
 SMA4="Error with directory name, check the name and restart the download"
 SMA5="The directory will be created"
 SMA6="Downloading page"
@@ -129,12 +137,13 @@ SMA11="Do you want to continue from an specific chapter? [$conf/$NEG]"
 SMA12="Introduce the number of the chapter \"ex: 37\":  "
 SMA13="Successfully Downloaded. "
 SMA14="Error:That parameter doesn't exist"
-SMA15="Submanga - New Mangas (POC)"
+SMA15='Submanga - New Mangas (POC)'
 SMA16="Choose"
 SMA17="Number"
 SMA18="Manga"
 SMA19="Direction"
 SMA20="Downloading HD"
+SMA21="Detecting images..."
 
 #4chan
 

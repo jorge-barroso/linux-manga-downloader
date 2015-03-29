@@ -5,7 +5,8 @@
 #[ $? -ne 0 ] exit 1
 
 source ~/.mangatux/options;
-source /usr/share/mangatux/langs/$LMLANG;
+source /usr/share/mangatux/langs/$MTXLANG;
+[ ! -d $CDIR ] && mkdir -p $CDIR && notify-send --icon=pen "Mangatux" "$CDIRMK"
 
 export SUBMANGA_HELP_DIALOG="
 <window title=\"$TIT1\" default_height=\"200\" default_width=\"450\">
@@ -13,8 +14,8 @@ export SUBMANGA_HELP_DIALOG="
 	<text xalign=\"0\"><label>\"$GULA1\"</label></text>
 <hbox>
 	<button>
-		<label>$GULA_CLOSE</label>
-		<action type=\"closewindow\">$TIT1</action>
+		<label>"$GULA_CLOSE"</label>
+		<action type=\"closewindow\">"$TIT1"</action>
 	</button>
 </hbox>
 </vbox>
@@ -39,24 +40,35 @@ export OTHERS_HELP_DIALOG="
 "
 
 export CONFIG_DIALOG="
-<window title=\"$GULA_CONF\" default_height=\"300\" default_width=\"300\">
+<window title=\"$GULA_CONF\" default_height=\"400\" default_width=\"400\">
 <vbox>
 <frame $GULA_CONF1>
 	<frame $GULA_CONF2>
 	<hbox>
-	<entry accept=\"directory\">
-		<variable>FILE_DIRECTORY</variable>
-		<default>$CDIR</default>
-	</entry>
-	<button>
-		<input file stock=\"gtk-open\"></input>
-		<variable>FILE_BROWSE_DIRECTORY</variable>
-		<action type=\"fileselect\">FILE_DIRECTORY</action>
-	</button>
+		<entry accept=\"directory\">
+			<variable>FILE_DIRECTORY</variable>
+			<default>$CDIR</default>
+		</entry>
+		<button>
+			<input file stock=\"gtk-open\"></input>
+			<variable>FILE_BROWSE_DIRECTORY</variable>
+			<action type=\"fileselect\">FILE_DIRECTORY</action>
+		</button>
 	</hbox>
 	</frame>
+	
 	<hbox>
 	<frame $GULA_CONF3>
+	<list>
+		<variable>TMPDIR</variable>
+        <item>$TMP1</item>
+        <item>$TMP2</item>
+	</list>
+	</frame>
+	</hbox>
+	
+	<hbox>
+	<frame $GULA_CONF4>
 	<list>
 		<variable>MTXLANG</variable>
         <item>$LANG1</item>
@@ -68,9 +80,10 @@ export CONFIG_DIALOG="
 	</list>
 	</frame>
 	</hbox>
+	
 <hbox>
 	<checkbox>
-		<label>$GULA_CONF4</label>
+		<label>$GULA_CONF5</label>
 		<variable>CHECKSAVE</variable>
 	</checkbox>
 	<button ok>
@@ -85,7 +98,6 @@ export CONFIG_DIALOG="
 export MAIN_DIALOG="
 <window title=\"Mangatux (Beta)\" default_height=\"250\" default_width=\"450\">
 <vbox>
-
 	<notebook labels=\"$BUT1|$BUT2|$BUT3|$BUT4|$BUT5|$BUT6|$BUT7\">
 	<vbox>
 		<frame>
@@ -101,21 +113,17 @@ export MAIN_DIALOG="
 		<entry>
 			<variable>SMENTRY</variable>
 		</entry>
-
 			<hbox>
 			<button>
 			<label>$GULA_DOWNLOAD</label>
 			<action>mangatux-fu -submanga</action>
-
 			</button>
 			<button>
 			<label>$GULA_HELPB</label>
 			<action type=\"launch\">SUBMANGA_HELP_DIALOG</action>
-
 			</button>
 			</hbox>
 		<frame $GULA_OPC>
-
 			<radiobutton>
 			<label>$GULA_SMA</label>
 			<variable>SUBMANGA_DNVAR</variable>
@@ -125,7 +133,6 @@ export MAIN_DIALOG="
 			<label>$GULA_SMA1</label>
 			<variable>SUBMANGA_BULKVAR</variable>
 			</radiobutton>
-
 			<radiobutton>
 			<label>$GULA_SMA2</label>
 			<variable>SUBMANGA_LISTVAR</variable>
@@ -136,16 +143,13 @@ export MAIN_DIALOG="
 		<entry>
 			<variable>MCENTRY</variable>
 		</entry>
-
 			<hbox>
 			<button>
 			<label>$GULA_DOWNLOAD</label>
 			<action>mangatux-fu -mcanime</action>
-
 			</button>
 			</hbox>
 		<frame $GULA_OPC>
-
 			<radiobutton>
 			<label>$GULA_MCA</label>
 			<variable>MCANIME_DNVAR</variable>
@@ -169,8 +173,6 @@ export MAIN_DIALOG="
 			</hbox>			
 	
 		<frame $GULA_SERV>
-
-
 			<radiobutton>
 			<label>$GULA_RAWS</label>
 			<variable>MANGAHEAD_DNVAR</variable>
@@ -182,43 +184,35 @@ export MAIN_DIALOG="
 			<label>$GULA_RAWS1</label>
 			<variable>MANGAFOX_DNVAR</variable>
 			</radiobutton>
-
 			<radiobutton>
 			<label>$GULA_RAWS2</label>
 			<variable>MANGASHARE_DNVAR</variable>
 			<action>if false enable:RASCAENTRY</action> 
 			<action>if true disable:RASCAENTRY</action>
 			</radiobutton>
-
 			<radiobutton>
 			<label>$GULA_RAWS3</label>
 			<variable>MANGAREADER_DNVAR</variable>
 			<action>if false enable:RASCAENTRY</action> 
 			<action>if true disable:RASCAENTRY</action>
 			</radiobutton>
-
 			<radiobutton>
 			<label>$GULA_RAWS4</label>
 			<variable>ANIMEA_DNVAR</variable>
 			</radiobutton>
-
 		</frame>
-
 	</vbox>
 	<vbox>
 		<entry>
 			<variable>HENTRY</variable>
 		</entry>
-
 			<hbox>
 			<button>
 			<label>$GULA_DOWNLOAD</label>
 			<action>mangatux-fu -hentai</action>
-
 			</button>
 			</hbox>
 		<frame $GULA_SERV>
-
 			<radiobutton>
 			<label>$GULA_HEN</label>
 			<variable>FUTAHENTAI_DNVAR</variable>
@@ -234,7 +228,6 @@ export MAIN_DIALOG="
 		<entry>
 			<variable>OTSENTRY</variable>
 		</entry>
-
 			<hbox>
 			<entry>
 				<variable>NAMEDIR</variable>
@@ -242,16 +235,13 @@ export MAIN_DIALOG="
 			<button>
 			<label>$GULA_DOWNLOAD</label>
 			<action>mangatux-fu -others</action>
-
 			</button>
 			<button>
 			<label>$GULA_HELPB</label>
 			<action type=\"launch\">OTHERS_HELP_DIALOG</action>
-
 			</button>
 			</hbox>
 		<frame $GULA_OTS>
-
 			<radiobutton>
 			<label>$GULA_OTS1</label>
 			<variable>FORCHAN</variable>
@@ -263,20 +253,16 @@ export MAIN_DIALOG="
 			<label>$GULA_OTS2</label>
 			<variable>ZEROCHAN</variable>
 			</radiobutton>
-
 			<radiobutton>
 			<label>$GULA_OTS3</label>
 			<variable>BORU</variable>
 			</radiobutton>
-
 			<radiobutton>
 			<label>$GULA_OTS4</label>
 			<variable>POWNIT</variable>
 			</radiobutton>
 		</frame>
 	</vbox>
-
-
 	<vbox>
 		<frame>
 		<text use-markup=\"true\">
@@ -303,7 +289,6 @@ export MAIN_DIALOG="
 		<label>Blog: http://demosnofansub.nixiweb.com</label>
 		</text>
 		</frame>
-
 	</vbox>
 	</notebook>
 <hbox>
@@ -330,6 +315,7 @@ if [ -z $1 ];
 then
 	gtkdialog --program=MAIN_DIALOG
 fi
+
 echo $1
 
 case $1 in

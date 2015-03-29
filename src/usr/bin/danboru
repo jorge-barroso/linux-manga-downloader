@@ -5,7 +5,7 @@
 # /* Import options *\ #
 
 source ~/.mangatux/options
-source /usr/share/mangatux/langs/$LMLANG;
+source /usr/share/mangatux/langs/$MTXLANG;
 
 TTH=`date +%H%M%S` 
 IMGDIR=`ls $HOME | grep Im`

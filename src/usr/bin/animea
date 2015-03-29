@@ -4,7 +4,7 @@
 # /* Import options *\ #
 
 source ~/.mangatux/options
-source /usr/share/mangatux/langs/$LMLANG;
+source /usr/share/mangatux/langs/$MTXLANG;
 
 function MANGAEA_DN(){
 if ! echo $ODOWN | egrep "http://manga.animea.net/.*page-1.html" ;

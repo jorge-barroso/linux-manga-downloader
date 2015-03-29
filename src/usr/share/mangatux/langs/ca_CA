@@ -66,8 +66,9 @@ GULA_CFGB="Configuració del Mangatux"
 GULA_CONF="Configuració de Mangatux"
 GULA_CONF1="Configuració"
 GULA_CONF2="Directori Personalitzat"
-GULA_CONF3="Selecciona Idioma"
-GULA_CONF4="Guardar Configuració?"
+GULA_CONF3="Descarregar com a:"
+GULA_CONF4="Selecciona Idioma"
+GULA_CONF5="Guardar Configuració?"
 
 ## GUI SUBMENU SMA
 
@@ -90,8 +91,8 @@ GULA_RAWS4="Animea"
 
 ## GUI SUBMENU HEN
 
-GULA_HEN="FutaHentai - La millor web de manga futa gratis +18"
-GULA_HEN1="E-Hentai - Gran galeria d'Hentai i noies maques +18"
+GULA_HEN='FutaHentai - La millor web de manga futa gratis (+18)'
+GULA_HEN1='E-Hentai - Gran galeria d'Hentai i noies maques (+18)'
 
 ## GUI SUBMENU OTS
 
@@ -101,24 +102,31 @@ GULA_OTS2="Zerochan - Galeries i galeries de imatges en HQ"
 GULA_OTS3="Danboru - Galeries"
 GULA_OTS4="Pown.it - Flashes super repetitius i mega adictius"
 
-##GENERAL
+## GENERAL
 
 conf="s"
 CONF="S"
 neg="n"
 NEG="N"
+CDIRMK="S'ha creat el directori de descàrrega de Manga. Pots canviar la ruta des de la configuració de Mangatux"
+
+## CONFIG
+
+TMP1="Imatges"
+TMP2="Pdf"
+TMP3="\"\""
 LANG1="Espanyol"
 LANG2="Català"
 LANG3="Anglés"
-LANG4="Francés (No implementat)"
-LANG5="Alemany (No implementat)"
-LANG6="Italià (No implementat)"
+LANG4='Francés (No implementat)'
+LANG5='Alemany (No implementat)'
+LANG6='Italià (No implementat)'
 
 # Submanga
 
 SMA1="El directori $BDIR ja existeix no és necessari crear-ne un altre."
 SMA2="Es crearà el directori per al manga:"
-SMA3="El directori $DIRNAME ja existeix introdueix un altre nom:" 
+SMA3="El capítol $DIRNAME ja existeix, introdueix un altre nom:" 
 SMA4="Error amb el nombre de directori, comprova el nom i executa de nou la descàrrega."
 SMA5="Es creara el directori"
 SMA6="Descarregant la pàgina"
@@ -131,12 +139,13 @@ SMA11="¿Desitja continuar la descàrrega des d'un capítol determinat? [$conf/$
 SMA12="Introdueix el número del capítol \"Ej: 37\": "
 SMA13="Descarregat Correctament. "
 SMA14="Error, aquest paràmetre no existeix"
-SMA15="Submanga - Nous Mangas (Beta)"
+SMA15='Submanga - Nous Mangas (Beta)'
 SMA16="Selecciona"
 SMA17="Nº"
 SMA18="Manga"
 SMA19="Direcció"
 SMA20="Descarregant en HD"
+SMA21="Detectant imatges..."
 
 #4chan
 

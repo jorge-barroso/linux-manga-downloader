@@ -23,7 +23,7 @@ TIT2="Ayuda de Otros"
 
 CRED1="Idea original"
 CRED2="Desarrollador"
-CRED3="Agradecimientos a: Ivan Morales, y la comunidad OnLinux, Murgadella y Shini-Kire por colaborar con el en los orígenes de este proyecto"
+CRED3="Agradecimientos a: Ivan Morales, y la comunidad OnLinux, Murgadella y Shini-Kire por colaborar con este proyecto en sus orígenes."
 CRED4="Logo: Idea original de Hideaki Anno - GAINAX."
 
 ## SERVICES. ##
@@ -59,15 +59,16 @@ GULA_CLOSE="Cerrar"
 GULA_OK="OK"
 GULA_OPC="Opciones"
 GULA_SERV="Servidores"
-GULA_CFGB="Configuración de LMD"
+GULA_CFGB="Configuración de MANGATUX"
 
 ## GUI CONF DIALOG
 
-GULA_CONF="Configuración de LMD"
+GULA_CONF="Configuración de MANGATUX"
 GULA_CONF1="Configuración"
-GULA_CONF2="Directorio Personalizado"
-GULA_CONF3="Seleccionar Idioma"
-GULA_CONF4="Guardar Configuración"
+GULA_CONF2="Directorio personalizado"
+GULA_CONF3="Formato de descarga"
+GULA_CONF4="Seleccionar idioma"
+GULA_CONF5="Guardar configuración"
 
 ## GUI SUBMENU SMA
 
@@ -90,8 +91,8 @@ GULA_RAWS4="Animea"
 
 ## GUI SUBMENU HEN
 
-GULA_HEN="FutaHentai - El mejor site de manga futa gratis +18"
-GULA_HEN1="E-Hentai - Grandes galerías de puro hentai & chicas monas +18"
+GULA_HEN='FutaHentai - El mejor site de manga futa gratis (+18)'
+GULA_HEN1='E-Hentai - Grandes galerías de puro hentai & chicas monas (+18)'
 
 ## GUI SUBMENU OTS
 
@@ -101,25 +102,31 @@ GULA_OTS2="Zerochan - Galerías y galerías de imágenes en HQ"
 GULA_OTS3="Danboru - Galerías"
 GULA_OTS4="Pown.it - Flashes super repetitivos mega adictivos"
 
-##GENERAL
+## GENERAL
 
 conf="s"
 CONF="S"
 neg="n"
 NEG="N"
+CDIRMK="Se ha creado el directorio de descarga de Manga. Puedes cambiar la ruta desde la configuración de Mangatux"
+
+## CONFIG
+
+TMP1="Imágenes"
+TMP2="Pdf"
+TMP3="\"\""
 LANG1="Español"
 LANG2="Catalán"
 LANG3="Inglés"
-LANG4="Francés (No implementado)"
-LANG5="Alemán (No implementado)"
-LANG6="Italiano (No implementado)"
+LANG4='Francés (No implementado)'
+LANG5='Alemán (No implementado)'
+LANG6='Italiano (No implementado)'
 
 # Submanga
 
 SMA1="El directorio $BDIR ya existe no hace falta crear uno nuevo"
 SMA2="Se creara el directorio para el manga:"
-SMA3="El directorio $DIRNAME ya existe introduce otro nombre."
-SMA4="Error con el nombre de directorio, compruebe el nombre y ejecute de nuevo el script."
+SMA3="El capítulo $DIRNAME ya existe, introduce otro nombre."
 SMA5="Se va a crear el directorio"
 SMA6="Descargando pagina"
 SMA7="Error al descargar la pagina"
@@ -131,12 +138,13 @@ SMA11="¿Desea continuar la descarga desde un capítulo determinado? [$conf/$NEG
 SMA12="Introduzca el numero del capítulo \"ej: 37\": "
 SMA13="Descargado Correctamente. "
 SMA14="Error, ese parámetro no existe"
-SMA15="Submanga - Nuevos Mangas (POC)"
+SMA15='Submanga - Nuevos Mangas (POC)'
 SMA16="Seleccionar"
 SMA17="Nº"
 SMA18="Manga"
 SMA19="Dirección"
 SMA20="Descargando en HD"
+SMA21="Detectando imágenes..."
 
 #4chan
 

@@ -4,7 +4,7 @@
 # /* Import options *\ #
 
 source ~/.mangatux/options;
-source /usr/share/mangatux/langs/$LMLANG;
+source /usr/share/mangatux/langs/$MTXLANG;
 
 ##### /* Functions *\ #####
 
@@ -20,45 +20,35 @@ DIRNAME="$(echo $FNF)"
 NAUL=`echo $ODOWN | cut -d "/" -f 4`
 BDIR=`echo $NAUL | tr "_" " "`
 
-if ls $CDIR | grep "$BDIR" > /dev/null
+if ls $TMPDIR$CDIR | grep "$BDIR" > /dev/null
 then
 	echo "$SMA1"
 else
 	echo "$SMA2 $BDIR"
-	mkdir $CDIR/$BDIR
+	mkdir -p $TMPDIR$CDIR/"$BDIR"
 fi
 
 
-if ls $CDIR/"$BDIR" | grep "$DIRNAME" > /dev/null
-then
+while ls $TMPDIR$CDIR/"$BDIR" | grep "$DIRNAME" > /dev/null
+do
 	echo $SMA3
 		read -p "" DIRNAME
-		if ls $CDIR/"$BDIR" | grep "$DIRNAME" > /dev/null
-		then
-			echo $SMA4
-			exit
-		else
-			cd $CDIR/"$BDIR"
-			echo $SMA5 "$DIRNAME"
-			mkdir "$DIRNAME"
-			cd "$DIRNAME"
-		fi
-else
-	cd $CDIR/$BDIR
+done
+	cd $TMPDIR$CDIR/"$BDIR"
 	echo $SMA5 "$DIRNAME"
 	mkdir "$DIRNAME"
 	cd "$DIRNAME"
-fi
+
 
 LINK=`echo "$ODOWN" | cut -d "/" -f6`
 TTH=`date +%H%M%S` 
-echo Detectando imagenes... 
+echo $SMA21 
 if  lynx -image_links -dump "http://submanga.com/c/$LINK/1" | egrep -o "http://omg.*.submanga.com/hd." > /dev/null
 then
 	notify-send --icon="pen" -u normal "$DIRNAME" "$SMA20"
 	cd "/tmp"
 	wget --referer="http://submanga.com/c/$LINK" http://submanga.com/hd -o /tmp/.hdlog -O /tmp/smhd
-	cd "$CDIR"/"$BDIR"/"$DIRNAME"
+	cd "$TMPDIR$CDIR"/"$BDIR"/"$DIRNAME"
 	SCDNB=`cat /tmp/smhd | grep "http://omg.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 6 `
 	FSTNB=`cat /tmp/smhd | grep "http://omg.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 5 `
 	for i in `seq 1 100`;
@@ -106,12 +96,12 @@ NAUL=`echo $ODOWN | cut -d "/" -f 4`
 
 lynx -dump $ODOWN | egrep "http://submanga.com/$NAUL/.*" > /tmp/.smbulklynks
 BDIR=`echo $NAUL | tr "_" " "`
-if ls $CDIR | grep "$BDIR" > /dev/null
+if ls $TMPDIR$CDIR | grep "$BDIR" > /dev/null
 then
 	echo "$SMA1"
 else
 	echo "$SMA2 $BDIR"
-	mkdir "$CDIR/$BDIR"
+	mkdir "$TMPDIR$CDIR/"$BDIR""
 fi
 
 WCLFILE=`wc -l /tmp/.smbulklynks | cut -d " " -f 1`
@@ -128,9 +118,9 @@ BUL=`wc -l /tmp/.bulkedlynk | cut -d " " -f 1`
 echo "$SMA9 $BDIR"
 echo "$SMA10"
 echo "$SMA11"; read -p "$CONFIRM " YESNO
-if [ $YESNO != $conf ] then
-	if [ $YESNO != $CONF ] then
-		YESNO = $conf;
+if [ $YESNO != $conf ]; then
+	if [ $YESNO != $CONF ]; then
+		YESNO = $conf
 	fi
 fi
 
@@ -148,17 +138,17 @@ then
 		FNF=`echo $FNCX | cut -d "&" -f1`
 		DIRNAME="$(echo $FNF)"
 		
-		if ls $CDIR/"$BDIR" | grep "$DIRNAME" > /dev/null
+		if ls $TMPDIR$CDIR/"$BDIR" | grep "$DIRNAME" > /dev/null
 		then
 			echo $SMA3
 			read -p "" DIRNAME
-			if ls $CDIR/"$BDIR" | grep "$DIRNAME" > /dev/null
+			if ls $TMPDIR$CDIR/"$BDIR" | grep "$DIRNAME" > /dev/null
 			then
 				echo $SMA4
 			exit
 			fi
 		else
-			cd $CDIR/"$BDIR"
+			cd $TMPDIR$CDIR/"$BDIR"
 			echo $SMA5 "$DIRNAME"
 			mkdir "$DIRNAME"
 			cd "$DIRNAME"
@@ -171,7 +161,7 @@ then
 			notify-send --icon="pen" -u normal "$DIRNAME" "$SMA20"
 			cd "/tmp"
 			wget --referer="http://submanga.com/c/$LINK" http://submanga.com/hd -o /tmp/.hdlog -O /tmp/smhd
-			cd "$CDIR"/"$BDIR"/"$DIRNAME"
+			cd "$TMPDIR$CDIR"/"$BDIR"/"$DIRNAME"
 			SCDNB=`cat /tmp/smhd | grep "http://omg.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 6 `
 			FSTNB=`cat /tmp/smhd | grep "http://omg.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 5 `
 			for i in `seq 1 100`;
@@ -222,17 +212,17 @@ else ###########################################################################
 		FNF=`echo $FNCX | cut -d "&" -f1`
 		DIRNAME="$(echo $FNF)"
 
-		if ls $CDIR/"$BDIR" | grep "$DIRNAME" > /dev/null
+		if ls $TMPDIR$CDIR/"$BDIR" | grep "$DIRNAME" > /dev/null
 		then
 			echo $SMA3
 			read -p "" DIRNAME
-			if ls $CDIR/"$BDIR" | grep "$DIRNAME" > /dev/null
+			if ls $TMPDIR$CDIR/"$BDIR" | grep "$DIRNAME" > /dev/null
 			then
 				echo $SMA4
 			exit
 			fi
 		else
-			cd $CDIR/"$BDIR"
+			cd $TMPDIR$CDIR/"$BDIR"
 			echo $SMA5 "$DIRNAME"
 			mkdir "$DIRNAME"
 			cd "$DIRNAME"
@@ -245,7 +235,7 @@ else ###########################################################################
 			notify-send --icon="pen" -u normal "$DIRNAME" "$SMA20"
 			cd "/tmp"
 			wget --referer="http://submanga.com/c/$LINK" http://submanga.com/hd -o /tmp/.hdlog -O /tmp/smhd
-			cd "$CDIR"/"$BDIR"/"$DIRNAME"
+			cd "$TMPDIR$CDIR"/"$BDIR"/"$DIRNAME"
 			SCDNB=`cat /tmp/smhd | grep "http://omg.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 6 `
 			FSTNB=`cat /tmp/smhd | grep "http://omg.*.submanga.com/hd.*" | cut -d "%" -f 7 | cut -d "\"" -f 11 | cut -d "/" -f 5 `
 			for i in `seq 1 100`;
@@ -396,3 +386,21 @@ case $1 in
 		exit
 		;;
 esac
+
+# /* Pdf function *\ #
+if [ $PDF == "1" ]; then
+mkdir -p "$CDIR/$BDIR"
+cd "$TMPDIR$CDIR/$BDIR/$DIRNAME"
+#i=1
+#echo $PAG
+#while [ $i -le $PAG ]
+#do
+for i in `seq 1 9`;
+do
+mv "$TMPDIR$CDIR/$BDIR/$DIRNAME/$i.jpg" "$TMPDIR$CDIR/$BDIR/$DIRNAME/0$i.jpg"
+done
+convert "$TMPDIR$CDIR/$BDIR/$DIRNAME/*.jpg" "$CDIR/$BDIR/$DIRNAME.pdf"
+echo "Finalizado correctamente"
+rm -r "$TMPDIR$CDIR/"
+#rmdir "$TMPDIR$CDIR"
+fi

@@ -3,7 +3,7 @@
 # /* Import options *\ #
 
 source ~/.mangatux/options
-source /usr/share/mangatux/langs/$LMLANG;
+source /usr/share/mangatux/langs/$MTXLANG;
 
 if echo $1 | grep ?
 then

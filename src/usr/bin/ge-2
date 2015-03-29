@@ -4,7 +4,7 @@
 # /* Import options *\ #
 
 source ~/.mangatux/options
-source /usr/share/mangatux/langs/$LMLANG;
+source /usr/share/mangatux/langs/$MTXLANG;
 
 wget -O /tmp/.page0 $1 -o /tmp/.log.txt
 FN=`cat /tmp/.page0 | grep "<title>"`
