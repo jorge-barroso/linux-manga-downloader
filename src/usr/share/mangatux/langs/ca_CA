@@ -1,5 +1,5 @@
 #
-#Català					1.0
+#Català					1.5
 #
 
 # /* GUI *\ #
@@ -109,6 +109,8 @@ CONF="S"
 neg="n"
 NEG="N"
 CDIRMK="S'ha creat el directori de descàrrega de Manga. Pots canviar la ruta des de la configuració de Mangatux"
+DOWN="Descarregant pàgina $i"
+END="Descarregat Correctament. "
 
 ## CONFIG
 
@@ -137,7 +139,6 @@ SMA9="Es descarregarà el manga"
 SMA10="A continuació es descarregaran $BUL capítols."
 SMA11="¿Desitja continuar la descàrrega des d'un capítol determinat? [$conf/$NEG]"
 SMA12="Introdueix el número del capítol \"Ej: 37\": "
-SMA13="Descarregat Correctament. "
 SMA14="Error, aquest paràmetre no existeix"
 SMA15='Submanga - Nous Mangas (Beta)'
 SMA16="Selecciona"
@@ -153,7 +154,6 @@ FCH1="Aquest manga ha estat descarregat anteriorment"
 FCH2="Es procedeix a descarregar les noves imatges del thread"
 FCH3="Es descarregaran $FILESN imatges. No tanquis el programa."
 FCH4="Descarregant........."
-FCH5="Imatge $i de $FILESN descarregada"
 FCH6="Descàrrega completa, s'han descarregat $FILESN imatges."
 
 # Mcanime
@@ -163,7 +163,7 @@ MCA2="El directori $DIRNAME ja existeix introdueix un altre nom."
 MCA3="Error amb el nombre de directori, comprova el nom i executa de nou el script."
 MCA4="Es creara el directori $BDIR"
 MCA5="Es creara el directori $DIRNAME"
-MCA6="Error Descarregant la pàgina $i"
+MCA6="Error descarregant la pàgina $i"
 MCA7="Descarrega Completa."
 MCA8="Descarregant"
 
@@ -182,7 +182,6 @@ MAS5="Descàrrega completa"
 MAR1="El directori $DIRNAME ja existeix introdueix un altre nom."
 MAR2="Error amb el nombre de directori, comprova el nom i executa de nou el script."
 MAR3="Es creara el directori \"$DIRNAME\""
-MAR4="Descarregant la pàgina $i"
 MAR5="Descàrrega completa"
 
 # Mangafox
@@ -200,7 +199,7 @@ GEH4="Pàgina $xi descarregada"
 FTH1="El directori $DIRNAME ja existeix introdueix un altre nom."
 FTH2="Error amb el nombre de directori, comprova el nom i executa de nou el script."
 FTH3="Es crearà el directori "$DIRNAME""
-FTH4="Pàgina $i descarregada"
+FTH4="Es descarregaran $FILESN pàgines"
 
 # Animea
 
@@ -226,6 +225,7 @@ DAN4="Descàrrega completada, se han descarregat $FILESN imatges."
 #Pown.it
 
 PNI1="0 no és un pown.it descarrega-ble"
+PNI2="Descàrrega finalitzada"
 
 # Zerochan
 
@@ -234,8 +234,13 @@ ZEO2="Pàgina $pgs descarregada"
 ##
 ##
 
+## PDF ##
+
+PDF1="Unint pàgines......"
+PDF2="La descàrrega en PDF encara està en desenvolupament per a les descàrregues bulk. El teu manga se ha descarregat en format imatge"
+
 ## OTHER THINGS ##
 
 ROOTERR="No es permet l'usuari root"
 CFSAVE="La configuració s'ha guardat exitosament, reinicia perquè tinguin efecte"
-# PKGVER="0.8.7"
+PKGVER="0.9"

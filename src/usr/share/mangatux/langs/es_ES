@@ -1,5 +1,5 @@
 #
-#Español					1.0
+#Español					1.5
 #
 
 # /* GUI *\ #
@@ -109,6 +109,8 @@ CONF="S"
 neg="n"
 NEG="N"
 CDIRMK="Se ha creado el directorio de descarga de Manga. Puedes cambiar la ruta desde la configuración de Mangatux"
+DOWN="Descargando página "$i" de "$FILESN""
+END="Descargado Correctamente. "
 
 ## CONFIG
 
@@ -128,7 +130,6 @@ SMA1="El directorio $BDIR ya existe no hace falta crear uno nuevo"
 SMA2="Se creara el directorio para el manga:"
 SMA3="El capítulo $DIRNAME ya existe, introduce otro nombre."
 SMA5="Se va a crear el directorio"
-SMA6="Descargando pagina"
 SMA7="Error al descargar la pagina"
 SMA8="Descarga Completa"
 SMA8E="Descarga Incompleta"
@@ -136,7 +137,6 @@ SMA9="Se descargará el manga"
 SMA10="A continuación se descargaran $BUL capítulos."
 SMA11="¿Desea continuar la descarga desde un capítulo determinado? [$conf/$NEG]"
 SMA12="Introduzca el numero del capítulo \"ej: 37\": "
-SMA13="Descargado Correctamente. "
 SMA14="Error, ese parámetro no existe"
 SMA15='Submanga - Nuevos Mangas (POC)'
 SMA16="Seleccionar"
@@ -152,7 +152,6 @@ FCH1="Este manga ha sido descargado anteriormente"
 FCH2="Se procederá a descargar las imágenes nuevas del thread"
 FCH3="Se descargarán $FILESN imágenes. No cierres el programa."
 FCH4="Descargando........."
-FCH5="Imagen $i de $FILESN descargada"
 FCH6="Descarga Completa, han sido descargadas $FILESN imágenes."
 
 # Mcanime
@@ -181,7 +180,6 @@ MAS5="Descarga completada"
 MAR1="El directorio $DIRNAME ya existe introduce otro nombre."
 MAR2="Error con el nombre de directorio, compruebe el nombre y ejecute de nuevo el script."
 MAR3="Se va a crear el directorio \"$DIRNAME\""
-MAR4="Descargando página $i"
 MAR5="Descarga completa"
 
 # Mangafox
@@ -199,7 +197,7 @@ GEH4="Página $xi descargada"
 FTH1="El directorio $DIRNAME ya existe introduce otro nombre."
 FTH2="Error con el nombre de directorio, compruebe el nombre y ejecute de nuevo el script."
 FTH3="Se va a crear el directorio "$DIRNAME""
-FTH4="Página $i descargada"
+FTH4="Se van a descargar $FILESN páginas"
 
 # Animea
 
@@ -225,6 +223,7 @@ DAN4="Descarga completa, se han descargado $FILESN imágenes."
 #Pown.it
 
 PNI1="0 no es un pown.it descargable"
+PNI2="Descarga completa"
 
 # Zerochan
 
@@ -233,9 +232,14 @@ ZEO2="Página $pgs descargada"
 ##
 ##
 
+## PDF ##
+
+PDF1="Fusionando páginas......"
+PDF2="La descarga en PDF aún está en desrrollo para las descargas bulk. Tu manga se ha descargado en formato imágenes"
+
 ## OTHER THINGS ##
 
 ROOTERR="El usuario root no está permitido"
 CFSAVE="La configuración se ha guardado exitosamente"
-# PKGVER="0.8.7"
-# PKGNAME="Mangatux"
+PKGVER="0.9"
+PKGNAME="Mangatux"

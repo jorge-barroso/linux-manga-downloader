@@ -1,5 +1,5 @@
 #
-#English					1.0
+#English					1.5
 #
 
 # /* GUI *\ #
@@ -107,6 +107,8 @@ CONF="Y"
 neg="n"
 NEG="N"
 CDIRMK="Manga downloads' directory has been made. You can change it's route in Mangatux' configuration."
+DOWN="Downloading page $i"
+END="Successfully Downloaded. "
 
 ## CONFIG
 
@@ -127,7 +129,6 @@ SMA2="The manga directory will be created: "
 SMA3="$DIRNAME chapter already exists, introduce a new name: "
 SMA4="Error with directory name, check the name and restart the download"
 SMA5="The directory will be created"
-SMA6="Downloading page"
 SMA7="Error while downloading page"
 SMA8="Download Complete"
 SMA8E="Incomplete Download"
@@ -135,7 +136,6 @@ SMA9="Manga will be downloaded"
 SMA10="Now, $BUL chapters will be downloaded."
 SMA11="Do you want to continue from an specific chapter? [$conf/$NEG]"
 SMA12="Introduce the number of the chapter \"ex: 37\":  "
-SMA13="Successfully Downloaded. "
 SMA14="Error:That parameter doesn't exist"
 SMA15='Submanga - New Mangas (POC)'
 SMA16="Choose"
@@ -151,7 +151,6 @@ FCH1="This manga is been already downloaded"
 FCH2="Starting to download the new thread images"
 FCH3="$FILESN images will be downloaded. Don't close."
 FCH4="Downloading........."
-FCH5="$i out of $FILESN images downloaded"
 FCH6="Download complete, $FILESN images downloaded."
 
 # Mcanime
@@ -180,7 +179,6 @@ MAS5="Download Complete"
 MAR1="$DIRNAME directory already exists, introduce a new name."
 MAR2="Error with directory name, check the name and run again the script."
 MAR3="se va a crear the directory \"$DIRNAME\""
-MAR4="Downloading page $i"
 MAR5="Download Complete"
 
 # Mangafox
@@ -198,7 +196,7 @@ GEH4="Page $xi downloaded"
 FTH1="$DIRNAME directory already exists, introduce a new name."
 FTH2="Error with directory name, check the name and run again the script."
 FTH3="The directory "$DIRNAME" is going to be made"
-FTH4="Page number $i downloaded"
+FTH4="$FILESN pages will be downloaded"
 
 # Animea
 
@@ -224,6 +222,7 @@ DAN4="Download Complete, $FILESN images downloaded."
 #Pown.it
 
 PNI1="0 is not a downloadable pown.it"
+PNI2="Download finished"
 
 # Zerochan
 
@@ -232,8 +231,13 @@ ZEO2="Page $pgs downloaded"
 ##
 ##
 
+## PDF ##
+
+PDF1="Merging pages......"
+PDF2="PDF download is under development for bulk downloads by now. Your manga was downloaded on image format"
+
 ## OTHER THINGS ##
 
 ROOTERR="Root user is not supported"
 CFSAVE="Configuration was successfully saved"
-# PKGVER="0.8.7"
+PKGVER="0.9"
