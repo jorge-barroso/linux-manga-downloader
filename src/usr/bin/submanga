@@ -5,6 +5,7 @@
 
 source ~/.mangatux/options;
 source /usr/share/mangatux/langs/$MTXLANG;
+source /usr/bin/mangatux-pdf;
 
 ##### /* Functions *\ #####
 
@@ -36,7 +37,7 @@ do
 done
 	cd $TMPDIR$CDIR/"$BDIR"
 	echo $SMA5 "$DIRNAME"
-	mkdir "$DIRNAME"
+	mkdir -p "$DIRNAME"
 	cd "$DIRNAME"
 
 
@@ -101,7 +102,7 @@ then
 	echo "$SMA1"
 else
 	echo "$SMA2 $BDIR"
-	mkdir "$TMPDIR$CDIR/"$BDIR""
+	mkdir -p "$TMPDIR$CDIR/"$BDIR""
 fi
 
 WCLFILE=`wc -l /tmp/.smbulklynks | cut -d " " -f 1`
@@ -150,7 +151,7 @@ then
 		else
 			cd $TMPDIR$CDIR/"$BDIR"
 			echo $SMA5 "$DIRNAME"
-			mkdir "$DIRNAME"
+			mkdir -p "$DIRNAME"
 			cd "$DIRNAME"
 		fi
 
@@ -224,7 +225,7 @@ else ###########################################################################
 		else
 			cd $TMPDIR$CDIR/"$BDIR"
 			echo $SMA5 "$DIRNAME"
-			mkdir "$DIRNAME"
+			mkdir -p "$DIRNAME"
 			cd "$DIRNAME"
 		fi
 
@@ -366,16 +367,21 @@ fi
 
 }
 
-
-
 # /* Case *\ #
 ODOWN=`echo "$2"`
 case $1 in
 	-n)
 		SUBMANGA_DN
+		if [ $PDF == "1" ]; then
+		PDF
+		fi
 		;;
 	-b)
+		TMPDIR=""
 		SMBULK
+		if [ $PDF == "1" ]; then
+		PDFBULK
+		fi
 		;;
 	-l)
 		SMLIS
@@ -386,21 +392,3 @@ case $1 in
 		exit
 		;;
 esac
-
-# /* Pdf function *\ #
-if [ $PDF == "1" ]; then
-mkdir -p "$CDIR/$BDIR"
-cd "$TMPDIR$CDIR/$BDIR/$DIRNAME"
-#i=1
-#echo $PAG
-#while [ $i -le $PAG ]
-#do
-for i in `seq 1 9`;
-do
-mv "$TMPDIR$CDIR/$BDIR/$DIRNAME/$i.jpg" "$TMPDIR$CDIR/$BDIR/$DIRNAME/0$i.jpg"
-done
-convert "$TMPDIR$CDIR/$BDIR/$DIRNAME/*.jpg" "$CDIR/$BDIR/$DIRNAME.pdf"
-echo "Finalizado correctamente"
-rm -r "$TMPDIR$CDIR/"
-#rmdir "$TMPDIR$CDIR"
-fi

@@ -24,7 +24,7 @@ if [ -e $HOME/$IMGDIR/"$NAMEDIR" ];
 then
 	cd $HOME/$IMGDIR/"$NAMEDIR"
 else
-	mkdir $HOME/$IMGDIR/"$NAMEDIR"
+	mkdir -p $HOME/$IMGDIR/"$NAMEDIR"
 	cd $HOME/$IMGDIR/"$NAMEDIR"
 fi
 for pga in `seq 1 10000`;

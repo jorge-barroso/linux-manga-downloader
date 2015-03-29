@@ -22,7 +22,7 @@ then
 else
 #read -p "Introduzca un nombre para el directorio: " NAMEDIR
 #	gtkdialog --program FORCHAN_SETDIR_DIALOG
-	mkdir $HOME/$IMGDIR/"$IDIR-$NAMEDIR"
+	mkdir -p $HOME/$IMGDIR/"$IDIR-$NAMEDIR"
 	cd $CDIR/$IMGDIR/"$IDIR-$NAMEDIR"	
 fi
 lynx -image_links -dump $1 | egrep http://images.4chan.org/.* > /tmp/$TTH\_imglinks

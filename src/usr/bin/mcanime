@@ -31,12 +31,12 @@ then
 	else
 		cd 
 		echo $MCA4
-		mkdir "$DIRNAME"
+		mkdir -p "$DIRNAME"
 		cd "$DIRNAME"
 	fi
 else
 	cd "$CDIR"
-	mkdir "$BDIR"
+	mkdir -p "$BDIR"
 	cd "$BDIR"
 	echo $MCA5
 	if ls "" | grep "$DIRNAME" > /dev/null
@@ -49,7 +49,7 @@ else
 		fi
 	else
 		echo $MCA4
-		mkdir "$DIRNAME"
+		mkdir -p "$DIRNAME"
 		cd "$DIRNAME"
 	fi
 fi
@@ -148,13 +148,22 @@ fi
 
 }
 
+# /* Pdf function *\ #
+
+
 ODOWN=`echo "$2"`
 case $1 in
 	-n)
 		MCANIME_NORMAL
+		if [ $PDF == "1" ]; then
+		PDF
+		fi
 		;;
 	-l)
 		MCANIME_LIST
+		if [ $PDF == "1" ]; then
+		PDF
+		fi
 		;;
 	*)
 		#Error

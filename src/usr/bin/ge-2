@@ -24,14 +24,14 @@ then
 		else
 			cd $CDIR
 			echo $GEH3
-			mkdir "$DIRNAME"
+			mkdir -p "$DIRNAME"
 			cd "$DIRNAME"
 		fi
 else
 #	rm .fn.txt .fnf.txt .log.txt .page0
 	cd $CDIR
 	echo $GEH3
-	mkdir "$DIRNAME"
+	mkdir -p "$DIRNAME"
 	cd "$DIRNAME"
 fi
 

@@ -1,0 +1,24 @@
+#! /bin/bash
+
+source ~/.mangatux/options;
+source /usr/share/mangatux/langs/$MTXLANG;
+
+# /* Pdf function *\ #
+function PDF(){
+echo "$PDF1"
+mkdir -p "$CDIR/$BDIR"
+cd "$TMPDIR$CDIR/$BDIR/$DIRNAME"
+for i in `seq 1 9`;
+do
+mv "$TMPDIR$CDIR/$BDIR/$DIRNAME/$i.jpg" "$TMPDIR$CDIR/$BDIR/$DIRNAME/0$i.jpg"
+done
+convert -monitor "$TMPDIR$CDIR/$BDIR/$DIRNAME/*.jpg" "$CDIR/$BDIR/$DIRNAME.pdf"
+echo "Finalizado correctamente"
+rm -r "$TMPDIR$CDIR/"
+}
+
+
+# /* Pdf for bulk download function *\ #
+function PDFBULK(){
+echo $PDF2
+}

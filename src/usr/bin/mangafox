@@ -30,12 +30,12 @@ then
 	else
 		cd $CDIR/"$BDIR"
 		echo $MCA4
-		mkdir "$DIRNAME"
+		mkdir -p "$DIRNAME"
 		cd "$DIRNAME"
 	fi
 else
 	cd "$CDIR"
-	mkdir "$BDIR"
+	mkdir -p "$BDIR"
 	cd "$BDIR"
 	echo $MCA5
 	if ls "$CDIR/$BDIR" | grep "$DIRNAME" > /dev/null
@@ -48,7 +48,7 @@ else
 		fi
 	else
 		echo $MCA4
-		mkdir "$DIRNAME"
+		mkdir -p "$DIRNAME"
 		cd "$DIRNAME"
 	fi
 fi
@@ -59,7 +59,7 @@ PAGES=`lynx -nonumbers -dump $1 | grep "$ULCT/.*" | tail -1 | cut -d "/" -f 7 | 
 #echo $ULCT $PAGES
 if ! [ -e /tmp/mfcdn ];
 then
-	mkdir "/tmp/mfcdn"
+	mkdir -p "/tmp/mfcdn"
 fi
 #exit
 #Download & stop

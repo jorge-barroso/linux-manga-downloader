@@ -16,7 +16,7 @@ else
 		cd $CDIR/pown
 		wget http://www.pown.it/flash/$NUMBER.swf -o /tmp/logsesion
 	else
-		mkdir $CDIR/pown
+		mkdir -p $CDIR/pown
 		cd $CDIR/pown
 		wget http://www.pown.it/flash/$NUMBER.swf -o /tmp/logsesion
 	fi

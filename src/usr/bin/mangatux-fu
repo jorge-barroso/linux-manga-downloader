@@ -161,7 +161,7 @@ function RECONF(){
 if [ -d ~/.mangatux ]; then
 	rm -r ~/.mangatux
 fi
-mkdir $HOME/.mangatux
+mkdir -p $HOME/.mangatux
 echo "#
 ##Options File
 #

@@ -25,7 +25,7 @@ if [ -e $CDIR/$IMGDIR/"$NAMEDIR" ];
 then
 	cd $CDIR/$IMGDIR/"$NAMEDIR"
 else
-	mkdir $CDIR/$IMGDIR/"$NAMEDIR"
+	mkdir -p $CDIR/$IMGDIR/"$NAMEDIR"
 	cd $HCDIR/$IMGDIR/"$NAMEDIR"
 fi
 for pgs in `seq 1 $PAGES`

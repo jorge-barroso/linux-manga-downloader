@@ -24,7 +24,7 @@ then
 else
 	cd $CDIR
 	echo "$MAR3"
-	mkdir "$DIRNAME"
+	mkdir -p "$DIRNAME"
 	cd "$DIRNAME"
 fi
 NAFILE=`echo $DIRNAME | tr " " -`

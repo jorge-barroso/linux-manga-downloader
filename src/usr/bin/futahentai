@@ -21,7 +21,7 @@ then
 else
 	cd $CDIR
 	echo se va a crear el directorio "$DIRNAME"
-	mkdir "$DIRNAME"
+	mkdir -p "$DIRNAME"
 	cd "$DIRNAME"
 fi
 
