@@ -12,7 +12,12 @@ To install the program and make it run you will need:
   * links
   * libnotify
 
-These dependencies are needed to download the manga and to show you the windows and notifications so it's important for you to install every one
+These dependencies are needed to download the manga and to show you the gui and notifications so it's important for you to install every one.
+
+Nevertheless, the new function, PDF DOWNLOAD, requires of an extra dependency:
+ * imagemagick
+
+With imagemagick you can download your manga directly on a pdf file which could be better for you to read your favourite manga.
 
 # Installation:
 
@@ -36,51 +41,25 @@ You'll also have RPM packages as soon as possible tracking the daily development
       
       cd ~
       
-      git clone https://github.com/jorge-barroso/Mangatux.git
+      git clone https://github.com/jorge-barroso/mangatux.git
       
       cd mangatux
       
-      sudo cp -r ./usr/* /usr/
+      sh install
 
 ## Arch Linux:
-The package is in the aur, you can install it by typing:
+The package is in the aur, you can install the stable version by typing:
       
       yaourt -S mangatux
 
-If you don't have yaourt already installed, you can install yaourt in the following steps:
+In addition, you can install the git version with:
 
-### Method 1:
-* Open <b>/etc/pacman.conf'</b> on your text editor as super user
-* Go to the end of the file
-* Add three lines:
-        
+      yaourt -S mangatux
 
-        [archlinuxfr]
-        SigLevel = Never
-        Server = http://repo.archlinux.fr/$arch
-        
-* Then run the next command on your terminal:
-      
+If you don't have yaourt already installed, you can install yaourt following the steps in https://wiki.archlinux.org/index.php/yaourt
 
-        pacman -Sy yaourt
-
-### Method 2:
-* Copy and paste the next commands in order to get it installed:
-      
-
-        curl -O https://aur.archlinux.org/packages/pa/package-query/package-query.tar.gz
-        tar zxvf package-query.tar.gz
-        cd package-query
-        makepkg -si
-        cd ..
-        curl -O https://aur.archlinux.org/packages/ya/yaourt/yaourt.tar.gz
-        tar zxvf yaourt.tar.gz
-        cd yaourt
-        makepkg -si
-    
-    
 ## DEVELOPERS:
-It would be great if you had any ideas to add to the project so if you want to callaborate write me on my email, do a pull request (if you have a github profile) or whatever you can do, I'll be glad to have your collaboration. To retrieve the fonts you know, just do:
+It would be great if you had any ideas to add to the project so if you want to callaborate write me on my email, do a pull request (if you have a github profile) or whatever you can do, I'll be glad to have your collaboration. To retrieve the fonts you know, just type:
 
       git clone https://github.com/jorge-barroso/Mangatux.git (simple HTTPS method)
         
