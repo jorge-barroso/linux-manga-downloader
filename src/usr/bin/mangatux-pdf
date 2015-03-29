@@ -10,7 +10,9 @@ mkdir -p "$CDIR/$BDIR"
 cd "$TMPDIR$CDIR/$BDIR/$DIRNAME"
 for i in `seq 1 9`;
 do
-mv "$TMPDIR$CDIR/$BDIR/$DIRNAME/$i.jpg" "$TMPDIR$CDIR/$BDIR/$DIRNAME/0$i.jpg"
+	if [ -f "$TMPDIR$CDIR/$BDIR/$DIRNAME/$i.jpg" ]; then
+		mv "$TMPDIR$CDIR/$BDIR/$DIRNAME/$i.jpg" "$TMPDIR$CDIR/$BDIR/$DIRNAME/0$i.jpg"
+	fi
 done
 convert -monitor "$TMPDIR$CDIR/$BDIR/$DIRNAME/*.jpg" "$CDIR/$BDIR/$DIRNAME.pdf"
 echo "Finalizado correctamente"

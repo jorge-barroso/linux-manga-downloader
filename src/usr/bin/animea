@@ -19,8 +19,8 @@ wget -O /tmp/.page0 "$LAN" -o /tmp/.log.txt
 CX=`cat /tmp/.page0 | egrep "<title>" | cut -d ">" -f2 | cut -d "<" -f1 `
 CA=`echo $CX | wc -c`
 CL=`expr $CA - 3`
-PAGES=`echo $CX | cut -c$CL-300`
-#echo $PAGES
+FILESN=`echo $CX | cut -c$CL-300`
+#echo $FILESN
 #echo $LAN
 #exit
 SLINK=`cat /tmp/.page0 | egrep "<a href=.*>.*</a>.*</h1>"`
@@ -30,38 +30,38 @@ DIRNAME=`echo $BDIR $CHAP`
 #echo $DIRNAME \| $LAN \| SLINK $SLINK
 #exit
 ###
-if ls $CDIR | grep "$BDIR" > /dev/null
+if ls $TMPDIR$CDIR | grep "$BDIR" > /dev/null
 then
 	echo "$ANE1"
 else
 	echo "$ANE2"
-	mkdir -p $CDIR/$BDIR
+	mkdir -p $TMPDIR$CDIR/$BDIR
 fi
 
 
-if ls $CDIR/$BDIR | grep "$DIRNAME" > /dev/null
+if ls $TMPDIR$CDIR/$BDIR | grep "$DIRNAME" > /dev/null
 then
 	echo $ANE3
 		read -p "" DIRNAME
-		if ls $CDIR/$BDIR | grep "$DIRNAME" > /dev/null
+		if ls $TMPDIR$CDIR/$BDIR | grep "$DIRNAME" > /dev/null
 		then
 			echo $ANE4
 			exit
 		else
-			cd $CDIR/$BDIR
+			cd $TMPDIR$CDIR/$BDIR
 			echo $ANE5
 			mkdir -p "$DIRNAME"
 			cd "$DIRNAME"
 		fi
 else
-	cd $CDIR/$BDIR
+	cd $TMPDIR$CDIR/$BDIR
 	echo $ANE5
 	mkdir -p "$DIRNAME"
 	cd "$DIRNAME"
 fi
 
 
-for i in `seq 1 $PAGES`;
+for i in `seq 1 $FILESN`;
 do
 		a=`expr $i + 1`
 		DWNLINK=`lynx -image_links -dump "$LAN" | egrep -o -e "http://.*/.*.jpg" -e "http://.*/.*.png"`

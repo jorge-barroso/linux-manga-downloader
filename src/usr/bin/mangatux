@@ -1,13 +1,16 @@
 #!/bin/bash
 #
 
+## Checking ##
 [ ! -d ~/.mangatux ] && mangatux-fu -reconf
-#[ $? -ne 0 ] exit 1
 
 source ~/.mangatux/options;
 source /usr/share/mangatux/langs/$MTXLANG;
-[ ! -d $CDIR ] && mkdir -p $CDIR && notify-send --icon=pen "Mangatux" "$CDIRMK"
 
+[ ! -d $CDIR ] && mkdir -p $CDIR && notify-send --icon=pen "Mangatux" "$CDIRMK"
+[ ! -d $TMPDIR$CDIR ] && [ $PDF == 1 ] && mkdir -p $TMPDIR$CDIR
+
+## Starting ##
 export SUBMANGA_HELP_DIALOG="
 <window title=\"$TIT1\" default_height=\"200\" default_width=\"450\">
 <vbox>
@@ -176,8 +179,6 @@ export MAIN_DIALOG="
 			<radiobutton>
 			<label>$GULA_RAWS</label>
 			<variable>MANGAHEAD_DNVAR</variable>
-			<action>if false enable:RASCAENTRY</action> 
-			<action>if true disable:RASCAENTRY</action>
 			</radiobutton>
 			
 			<radiobutton>
@@ -187,14 +188,10 @@ export MAIN_DIALOG="
 			<radiobutton>
 			<label>$GULA_RAWS2</label>
 			<variable>MANGASHARE_DNVAR</variable>
-			<action>if false enable:RASCAENTRY</action> 
-			<action>if true disable:RASCAENTRY</action>
 			</radiobutton>
 			<radiobutton>
 			<label>$GULA_RAWS3</label>
 			<variable>MANGAREADER_DNVAR</variable>
-			<action>if false enable:RASCAENTRY</action> 
-			<action>if true disable:RASCAENTRY</action>
 			</radiobutton>
 			<radiobutton>
 			<label>$GULA_RAWS4</label>
@@ -333,3 +330,32 @@ case $1 in
 		;;
 esac
 fi
+#<frame $GULA_SERV>
+#			<radiobutton>
+#			<label>$GULA_RAWS</label>
+#			<variable>MANGAHEAD_DNVAR</variable>
+#			<action>if false enable:RASCAENTRY</action> 
+#			<action>if true disable:RASCAENTRY</action>
+#			</radiobutton>
+#			
+#			<radiobutton>
+#			<label>$GULA_RAWS1</label>
+#			<variable>MANGAFOX_DNVAR</variable>
+#			</radiobutton>
+#			<radiobutton>
+#			<label>$GULA_RAWS2</label>
+#			<variable>MANGASHARE_DNVAR</variable>
+#			<action>if false enable:RASCAENTRY</action> 
+#			<action>if true disable:RASCAENTRY</action>
+#			</radiobutton>
+#			<radiobutton>
+#			<label>$GULA_RAWS3</label>
+#			<variable>MANGAREADER_DNVAR</variable>
+#			<action>if false enable:RASCAENTRY</action> 
+#			<action>if true disable:RASCAENTRY</action>
+#			</radiobutton>
+#			<radiobutton>
+#			<label>$GULA_RAWS4</label>
+#			<variable>ANIMEA_DNVAR</variable>
+#			</radiobutton>
+#		</frame>

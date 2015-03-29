@@ -49,7 +49,7 @@ do
 		do
 			FUL=`head -$i /tmp/$TTH\_imglinksca | tail -1`
 			wget "$FUL" -o /tmp/.logsesion
-			echo Image $i of $FILESN download	
+			echo $DOWN	
 		done
 		echo "$DAN4"
 		notify-send --icon="pen" -u normal "$NAMEDIR" "$DAN4"

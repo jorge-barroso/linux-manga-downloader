@@ -12,23 +12,23 @@ FNCT=`echo $FN | cut -d "-" -f1`
 FNF=`echo $FNCT | cut -c8-90`
 DIRNAME="$(echo $FNF)"
 
-if ls $CDIR | grep "$DIRNAME" > /dev/null
+if ls $TMPDIR$CDIR | grep "$DIRNAME" > /dev/null
 then
 	echo "$MAR1"
 		read -p "" DIRNAME
-		if ls $CDIR | grep "$DIRNAME" > /dev/null
+		if ls $TMPDIR$CDIR | grep "$DIRNAME" > /dev/null
 		then
 			echo $MAR2
 			exit
 		fi
 else
-	cd $CDIR
+	cd $TMPDIR$CDIR
 	echo "$MAR3"
 	mkdir -p "$DIRNAME"
 	cd "$DIRNAME"
 fi
 NAFILE=`echo $DIRNAME | tr " " -`
-echo "$MAR4"
+echo "$DOWN"
 GETUL="$(lynx -image_links -dump "$1" | egrep http://i.*.mangareader.net/.*)"
 wget -O $NAFILE-1.jpg $GETUL -o /tmp/.logsesion
 
@@ -37,7 +37,7 @@ for i in `seq 2 100`
 do
 if cat /tmp/.page0 | egrep "<option value=.*/.*-$i/.*" > /dev/null
 then
-	echo $MAR4
+	echo $DOWN
 	NXTUL=`cat /tmp/.page0 | egrep "<option value=.*/.*-$i/.*" | cut -d "'" -f 2`
 	GETUL="$(lynx -image_links -dump "http://www.mangareader.net$NXTUL" | egrep http://i.*.mangareader.net/.*)"
 	wget -O $NAFILE-$i.jpg $GETUL -o /tmp/.logsesion

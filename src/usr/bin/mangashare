@@ -14,17 +14,17 @@ DIRNAME=`echo $FNF`
 echo $DIRNAME
 
 #DIR NAME
-if ls $CDIR | grep "$DIRNAME" > /dev/null
+if ls $TMPDIR$CDIR | grep "$DIRNAME" > /dev/null
 then
 	echo "$MAS1"
 		read -p "" DIRNAME
-		if ls $CDIR | grep "$DIRNAME" > /dev/null
+		if ls $TMPDIR$CDIR | grep "$DIRNAME" > /dev/null
 		then
 			echo "$MAS2"
 			exit
 		fi
 else
-	cd $CDIR
+	cd $TMPDIR$CDIR
 	echo "MAS3"
 	mkdir -p "$DIRNAME"
 	cd "$DIRNAME"

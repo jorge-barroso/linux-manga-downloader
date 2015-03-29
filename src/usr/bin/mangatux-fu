@@ -144,9 +144,9 @@ else
     fi
 fi
 
-if [ $CDIR != $OLDCDIR ]; then
-mkdir -p $CDIR
-[ -f /$OLDCDIR/* ] && mv $OLDCDIR/* $CDIR/
+if [ $TMPDIR$CDIR != $OLDCDIR ]; then
+mkdir -p $TMPDIR$CDIR
+[ -f /$OLDCDIR/* ] && mv $OLDCDIR/* $TMPDIR$CDIR/
 rmdir $OLDCDIR
 fi
 

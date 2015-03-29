@@ -5,19 +5,17 @@
 
 source ~/.mangatux/options;
 source /usr/share/mangatux/langs/$MTXLANG;
+source /usr/bin/mangatux-pdf
 
 ##### /* Functions *\ #####
 
 function MCANIME_NORMAL(){
 wget -O /tmp/.page0 $ODOWN -o /tmp/.log.txt
 FNF=`cat /tmp/.page0 | grep "<title>" | cut -d ">" -f 2 | cut -d "(" -f1 `
-#FNCT=`echo $FN | cut -d "(" -f1`
-#FNF=`echo $FNCT | cut -c8-90`
 DIRNAME="$(echo $FNF)"
-#echo $DIRNAME
 BDIR=`echo "$DIRNAME" | tr -d [1-9]`
 
-if ls $CDIR | grep "$BDIR" > /dev/null
+if ls $TMPDIR$CDIR | grep "$BDIR" > /dev/null
 then
 	echo $MCA1
 	if ls  | grep "$DIRNAME" > /dev/null
@@ -55,19 +53,15 @@ else
 fi
 notify-send --icon="pen" -u normal "$DIRNAME" "$MCA8"
 CTLINK=`echo $ODOWN | cut -d "/" -f -7`
-#echo $CTLINK AQUIIIIIIIIII
-#exit 
 
 for i in `seq 1 100`;
 do
 	DWNLINK=`lynx -image_links -dump $CTLINK/$i#ver | egrep -o "http://manga.mcanime.net/manga/.*"`
-	#echo $DWNLINK
 	wget $DWNLINK -o /tmp/.logsesion
 		echo $MCA6
 	if ls | grep 0.*.1 > /dev/null
 		then
 		echo $MCA7
-		#echo $MCA5
 		notify-send --icon="pen" -u normal "$DIRNAME" "$MCA7"
 		break
 		fi
@@ -98,7 +92,6 @@ for lis in `seq 2 $BUC`
 do
 	GA=`head -$lis /tmp/.li-chap | tail -1 `
 	NA=`head -$lis /tmp/.li-name | tail -1 `
-#	echo $NA
 	let TUC=$lis-$RUC
 	echo "$GA" >> /tmp/.listul
 	echo "TS_$TUC=\`echo \"$TUC\"\`" >> /tmp/.listf
@@ -148,8 +141,6 @@ fi
 
 }
 
-# /* Pdf function *\ #
-
 
 ODOWN=`echo "$2"`
 case $1 in
@@ -161,12 +152,8 @@ case $1 in
 		;;
 	-l)
 		MCANIME_LIST
-		if [ $PDF == "1" ]; then
-		PDF
-		fi
 		;;
 	*)
-		#Error
 		echo "error ese parametro no existe"
 		exit
 		;;

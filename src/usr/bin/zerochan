@@ -16,19 +16,19 @@ TITLE=`cat /tmp/.page0 | grep "<title>"`
 PAG=`cat /tmp/.page0 | grep "page" | cut -d " " -f 4 | cut -d "<" -f 1`
 if echo $PAG | grep "," ;
 then
-	PAGES=`echo $PAG | tr -d ,`
+	FILESN=`echo $PAG | tr -d ,`
 fi
-echo $PAGES
+echo $FILESN
 NAMEDIR=`echo $TITLE | cut -d "/" -f 2 | cut -d "-" -f 1`
-IMGDIR=`ls $CDIR | grep Im`
-if [ -e $CDIR/$IMGDIR/"$NAMEDIR" ];
+IMGDIR=`ls $TMPDIR$CDIR | grep Im`
+if [ -e $TMPDIR$CDIR/$IMGDIR/"$NAMEDIR" ];
 then
-	cd $CDIR/$IMGDIR/"$NAMEDIR"
+	cd $TMPDIR$CDIR/$IMGDIR/"$NAMEDIR"
 else
-	mkdir -p $CDIR/$IMGDIR/"$NAMEDIR"
+	mkdir -p $TMPDIR$CDIR/$IMGDIR/"$NAMEDIR"
 	cd $HCDIR/$IMGDIR/"$NAMEDIR"
 fi
-for pgs in `seq 1 $PAGES`
+for pgs in `seq 1 $FILESN`
 do
 	lynx -image_links -dump "$UL?p=$pgs" | egrep http://s.*.zerochan.net/.* > /tmp/imglinks
 	cat /tmp/imglinks | cut -d "." -f 4 | cut -c9-300  > /tmp/imglinksc
